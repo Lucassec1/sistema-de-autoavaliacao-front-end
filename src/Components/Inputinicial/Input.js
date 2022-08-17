@@ -30,22 +30,22 @@ const NumericInput = (props) => {
   const title = value ? (
     <span className="numeric-input-title">{value !== '-' ? formatNumber(Number(value)) : '-'}</span>
   ) : (
-    'Input a number'
+    'Digite seu CPF'
   );
   return (
-    <Tooltip trigger={['focus']} title={title} placement="topLeft" overlayClassName="numeric-input">
+    <Tooltip trigger={['focus']} title={title} placement="topLeft" overlayClassName="CPF">
       <Input
         {...props}
         onChange={handleChange}
         onBlur={handleBlur}
-        placeholder="Input a number"
+        placeholder="CPF"
         maxLength={25}
       />
     </Tooltip>
   );
 };
 
-const App = () => {
+const Inputt = () => {
   const [value, setValue] = useState('');
   return (
     <NumericInput
@@ -58,4 +58,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Inputt;
