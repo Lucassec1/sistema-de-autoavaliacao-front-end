@@ -8,4 +8,6 @@ O Sistema de Avaliação e Pesquisa - SAP deve ser capaz de gerenciar avaliaçõ
 
 - [Styled Components](https://styled-components.com) - estilização;
 
+- [React Icons](https://react-icons.github.io/react-icons/) - ícones;
+
 - [Chart.Js](https://www.chartjs.org) - gráficos.
