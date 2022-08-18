@@ -1,17 +1,29 @@
 import React from "react";
 import Inputt from "../../Components/Inputinicial/Input";
-// import Login1 from "../../assets/login1.png"
-import { BackgroundForm, IllustrationForm } from './styles'
+import {
+    Container,
+    BackgroundForm,
+    IllustrationForm,
+    FormLogin,
+    Title,
+    LoginContainer,
+    InputCFP
+} from './styles'
 
 function Login() {
 
 
     return (
         <>
-
-           
-            <IllustrationForm>aaaaa</IllustrationForm>
-            <BackgroundForm/>
+            <Container>
+                <BackgroundForm><IllustrationForm /></BackgroundForm>
+                <LoginContainer>
+                    <FormLogin>
+                        <Title>Bem-vindo ao, <span> Nome</span></Title>
+                        <InputCFP><Inputt/></InputCFP>
+                    </FormLogin>
+                </LoginContainer>
+            </Container>
         </>
 
     )
@@ -21,3 +33,4 @@ function Login() {
 export default Login;
 
 /*<Inputt /> */
+/* <IllustrationForm>aaaaa</IllustrationForm> */

@@ -39,7 +39,7 @@ const NumericInput = (props) => {
         onChange={handleChange}
         onBlur={handleBlur}
         placeholder="CPF"
-        maxLength={25}
+        maxLength={40}
       />
     </Tooltip>
   );
@@ -50,7 +50,9 @@ const Inputt = () => {
   return (
     <NumericInput
       style={{
-        width: 120,
+        width: 350,
+        height: 50,
+        borderRadius: 5,
       }}
       value={value}
       onChange={setValue}
