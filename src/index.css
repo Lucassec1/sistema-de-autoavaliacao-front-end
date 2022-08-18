@@ -10,6 +10,11 @@ body {
 
 }
 
+#root {
+  background-color
+  :  rgba(249, 248, 249, 0.8);;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
