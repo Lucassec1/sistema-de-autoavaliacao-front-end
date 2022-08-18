@@ -43,7 +43,6 @@ export const FormLogin = styled.div`
 
 `;
 export const InputCFP = styled.div`
-    
 
 
 `;
