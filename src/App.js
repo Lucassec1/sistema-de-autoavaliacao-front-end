@@ -1,11 +1,12 @@
 
 import './App.css';
 import  Login  from './Pages/Login/Login';
+import Rotas from "./Routes.js"
 
 function App() {
   return (
-    <div>
-      <Login />
+    <div style={{display: 'flex'}}>
+      <Rotas />
     </div>
   );
 }
