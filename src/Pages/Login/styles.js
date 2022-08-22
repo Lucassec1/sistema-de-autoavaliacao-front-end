@@ -43,8 +43,6 @@ export const Title = styled.p`
     aling-items: center;
 `;
 export const FormLogin = styled.div`
-    display: flex;
-    flex-direction: column;
 `;
 export const InputCFP = styled.div`
 

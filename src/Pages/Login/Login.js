@@ -22,7 +22,7 @@ function Login() {
                     <FormLogin>
                         <Title>Bem-vindo ao, Nome</Title>
                         <InputCFP><Inputt/></InputCFP>
-                        <Button type="primary">Login</Button>
+                        <Button type='primary'>Login</Button>
                     </FormLogin>
                 </LoginContainer>
             </Container>
