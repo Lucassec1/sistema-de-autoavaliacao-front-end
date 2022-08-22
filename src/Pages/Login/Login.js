@@ -1,6 +1,6 @@
 import React from "react";
 import Inputt from "../../Components/Inputinicial/Input";
-import Button from "../../Components/ButtonHome/ButtonHome";
+
 import {
     Container,
     BackgroundForm,
@@ -10,7 +10,8 @@ import {
     LoginContainer,
     InputCFP
 } from './styles'
-import ButtonLogin from "../../Components/ButtonHome/ButtonHome";
+import 'antd/dist/antd.css';
+import { Button } from 'antd';
 
 function Login() {
     return (
@@ -21,7 +22,7 @@ function Login() {
                     <FormLogin>
                         <Title>Bem-vindo ao, Nome</Title>
                         <InputCFP><Inputt/></InputCFP>
-                        <ButtonLogin/>
+                        <Button type="primary">Login</Button>
                     </FormLogin>
                 </LoginContainer>
             </Container>
@@ -32,6 +33,3 @@ function Login() {
 }
 
 export default Login;
-
-/*<Inputt /> */
-/* <IllustrationForm>aaaaa</IllustrationForm> */

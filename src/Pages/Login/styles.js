@@ -55,3 +55,7 @@ export const LoginContainer = styled.div`
     justify-content: center; 
     align-items: center;
 `;
+
+export const Button = styled.div`
+    border: 5px solid red;
+`;
