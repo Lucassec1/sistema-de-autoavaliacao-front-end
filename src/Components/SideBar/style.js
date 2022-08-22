@@ -1,5 +1,14 @@
 import styled from "styled-components";
 
+export const Sidebar = styled.div`
+    max-width: 250px;
+    width: 25vw;
+    height: 100vh;
+    border-right: 1px solid #EBEBEB;
+
+    background-color: #F5F5F5;
+`;
+
 export const MenuContainer = styled.div`
     display: flex;
     justify-content: center;
@@ -9,24 +18,15 @@ export const MenuContainer = styled.div`
     height: 70vh;
 `;
 
-export const Sidebar = styled.div`
-    max-width: 250px;
-    width: 25vw;
-    height: 100vh;
-    border-right: 1px solid #EBEBEB;
-    
-    background-color: #F5F5F5;
-`;
 
 export const ProfileContainer = styled.div`
     display: flex;
     justify-content: center;
-    border: 1px solid red;
+    gap: 10px;
 `;
 
 export const ProfileContent = styled.div`
-    max-width: 150px;
-    border: 1px solid red;
+    max-width: 140px;
 `;
 
 export const Name = styled.h3`

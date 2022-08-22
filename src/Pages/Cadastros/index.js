@@ -1,10 +1,13 @@
-
+import Tabela from "../../Components/Tabela"
 
 export default function Cadastros() {
     
     return (
         <>
-            <h1 style={{marginLeft: '100px'}}>Cadastros</h1>
+            <main style={{marginLeft: '100px'}}>
+                <h1>Cadastros</h1>
+                <Tabela />
+            </main>
         </>
     )
 }
