@@ -43,10 +43,10 @@ export const Title = styled.p`
     aling-items: center;
 `;
 export const FormLogin = styled.div`
-
+    display: flex;
+    flex-direction: column;
 `;
 export const InputCFP = styled.div`
-
 
 `;
 export const LoginContainer = styled.div`
@@ -55,4 +55,3 @@ export const LoginContainer = styled.div`
     justify-content: center; 
     align-items: center;
 `;
-

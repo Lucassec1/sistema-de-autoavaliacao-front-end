@@ -39,7 +39,8 @@ const NumericInput = (props) => {
         onChange={handleChange}
         onBlur={handleBlur}
         placeholder="CPF"
-        maxLength={40}
+        maxLength={11}
+        minLength={11}
       />
     </Tooltip>
   );
