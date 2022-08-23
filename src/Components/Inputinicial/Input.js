@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import 'antd/dist/antd.css';
 import { Input, Tooltip } from 'antd';
-
+import api from '../../api';
 
 const formatNumber = (value) => new Intl.NumberFormat().format(value);
 
@@ -32,33 +32,61 @@ const NumericInput = (props) => {
   ) : (
     'Digite seu CPF'
   );
+
+  const [cpf, setCpf] = useState();
+
+  function PostCpf (e) {
+    e.preventDefault()
+    api.post('/auth/login', {
+       cpf: cpf
+    }) 
+    .then (res => {
+      // console.log(res)
+      console.log(e)
+    })
+    .catch(e => {
+      console.log(e)
+      console.log(cpf)
+    })
+  }
+
   return (
+    <>
     <Tooltip trigger={['focus']} title={title} placement="topLeft" overlayClassName="CPF">
-      <Input
+      <NumericInput
         {...props}
-        onChange={handleChange}
+        onChange={(e) => {handleChange(e); setCpf(e.target.value)}}
         onBlur={handleBlur}
         placeholder="CPF"
         maxLength={11}
-        minLength={11}
+        value={cpf}
+        // type='number'
       />
     </Tooltip>
+    <button onClick={PostCpf} type='submit'>Agua</button>
+
+</>
   );
 };
+
+
 
 const Inputt = () => {
   const [value, setValue] = useState('');
   return (
     <NumericInput
-      style={{
-        width: 350,
-        height: 50,
-        borderRadius: 5,
-      }}
-      value={value}
-      onChange={setValue}
+    style={{
+      width: 350,
+      height: 50,
+      borderRadius: 5,
+    }}
+    value={value}
+    onChange={setValue}
+
     />
-  );
+    );
+
 };
+
 
 export default Inputt;
