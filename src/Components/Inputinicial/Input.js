@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import 'antd/dist/antd.css';
-import { Input, Tooltip } from 'antd';
+import { Input, Tooltip, Form } from 'antd';
 import api from '../../api';
 
 const formatNumber = (value) => new Intl.NumberFormat().format(value);
@@ -33,7 +33,9 @@ const NumericInput = (props) => {
     'Digite seu CPF'
   );
 
+  const [visible, setVisible] = useState('none')
   const [cpf, setCpf] = useState();
+  const [senha, setSenha] = useState(); 
 
   function PostCpf (e) {
     e.preventDefault()
@@ -43,29 +45,60 @@ const NumericInput = (props) => {
     .then (res => {
       // console.log(res)
       console.log(e)
+      window.location.pathname = '/cadastros'
     })
     .catch(e => {
-      console.log(e)
-      console.log(cpf)
+      
+      if (e.response.status == 401){
+        setVisible('block')
+        console.log(visible)
+        
+      }
     })
   }
 
   return (
     <>
-    <Tooltip trigger={['focus']} title={title} placement="topLeft" overlayClassName="CPF">
+    {/* <Tooltip trigger={['focus']} title={title} placement="topLeft" overlayClassName="CPF">
       <Input
         {...props}
-        onChange={(e) => {handleChange(e); setCpf(e.target.value)}}
+        // onChange={(e) => {handleChange(e); setCpf(e.target.value)}}
         onBlur={handleBlur}
         placeholder="CPF"
         maxLength={11}
-        value={cpf}
+        // value={cpf}
         // type='number'
       />
-    </Tooltip>
-    <button onClick={PostCpf} type='submit'>Agua</button>
+    </Tooltip> */}
+    <button onClick={PostCpf} type='submit'>Teste</button>
+    <input
+      onChange={(e) => {handleChange(e); setCpf(e.target.value)}}
+      value={cpf}
+      placeholder='teste'
+      maxLength={11}
+    />
+
+    
+
+    <Form.Item
+    style={{display: visible}}
+        minLength={8}
+        label="Password"
+        name="password"
+        rules={[
+          {
+            required: true,
+            message: 'A senha é obrigatória!',
+          },
+        ]}
+        value={senha}
+        onChange={e => setSenha(e.target.value)}
+      >
+        <Input.Password type='password'/>
+      </Form.Item>
 
 </>
+
   );
 };
 
