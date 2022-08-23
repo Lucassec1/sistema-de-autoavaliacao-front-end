@@ -40,7 +40,8 @@ const NumericInput = (props) => {
   function PostCpf (e) {
     e.preventDefault()
     api.post('/auth/login', {
-       cpf: cpf
+       cpf: cpf,
+       senha: senha
     }) 
     .then (res => {
       // console.log(res)
@@ -50,9 +51,9 @@ const NumericInput = (props) => {
     .catch(e => {
       
       if (e.response.status == 401){
-        setVisible('block')
-        console.log(visible)
-        
+        setVisible('block');
+        console.log('Funciona n amigao');
+        setSenha('')
       }
     })
   }

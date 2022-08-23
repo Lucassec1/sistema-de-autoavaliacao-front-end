@@ -16,6 +16,7 @@
 import { Button, Form, Input } from 'antd';
 import React, { useState } from 'react';
 import api from '../../api';
+import SideBar from '../../Components/SideBar';
 
 export default function CadastroPessoa () {
   const onFinish = (values) => {
@@ -51,6 +52,8 @@ export default function CadastroPessoa () {
   }
 
   return (
+    <>
+    <SideBar />
     <Form
       name="basic"
       labelCol={{
@@ -155,6 +158,7 @@ export default function CadastroPessoa () {
         </Button>
       </Form.Item>
     </Form>
+  </>
   );
 };
 
