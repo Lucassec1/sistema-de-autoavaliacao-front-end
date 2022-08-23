@@ -17,6 +17,8 @@ import { Button, Form, Input } from 'antd';
 import React, { useState } from 'react';
 import api from '../../api';
 import SideBar from '../../Components/SideBar';
+import { Select } from 'antd';
+const { Option } = Select;
 
 export default function CadastroPessoa () {
   const onFinish = (values) => {
@@ -27,33 +29,43 @@ export default function CadastroPessoa () {
     console.log('Failed:', errorInfo);
   };
 
+  // select
+  const handleChange = (value) => {
+    console.log(`selected ${value}`);
+  };
+
   const [nome, setNome] = useState()
-  const [email, setEmail] = useState()
+  const [email, setEmail] = useState('arroz')
   const [cpf, setCpf] = useState()
   const [foto, setFoto] = useState()
-  const [senha, setSenha] = useState()
+  const [senha, setSenha] = useState('arroz')
 
   function Cadastrar (e) {
     e.preventDefault()
-    api.post('/cadastros',{
+    api.post('/auth/cadastrar',{
         nome: nome,
         email: email,
         senha: senha,
         cpf: cpf,
         foto: foto,
+        tipo: 3
     })
     .then(res => {
         console.log('Deu Certo!')
+        
     })
     .catch(err => {
         console.log('Bugou oh!')
-        
     })
   }
 
   return (
     <>
     <SideBar />
+
+    {/* arrumar o select */}
+    
+
     <Form
       name="basic"
       labelCol={{
@@ -69,6 +81,26 @@ export default function CadastroPessoa () {
       onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
+    <Form.Item label="Tipo"
+      name="Tipo"
+      rules={[
+        {
+          required: true,
+          message: 'O tipo é obrigatório!',
+        },
+      ]}>
+    
+      <Select
+      
+        defaultValue={3}
+        onChange={handleChange}
+      >
+        <Option value={3}>Usuário Comum</Option>
+        <Option value={2}>Administrador</Option>
+        <Option value={1}>Root</Option>
+      </Select>
+    </Form.Item>
+    
       <Form.Item
         label="Nome"
         name="Nome"
@@ -153,7 +185,7 @@ export default function CadastroPessoa () {
           span: 16,
         }}
       >
-        <Button type="primary" htmlType="submit" onSubmit={(e) => Cadastrar(e)}>
+        <Button type="submit" htmlType="submit" onClick={(e) => Cadastrar(e)}>
           Submit
         </Button>
       </Form.Item>
