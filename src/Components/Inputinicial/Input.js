@@ -53,7 +53,7 @@ const NumericInput = (props) => {
   return (
     <>
     <Tooltip trigger={['focus']} title={title} placement="topLeft" overlayClassName="CPF">
-      <NumericInput
+      <Input
         {...props}
         onChange={(e) => {handleChange(e); setCpf(e.target.value)}}
         onBlur={handleBlur}
