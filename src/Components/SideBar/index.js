@@ -9,6 +9,9 @@ import React, { useState } from 'react';
 import { UserOutlined } from '@ant-design/icons';
 import { Avatar } from 'antd';
 import { MenuContainer, Sidebar, ProfileContainer, ProfileContent, Name, UserType } from './style';
+import { IoHomeOutline, IoHome } from "react-icons/io5";
+import { BsFileEarmarkPerson, BsFileEarmarkPersonFill } from "react-icons/bs";
+import { AiOutlineForm } from "react-icons/ai";
 
 export default function SideBar() {
   function getItem(label, key, icon, children, type) {
@@ -29,18 +32,18 @@ export default function SideBar() {
 
     const items = [
       getItem('Home', '1', 
-      <Link to="/">
-        <PieChartOutlined />
+      <Link to="/home">
+        <IoHomeOutline  />
       </Link>
       ),
       getItem('Cadastros', '2', 
         <Link to="/cadastros">
-          <DesktopOutlined />
+          <BsFileEarmarkPerson />
         </Link>
       ),
       getItem('Pesquisas', '3', 
         <Link to="/pesquisas">
-          <ContainerOutlined />
+          <AiOutlineForm />
         </Link>
       ),
     ];
