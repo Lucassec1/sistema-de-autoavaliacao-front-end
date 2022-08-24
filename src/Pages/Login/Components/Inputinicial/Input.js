@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import 'antd/dist/antd.css';
 import { Input, Tooltip, Form, Button } from 'antd';
 import api from '../../../../api';
-import {ButtonContainer, LoginButton} from "./style.js";
+import {ButtonContainer, LoginButton} from "./styles.js";
 
 const formatNumber = (value) => new Intl.NumberFormat().format(value);
 
@@ -53,7 +53,7 @@ const NumericInput = (props) => {
 
         if (e.response.status == 401) {
           setVisible('block');
-          console.log('Funciona n amigao');
+          console.log('Erroooooo');
           setSenha('')
         }
       })

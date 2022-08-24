@@ -32,13 +32,17 @@ export default function CadastroPessoa () {
   // select
   const handleChange = (value) => {
     console.log(`selected ${value}`);
+    setTipo(value);
   };
 
+
+
   const [nome, setNome] = useState()
-  const [email, setEmail] = useState('arroz')
+  const [email, setEmail] = useState()
   const [cpf, setCpf] = useState()
   const [foto, setFoto] = useState()
-  const [senha, setSenha] = useState('arroz')
+  const [senha, setSenha] = useState()
+  const [tipo, setTipo] = useState([])
 
   function Cadastrar (e) {
     e.preventDefault()
@@ -48,7 +52,7 @@ export default function CadastroPessoa () {
         senha: senha,
         cpf: cpf,
         foto: foto,
-        tipo: 3
+        tipo: tipo
     })
     .then(res => {
         console.log('Deu Certo!')
