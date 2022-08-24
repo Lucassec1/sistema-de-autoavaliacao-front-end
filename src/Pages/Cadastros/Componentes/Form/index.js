@@ -76,8 +76,6 @@ export default function CadastroPessoa() {
           ]}>
 
           <Select
-
-            defaultValue={3}
             onChange={handleChange}
           >
             <Option value={3}>Usuário Comum</Option>

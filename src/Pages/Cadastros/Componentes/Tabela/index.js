@@ -1,22 +1,44 @@
 import { Space, Table, Tag } from 'antd';
-import React from 'react';
+import React, { useState } from 'react';
+import api from '../../../../api'
+
+
+// const [ updateTabela, setUpdateTabela] = useState(true)
+// if (updateTabela) {
+//   getCadastros()
+//   setUpdateTabela(false)
+// }
+
+function Tabela() {
+
+// const [cadastros, setCadastros] = useState([]);
+// const getCadastros = async () => {
+//   api
+//     .get('/auth/login')
+//     .then(response => {
+//       setCadastros(response.data);
+//     })
+//     .catch(err => {
+//       if(err.respose.status == 401) {
+//         alert('Faça Login na página para acessar essa área!');
+//         window.location.href = '/';
+//       }
+//       else alert(err.message);
+//     })
+// }
 
 const columns = [
     {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-      render: (text) => <a>{text}</a>,
+      title: 'Nome',
+      dataIndex: 'nome',
+      // key: 'nome',
+      // render: (text) => <a>{text}</a>,
     },
-    {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 'age',
-    },
+
     {
       title: 'Address',
       dataIndex: 'address',
-      key: 'address',
+      // key: 'address',
     },
     {
       title: 'Tags',
@@ -80,13 +102,25 @@ const columns = [
       address: 'Sidney No. 1 Lake Park',
       tags: ['cool', 'teacher'],
     },
-  ];
+      
+    ]
   
-  const Tabela = () => 
-    <Table 
+  return (
+    <>
+      {/* <ul style={{border: '2px solid red'}}>
+        {cadastros.map(cadastro => (
+          <li key={cadastro.id}>
+            <p>{cadastro.nome}</p>
+          </li>
+        ))}
+      </ul> */}
+
+      <Table 
       columns={columns} 
       dataSource={data}
-      />;
-  
-  
-  export default Tabela;
+      />
+    </>
+  )
+}
+
+export default Tabela;

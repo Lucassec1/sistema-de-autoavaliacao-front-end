@@ -34,7 +34,7 @@ export const LoginContainer = styled.div`
     //border: 1px solid red;
 `;
 
-export const FormLogin = styled.form`
+export const FormLogin = styled.div`
     //border: 1px solid red;
 `;
 
