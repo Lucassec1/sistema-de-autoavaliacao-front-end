@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import Inputt from "./Components/Inputinicial/Input";
+import { Context } from "../../Components/Context/AuthContext";
 
 import {
     Container,
@@ -14,6 +15,9 @@ import 'antd/dist/antd.css';
 import { Button } from 'antd';
 
 function Login() {
+    const {authenticated} = useContext(Context);
+
+    //console.log(authenticated);
     return (
         <>
             <Container>

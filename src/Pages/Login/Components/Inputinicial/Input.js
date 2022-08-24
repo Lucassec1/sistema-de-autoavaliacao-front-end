@@ -47,6 +47,8 @@ const NumericInput = (props) => {
       .then(res => {
         // console.log(res)
         console.log(e)
+        localStorage.setItem('token', JSON.stringify(res.data.token))
+        api.defaults.headers.Authorization = `Bearer ${res.data.token}`
         window.location.pathname = '/cadastros'
       })
       .catch(e => {
