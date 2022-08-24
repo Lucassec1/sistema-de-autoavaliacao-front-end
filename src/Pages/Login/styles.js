@@ -15,7 +15,6 @@ export const BackgroundForm = styled.div`
     width: 110vh;  
 `;
 
-
 export const IllustrationForm = styled.div`
     background-image: url(${Login2});
     display: flex;
@@ -25,35 +24,38 @@ export const IllustrationForm = styled.div`
     width: 35vw;     
     margin-top: 35%; 
     margin-left: 21%;
-   
-   
 `;
 
-export const Title = styled.p`
-    display: flex;
-    justify-content: center;
-    width: 22rem;
-    font-family: 'Mulish';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 25px;
-    line-height: 31px;
-    text-align: center;
-    color: #282825;
-    aling-items: center;
-`;
-export const FormLogin = styled.div`
-`;
-export const InputCFP = styled.div`
-
-`;
 export const LoginContainer = styled.div`
     width: 50%;
     display: flex;
     justify-content: center; 
     align-items: center;
+    //border: 1px solid red;
+`;
+
+export const FormLogin = styled.form`
+    //border: 1px solid red;
+`;
+
+export const Title = styled.h1`
+    display: flex;
+    justify-content: center;
+    //width: 22rem;
+    //font-style: normal;
+    font-weight: 400;
+    font-size: 1.7rem;
+    //line-height: 31px;
+    text-align: center;
+    color: #282825;
+    align-items: center;
+`;
+
+export const InputCFP = styled.div`
+    //border: 1px solid red;
+
 `;
 
 export const Button = styled.div`
-    border: 5px solid red;
+    //border: 5px solid red;
 `;

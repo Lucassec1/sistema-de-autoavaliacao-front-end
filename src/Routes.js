@@ -7,7 +7,6 @@ import Login from './Pages/Login/Login'
 export default function Rotas() {
     return (
         <BrowserRouter>
-        
             <Routes>
                 <Route exect path="/" element={<Login />} />
                 <Route exect path='/home' element={<Home />} />

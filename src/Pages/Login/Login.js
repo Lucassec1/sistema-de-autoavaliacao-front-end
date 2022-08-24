@@ -1,5 +1,5 @@
 import React from "react";
-import Inputt from "../../Components/Inputinicial/Input";
+import Inputt from "./Components/Inputinicial/Input";
 
 import {
     Container,
@@ -17,12 +17,15 @@ function Login() {
     return (
         <>
             <Container>
-                <BackgroundForm><IllustrationForm /></BackgroundForm>
+                <BackgroundForm>
+                    <IllustrationForm />
+                </BackgroundForm>
                 <LoginContainer>
                     <FormLogin>
-                        <Title>Bem-vindo ao, Nome</Title>
-                        <InputCFP><Inputt/></InputCFP>
-                      
+                        <Title>Bem-vindo ao SAP</Title>
+                        <InputCFP>
+                            <Inputt/>
+                        </InputCFP>
                     </FormLogin>
                 </LoginContainer>
             </Container>
