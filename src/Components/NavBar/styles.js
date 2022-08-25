@@ -13,4 +13,12 @@ export const CardHome = styled.div`
     height: 10rem;
     margin-top: 7%;
     margin-left: 2.5%;
+    
+`;
+export const CardPercentual = styled.div`
+    background: red;
+    border: 1px solid #EBEBEB;
+    box-shadow: 0px 1px 5px rgba(32, 90, 177, 0.1);
+    border-radius: 4px;
+    
 `;
