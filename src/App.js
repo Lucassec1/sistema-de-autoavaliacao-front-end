@@ -6,11 +6,9 @@ import { AuthProvider } from "./Components/Context/AuthContext";
 
 function App() {
   return (
-    <AuthProvider>
       <div style={{display: 'flex'}}>
         <Rotas />
       </div>
-    </AuthProvider>
   );
 }
 

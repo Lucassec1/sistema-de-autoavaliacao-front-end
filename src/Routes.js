@@ -4,6 +4,7 @@ import Home from "./Pages/Home";
 import Cadastros from "./Pages/Cadastros/index.js";
 import Pesquisas from './Pages/Pesquisar';
 import Login from './Pages/Login/Login';
+import SideBar from './Components/SideBar';
 
 /*const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={props => 
@@ -23,8 +24,10 @@ const PrivateRoute = ({Item}) =>{
 
 const Rotas = () => (
     <BrowserRouter>
+         {localStorage.getItem('token') ? <SideBar /> : ''}
         <Routes>
-            <Route exact path='/' element={<Login />} />
+            {localStorage.getItem('token') ? <Route exact path="/" element={<PrivateRoute Item={Home} />} /> : <Route exact path='/' element={<Login />} />}
+            
             <Route exact path="/home" element={<PrivateRoute Item={Home} />} />
             <Route exact path="/cadastros" element={<PrivateRoute Item={Cadastros} />} />
             <Route exact path="/pesquisas" element={<PrivateRoute Item={Pesquisas} />} />

@@ -5,7 +5,6 @@ export default function Pesquisas() {
     
     return (
         <>
-            <SideBar />
             <h1 style={{marginLeft: '100px'}}>Pesquisas</h1>
         </>
     )

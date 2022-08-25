@@ -15,7 +15,7 @@ import 'antd/dist/antd.css';
 import { Button } from 'antd';
 
 function Login() {
-    const {authenticated} = useContext(Context);
+    //const {authenticated} = useContext(Context);
 
     //console.log(authenticated);
     return (
