@@ -24,10 +24,9 @@ const PrivateRoute = ({Item}) =>{
 
 const Rotas = () => (
     <BrowserRouter>
-         {localStorage.getItem('token') ? <SideBar /> : ''}
+        {localStorage.getItem('token') ? <SideBar /> : null}
         <Routes>
             {localStorage.getItem('token') ? <Route exact path="/" element={<PrivateRoute Item={Home} />} /> : <Route exact path='/' element={<Login />} />}
-            
             <Route exact path="/home" element={<PrivateRoute Item={Home} />} />
             <Route exact path="/cadastros" element={<PrivateRoute Item={Cadastros} />} />
             <Route exact path="/pesquisas" element={<PrivateRoute Item={Pesquisas} />} />

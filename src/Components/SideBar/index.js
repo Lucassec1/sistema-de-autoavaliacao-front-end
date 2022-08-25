@@ -1,17 +1,13 @@
-import { Link, useLocation } from "react-router-dom";
-import {
-    ContainerOutlined,
-    DesktopOutlined,
-    PieChartOutlined,
-} from '@ant-design/icons';
-import { Button, Menu } from 'antd';
+import { Link, useNavigate } from "react-router-dom";
+import { Button } from 'antd';
 import React, { useState } from 'react';
 import { UserOutlined } from '@ant-design/icons';
 import { Avatar } from 'antd';
-import { MenuContainer, Sidebar, ProfileContainer, ProfileContent, Name, UserType } from './style';
-import { IoHomeOutline, IoHome } from "react-icons/io5";
-import { BsFileEarmarkPerson, BsFileEarmarkPersonFill } from "react-icons/bs";
+import { MenuContainer, CustomMenu, Sidebar, ProfileContainer, ProfileContent, Name, UserType } from './style';
+import { IoHomeOutline } from "react-icons/io5";
+import { BsFileEarmarkPerson } from "react-icons/bs";
 import { AiOutlineForm } from "react-icons/ai";
+import { IoIosLogOut } from "react-icons/io";
 
 export default function SideBar() {
   function getItem(label, key, icon, children, type) {
@@ -48,6 +44,14 @@ export default function SideBar() {
       ),
     ];
 
+    const navigate = useNavigate();
+
+    const signout = () =>{
+      window.location.reload();
+      localStorage.removeItem("token");
+      window.location.pathname = "/";
+    }
+
     return (
         <>
           <Sidebar>
@@ -64,7 +68,7 @@ export default function SideBar() {
             </ProfileContainer>
             <MenuContainer
             >
-                <Menu
+                <CustomMenu
                   onMouseEnter={toggleCollapsed}
                   onMouseLeave={toggleCollapsed}
                   defaultSelectedKeys={['1']}
@@ -74,7 +78,11 @@ export default function SideBar() {
                   inlineCollapsed={collapsed}
                   items={items}
                 />
+              
             </MenuContainer>
+            <Button icon={<IoIosLogOut />} onClick={signout}>
+              Sair
+            </Button>
           </Sidebar>
         </>
       );

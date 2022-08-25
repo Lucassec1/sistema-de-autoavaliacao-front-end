@@ -1,6 +1,10 @@
 import styled from "styled-components";
+import { Menu } from 'antd';
 
 export const Sidebar = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     max-width: 250px;
     width: 25vw;
     height: 100vh;
@@ -18,6 +22,9 @@ export const MenuContainer = styled.div`
     height: 70vh;
 `;
 
+export const CustomMenu = styled(Menu)`
+    background-color: transparent;
+`;
 
 export const ProfileContainer = styled.div`
     display: flex;
