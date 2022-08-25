@@ -1,8 +1,10 @@
+
+import NavBarHome from "../../Components/NavBar/navbar"
 export default function Home() {
-    
+
     return (
         <>
-            <h1 style={{marginLeft: '100px'}}>Home</h1>
+            <NavBarHome/>
         </>
     )
 }
