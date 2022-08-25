@@ -24,7 +24,7 @@ export default function CadastroPessoa() {
   const [cpf, setCpf] = useState()
   const [foto, setFoto] = useState()
   const [senha, setSenha] = useState('')
-  const [tipo, setTipo] = useState([])
+  const [tipo, setTipo] = useState(3)
 
   function Cadastrar(e) {
     e.preventDefault()
@@ -46,9 +46,6 @@ export default function CadastroPessoa() {
   }
   return (
     <>
-      {/* arrumar o select */}
-
-
       <Form
         name="basic"
         labelCol={{
@@ -173,8 +170,6 @@ export default function CadastroPessoa() {
           </Button>
         </Form.Item>
       </Form>
-      
-
     </>
   );
 };

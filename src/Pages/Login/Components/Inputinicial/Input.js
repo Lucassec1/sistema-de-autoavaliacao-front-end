@@ -147,7 +147,6 @@ const Inputt = () => {
       }}
       value={value}
       onChange={setValue}
-
     />
   );
 
