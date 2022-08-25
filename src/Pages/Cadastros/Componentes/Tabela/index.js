@@ -23,7 +23,7 @@ function Tabela() {
         .then(response => {
             setUsuario(response.data);
             // var colunas = Object.keys(response.data[0])
-            var colunas = ['id', 'nome', 'email','tipo']
+            var colunas = ['id', 'nome', 'email', 'tipo']
             columns = []
             colunas.forEach(coluna => {
               columns.push({
