@@ -1,0 +1,29 @@
+#teste{
+    display:flex;
+    width: 45cm;
+    padding: 2rem;
+    justify-content: center;
+    background-color:#347AE2;
+    margin-bottom: 2rem;
+}
+#titulo{
+    border:none;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.lucas{
+    flex-wrap: wrap;
+    border:1px solid red;
+    display:flex;
+    max-width:90%;
+    justify-content: center;
+    overflow:none;
+    padding:1rem;
+}
+.alinhar{
+    padding:1rem;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
