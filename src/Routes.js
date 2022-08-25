@@ -5,8 +5,8 @@ import Cadastros from "./Pages/Cadastros/index.js";
 import Pesquisas from './Pages/Pesquisar';
 import Login from './Pages/Login/Login';
 import SideBar from './Components/SideBar';
-
-/*const PrivateRoute = ({ component: Component, ...rest }) => (
+import Formula from './Pages/formulario/Formulario'
+/*const PrivateRoute = ({ component: Component, iara...rest }) => (
     <Route {...rest} render={props => 
         isAuthenticated() ? (
             <Component {...props} />
@@ -29,7 +29,7 @@ const Rotas = () => (
             {localStorage.getItem('token') ? <Route exact path="/" element={<PrivateRoute Item={Home} />} /> : <Route exact path='/' element={<Login />} />}
             <Route exact path="/home" element={<PrivateRoute Item={Home} />} />
             <Route exact path="/cadastros" element={<PrivateRoute Item={Cadastros} />} />
-            <Route exact path="/pesquisas" element={<PrivateRoute Item={Pesquisas} />} />
+            <Route exact path="/pesquisas" element={<PrivateRoute Item={Formula} />} />
         </Routes>
     </BrowserRouter>
 )

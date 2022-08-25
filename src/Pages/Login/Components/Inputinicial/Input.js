@@ -75,6 +75,7 @@ const NumericInput = (props) => {
       />
     </Tooltip> */}
       <Form
+      overlayClassName="numeric-input"
         name="basic"
         layout="vertical"
         size='large'
@@ -92,6 +93,7 @@ const NumericInput = (props) => {
         autoComplete="off"
       >
         <Form.Item
+        
           minLength={11}
           maxLength={11}
           label="CPF"
