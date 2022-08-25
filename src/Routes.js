@@ -6,7 +6,7 @@ import Pesquisas from './Pages/Pesquisar';
 import Login from './Pages/Login/Login';
 import SideBar from './Components/SideBar';
 import Formula from './Pages/formulario/Formulario'
-/*const PrivateRoute = ({ component: Component, ...rest }) => (
+/*const PrivateRoute = ({ component: Component, iara...rest }) => (
     <Route {...rest} render={props => 
         isAuthenticated() ? (
             <Component {...props} />
