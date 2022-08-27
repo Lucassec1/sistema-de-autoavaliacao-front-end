@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import 'antd/dist/antd.css';
-import { Input, Tooltip, Form, Button } from 'antd';
-import api from '../../../../api';
-import {ButtonContainer, LoginButton} from "./styles.js";
+import React, { useState } from "react";
+import "antd/dist/antd.css";
+import { Input, Tooltip, Form, Button } from "antd";
+import api from "../../../../api";
+import { ButtonContainer, LoginButton } from "./styles.js";
 
 const formatNumber = (value) => new Intl.NumberFormat().format(value);
 
@@ -13,7 +13,7 @@ const NumericInput = (props) => {
     const { value: inputValue } = e.target;
     const reg = /^-?\d*(\.\d*)?$/;
 
-    if (reg.test(inputValue) || inputValue === '' || inputValue === '-') {
+    if (reg.test(inputValue) || inputValue === "" || inputValue === "-") {
       onChange(inputValue);
     }
   }; // '.' at the end or only '-' in the input box.
@@ -21,64 +21,59 @@ const NumericInput = (props) => {
   const handleBlur = () => {
     let valueTemp = value;
 
-    if (value.charAt(value.length - 1) === '.' || value === '-') {
+    if (value.charAt(value.length - 1) === "." || value === "-") {
       valueTemp = value.slice(0, -1);
     }
 
-    onChange(valueTemp.replace(/0*(\d+)/, '$1'));
+    onChange(valueTemp.replace(/0*(\d+)/, "$1"));
   };
 
   const title = value ? (
-    <span className="numeric-input-title">{value !== '-' ? formatNumber(Number(value)) : '-'}</span>
+    <span className="numeric-input-title">
+      {value !== "-" ? formatNumber(Number(value)) : "-"}
+    </span>
   ) : (
-    'Digite seu CPF'
+    "Digite seu CPF"
   );
 
-  const [visible, setVisible] = useState('none')
+  const [visible, setVisible] = useState("none");
   const [cpf, setCpf] = useState();
   const [senha, setSenha] = useState();
+  const [loading, setLoading] = useState(false);
 
-  function PostCpf(e) {
-    e.preventDefault()
-    api.post('/auth/login', {
-      cpf: cpf,
-      senha: senha
-    })
-      .then(res => {
+  async function PostCpf(e) {
+    e.preventDefault();
+    setLoading(true);
+    const authCpf = await api
+      .post("/auth/login", {
+        cpf: cpf,
+        senha: senha,
+      })
+      .then((res) => {
         // console.log(res)
-        console.log(e)
-        localStorage.setItem('token', JSON.stringify(res.data.token))
-        api.defaults.headers.Authorization = `Bearer ${res.data.token}`
-        window.location.pathname = '/home'
+        setLoading(false);
+        console.log(e);
+        localStorage.setItem("token", JSON.stringify(res.data.token));
+        api.defaults.headers.Authorization = `Bearer ${res.data.token}`;
+        window.location.pathname = "/home";
       })
-      .catch(e => {
-
+      .catch((e) => {
+        setLoading(false);
         if (e.response.status == 401) {
-          setVisible('block');
-          console.log('Erroooooo');
-          setSenha('')
+          setVisible("block");
+          console.log("Erroooooo");
+          setSenha("");
         }
-      })
+      });
   }
 
   return (
     <>
-      {/* <Tooltip trigger={['focus']} title={title} placement="topLeft" overlayClassName="CPF">
-      <Input
-        {...props}
-        // onChange={(e) => {handleChange(e); setCpf(e.target.value)}}
-        onBlur={handleBlur}
-        placeholder="CPF"
-        maxLength={11}
-        // value={cpf}
-        // type='number'
-      />
-    </Tooltip> */}
       <Form
-      overlayClassName="numeric-input"
+        overlayClassName="numeric-input"
         name="basic"
         layout="vertical"
-        size='large'
+        size="large"
         labelCol={{
           span: 0,
         }}
@@ -88,12 +83,9 @@ const NumericInput = (props) => {
         initialValues={{
           remember: true,
         }}
-        //onFinish={onFinish}
-        //onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
         <Form.Item
-        
           minLength={11}
           maxLength={11}
           label="CPF"
@@ -101,13 +93,16 @@ const NumericInput = (props) => {
           rules={[
             {
               required: true,
-              message: 'O CPF é obrigatório!',
+              message: "O CPF é obrigatório!",
             },
           ]}
           value={cpf}
-          onChange={(e) => { handleChange(e); setCpf(e.target.value)}}
+          onChange={(e) => {
+            handleChange(e);
+            setCpf(e.target.value);
+          }}
         >
-          <Input placeholder='Digite seu CPF' />
+          <Input placeholder="Digite seu CPF" />
         </Form.Item>
 
         <Form.Item
@@ -118,28 +113,32 @@ const NumericInput = (props) => {
           rules={[
             {
               required: true,
-              message: 'A senha é obrigatória!',
+              message: "A senha é obrigatória!",
             },
           ]}
           value={senha}
-          onChange={e => setSenha(e.target.value)}
+          onChange={(e) => setSenha(e.target.value)}
         >
-          <Input.Password placeholder='Digite sua senha' type='password' />
+          <Input.Password placeholder="Digite sua senha" type="password" />
         </Form.Item>
 
         <ButtonContainer>
-          <LoginButton type="primary" size='large' onClick={PostCpf}>Entrar</LoginButton>
+          <LoginButton
+            type="primary"
+            loading={loading}
+            size="large"
+            onClick={PostCpf}
+          >
+            Entrar
+          </LoginButton>
         </ButtonContainer>
       </Form>
     </>
-
   );
 };
 
-
-
-const Inputt = () => {
-  const [value, setValue] = useState('');
+export const Inputt = () => {
+  const [value, setValue] = useState("");
   return (
     <NumericInput
       style={{
@@ -151,8 +150,6 @@ const Inputt = () => {
       onChange={setValue}
     />
   );
-
 };
-
 
 export default Inputt;
