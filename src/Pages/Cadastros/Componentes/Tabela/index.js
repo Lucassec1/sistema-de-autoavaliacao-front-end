@@ -38,10 +38,9 @@ function Tabela() {
           })
           .catch(err => {
               if(err.response.status == 401) {
-                alert('Faça Login na página para acessar essa área!');
                 window.location.href = '/';
               }
-              else alert(err.message);
+              else console.log(err.message);
               })
             }
             getCadastros()
