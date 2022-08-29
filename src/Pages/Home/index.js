@@ -1,6 +1,8 @@
 
 import NavBarHome from "../../Components/NavBar/navbar"
 import { CardUsuarios } from "./styles"
+import { Grafico } from "./styles"
+import  Graficouse  from './components/graficouse';
 export default function Home() {
 
     return (
@@ -10,8 +12,8 @@ export default function Home() {
                 <div class="col-6">
                     One of two columns
                 </div>
-               
             </CardUsuarios>
+            <Grafico><Graficouse/></Grafico>
         </>
     )
 }
