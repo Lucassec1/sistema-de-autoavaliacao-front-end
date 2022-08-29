@@ -34,14 +34,21 @@ const App = () => {
     const handleChange = (value) => {
         console.log(`selected ${value}`);
         setTipo(value);
+        if (value === 3) {
+            setDisableSenha(true)
+        } else {
+            setDisableSenha(false)
+        }
     };
 
+    
     const [nome, setNome] = useState()
     const [email, setEmail] = useState()
     const [cpf, setCpf] = useState()
     const [foto, setFoto] = useState()
     const [senha, setSenha] = useState('')
     const [tipo, setTipo] = useState(3)
+    const [disableSenha, setDisableSenha] = useState(false)
 
     const handleCancel = () => {
         setVisible(false);
@@ -157,6 +164,22 @@ const App = () => {
                     </Form.Item>
 
                     <Form.Item
+                        minLength={8}
+                        label="Senha"
+                        name="senha"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'A senha é obrigatória!',
+                            },
+                        ]}
+                        value={senha}
+                        onChange={e => setSenha(e.target.value)}
+                    >
+                        <Input.Password type='password' disabled={disableSenha} />
+                    </Form.Item>
+
+                    <Form.Item
                         label="Cpf"
                         name="Cpf"
                         maxLength={11}
@@ -176,33 +199,12 @@ const App = () => {
                     <Form.Item
                         label="Foto"
                         name="Foto"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'A foto é obrigatória!',
-                            },
-                        ]}
                         value={foto}
                         onChange={e => setFoto(e.target.value)}
                     >
                         <Input type='text' />
                     </Form.Item>
 
-                    <Form.Item
-                        minLength={8}
-                        label="Password"
-                        name="password"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'A senha é obrigatória!',
-                            },
-                        ]}
-                        value={senha}
-                        onChange={e => setSenha(e.target.value)}
-                    >
-                        <Input.Password type='password' />
-                    </Form.Item>
 
                     <Form.Item
                         wrapperCol={{
