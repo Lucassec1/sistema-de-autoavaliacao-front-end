@@ -8,24 +8,9 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
-import {
-    Form,
-    Input,
-    Button,
-    Radio,
-    Select,
-    Cascader,
-    DatePicker,
-    InputNumber,
-    TreeSelect,
-    Switch,
-    Checkbox,
-    Upload,
-} from 'antd';
-const { Header, Footer, Sider, Content } = Layout;
-function modal(){
-    
-}
+
+import {Button} from 'antd';
+
 function teste(){
     alert('trabalhando nisso')
 }
@@ -40,8 +25,8 @@ function app() {
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                             <Navbar.Collapse id="basic-navbar-nav">
                                 <Nav className="me-auto">
-                                    <Nav.Link href="/home">minhas pesquisa</Nav.Link>
-                                    <Nav.Link href="/home">pesquisa pendentes</Nav.Link>
+                                    <Nav.Link href="/criarpesquisa"> Criar Pesquisa</Nav.Link>
+                                    <Nav.Link href="/home">Minhas Pesquisa</Nav.Link>
                                 </Nav>
                             </Navbar.Collapse>
                         </Container>
@@ -55,12 +40,14 @@ function app() {
                 <div>
                     <Row className="justify-content-md-center mt-5">
                         <div class="lucas">
-                            <Card class="alinhar" style={{ width: '18rem', borderRadius: '23px' }}>
-                                <Card.Body>
-                                    <Card.Title>Pergunta da uc tal</Card.Title>
-                                    <Card.Subtitle className="mb-2 text-muted">Professor fulano de tal</Card.Subtitle>
-                                    {/*<Card.Link href="/home">Começar</Card.Link>*/}
-                                    <Button variant="primary" onClick={teste} >Começar</Button>
+                            <Card  style={{ width: '30rem', borderRadius: '23px' }}>
+                                <Card.Body class="alinhar">
+                                    <div>
+                                        <Card.Title >Pergunta da uc tal</Card.Title>
+                                        <Card.Subtitle className="mb-4 text-muted">Professor fulano de tal</Card.Subtitle>
+                                        {/*<Card.Link href="/home">Começar</Card.Link>*/}
+                                        <Button variant="primary" onClick={teste} >Começar</Button>
+                                    </div>
                                 </Card.Body>
                             </Card>
                         </div>
