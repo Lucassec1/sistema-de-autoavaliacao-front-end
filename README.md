@@ -11,3 +11,15 @@ O Sistema de Avaliação e Pesquisa - SAP deve ser capaz de gerenciar avaliaçõ
 - [React Icons](https://react-icons.github.io/react-icons/) - ícones;
 
 - [Chart.Js](https://www.chartjs.org) - gráficos.
+
+## Usuário
+
+Usuário Administrador (precisa da senha)
+```json
+{
+	"cpf": "12395178901",
+
+
+	"senha": "123123123"
+}
+```
