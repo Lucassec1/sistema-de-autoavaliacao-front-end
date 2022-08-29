@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import { Button, Modal, Form, Input } from 'antd';
+import { AiOutlineUserAdd } from "react-icons/ai";
 import api from '../../../../api';
 import { Select } from 'antd';
-const { Option } = Select;
+import { AddButton } from './style';
+import { PrimaryButton } from "../../../../Components/PrimaryButton/style.js";
+import { SecondaryButton } from "../../../../Components/SecondaryButton/style.js";
 
+
+const { Option } = Select;
 const App = () => {
     const [loading, setLoading] = useState(false);
     const [visible, setVisible] = useState(false);
@@ -85,21 +90,21 @@ const App = () => {
 
     return (
         <>
-            <Button type="primary" onClick={showModal}>
-                Open Modal with customized footer
-            </Button>
+            <PrimaryButton type="primary" onClick={showModal}>
+                <AiOutlineUserAdd size={18} /><span>Adicionar Nova Pessoa</span>
+            </PrimaryButton>
             <Modal
                 visible={visible}
                 title="Cadastrar Pessoa"
                 onOk={handleOk}
                 onCancel={handleCancel}
                 footer={[
-                    <Button key="back" onClick={handleCancel}>
+                    <SecondaryButton key="back" onClick={handleCancel}>
                         Cancelar
-                    </Button>,
-                    <Button key="submit" type="primary" loading={loading} onClick={(e) => Cadastrar(e)}>
+                    </SecondaryButton>,
+                    <PrimaryButton key="submit" type="primary" loading={loading} onClick={(e) => Cadastrar(e)}>
                         Enviar
-                    </Button>
+                    </PrimaryButton>
                 ]}
             >
                 <Form

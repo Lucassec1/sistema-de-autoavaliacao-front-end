@@ -17,13 +17,14 @@
     border:1px solid red;
     display:flex;
     max-width:90%;
-    justify-content: center;
     overflow:none;
     padding:1rem;
 }
 .alinhar{
     padding:1rem;
+    margin:1rem;
     display:flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
