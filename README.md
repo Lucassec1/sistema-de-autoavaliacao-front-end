@@ -14,12 +14,21 @@ O Sistema de Avaliação e Pesquisa - SAP deve ser capaz de gerenciar avaliaçõ
 
 ## Usuário
 
+Usuário Comum
+```json
+{
+
+	"cpf": "12312312333",
+
+}
+```
+
 Usuário Administrador (precisa da senha)
 ```json
 {
-	"cpf": "12395178901",
+	"cpf": "12312312344",
 
 
-	"senha": "123123123"
+	"senha": "12312312344"
 }
 ```

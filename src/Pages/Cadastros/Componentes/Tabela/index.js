@@ -40,8 +40,7 @@ function Tabela() {
               if(err.response.status == 401) {
                 window.location.href = '/';
               }
-              else alert(err.message);
-                console.log('Deu erro!')
+              else console.log(err.message);
               })
             }
             getCadastros()
