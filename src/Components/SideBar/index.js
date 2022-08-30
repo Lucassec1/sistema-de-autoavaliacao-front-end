@@ -56,7 +56,7 @@ export default function SideBar() {
         <>
           <Sidebar>
             <ProfileContainer>
-              <Avatar size={64} icon={<UserOutlined />} />
+              <Avatar style={{display: "flex", alignItems: "center", justifyContent: "center"}} size={64} icon={<UserOutlined />} />
               <ProfileContent>
                 <Name>
                   Lucas Emmanuel Siqueira
