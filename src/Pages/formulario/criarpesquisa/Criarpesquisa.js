@@ -14,7 +14,6 @@ function OffcanvasExample() {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     
     const onSubmit = dat => console.log(dat);
-    console.log(onSubmit);
      function lucas(){
 
      }

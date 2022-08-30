@@ -39,6 +39,16 @@ function Tabela() {
     getCadastros()
   }, []);
 
+  usuario?.map(u => {
+    if(u.tipo === 3) {
+      u.tipo = "Usuário comum"
+    } else if (u.tipo === 2) {
+      u.tipo = "Administrador"
+    } else if (u.tipo == 1) {
+      u.tipo = "Root";
+    }
+  });
+
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef('');
