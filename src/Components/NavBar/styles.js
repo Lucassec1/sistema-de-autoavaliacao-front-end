@@ -12,7 +12,7 @@ export const CardHome = styled.div`
     width: 100rem;
     height: 10rem;
     margin-top: 7%;
-    margin-left: 2.5%;
+    margin-left: 1.2%;
     
 `;
 export const CardPercentual = styled.div`
