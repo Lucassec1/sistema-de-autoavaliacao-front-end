@@ -50,7 +50,7 @@ export default function LinearChart() {
 
     return (
       <ResponsiveContainer width="100%" height="150%">
-        <LineChart width={400} height={200} style={{ marginLeft: '18%', marginTop: '-9%' }} data={data}>
+        <LineChart width={400} height={200} style={{ marginLeft: '18%', marginTop: '-12%' }} data={data}>
           <Line type="linear" dataKey="pv" stroke="#205AB1" strokeWidth={2}  dot={false} />
         </LineChart>
       </ResponsiveContainer>
