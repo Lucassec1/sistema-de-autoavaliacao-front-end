@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "antd/dist/antd.css";
+import { InputNumber } from 'antd';
 import { Input, Tooltip, Form, Button } from "antd";
 import api from "../../../../api";
 import { ButtonContainer, LoginButton } from "./styles.js";
@@ -86,10 +87,9 @@ const NumericInput = (props) => {
         autoComplete="off"
       >
         <Form.Item
-          minLength={11}
-          maxLength={11}
           label="CPF"
           name="cpf"
+         
           rules={[
             {
               required: true,
@@ -102,7 +102,8 @@ const NumericInput = (props) => {
             setCpf(e.target.value);
           }}
         >
-          <Input placeholder="Digite seu CPF" />
+        <InputNumber min={11} max={11} placeholder='Digite seu CPF' />
+       
         </Form.Item>
 
         <Form.Item

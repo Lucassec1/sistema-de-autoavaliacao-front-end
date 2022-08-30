@@ -15,11 +15,14 @@ export const CardUsuarios = styled.div`
 `;
 
 export const Grafico = styled.div`
-    width: 50rem;
+    width: 40rem;
     height: 30rem;
     background: #FAFAFA;
     border: 1px solid #EBEBEB;
     box-shadow: 0px 1px 5px rgba(32, 90, 177, 0.1);
     border-radius: 10px;
+    margin-top: 22rem;
+    margin-left: 5%;
+
     
 `;
