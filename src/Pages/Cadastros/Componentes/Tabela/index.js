@@ -1,5 +1,5 @@
 import { SearchOutlined } from '@ant-design/icons';
-import { Button, Input, Space, Table } from 'antd';
+import { Button, Input, Space, Table, Tag } from 'antd';
 import React, { useEffect, useRef, useState } from 'react';
 // import Highlighter from 'react-highlight-words';
 import Highlighter from 'react-highlight-words';
@@ -39,6 +39,8 @@ function Tabela() {
     getCadastros()
   }, []);
 
+  
+
   usuario?.map(u => {
     if(u.tipo === 3) {
       u.tipo = "Usuário comum"
@@ -48,6 +50,10 @@ function Tabela() {
       u.tipo = "Root";
     }
   });
+
+  cols?.map(c => (
+    c.title = c.title.charAt(0).toUpperCase() + c.title.slice(1)
+  ));
 
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
@@ -154,7 +160,7 @@ function Tabela() {
       {
         cols &&
         <>
-          {console.log(cols)}
+          {/* {console.log(cols)} */}
           <Table columns={cols} dataSource={usuario} />
         </>
       }
