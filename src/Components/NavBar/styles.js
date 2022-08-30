@@ -22,3 +22,31 @@ export const CardPercentual = styled.div`
     border-radius: 4px;
     
 `;
+export const HeaderCardHome = styled.div`
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 15px;
+    /* identical to box height */
+    /* Secondary Text */
+    color: #36383A;
+    display:  flex;
+    justify-content: space-between;
+    align-items: center;
+`;
+export const NumericEstatistica = styled.div`
+    background: rgba(221, 253, 239, 0.8);
+    border-radius: 4px;
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 13px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #00DC7D;
+    width: 40px;
+    height: 25px;
+`;
