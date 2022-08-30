@@ -1,6 +1,19 @@
-.form{
+.teste{
     display:flex;
-    max-width:90%;
+    width: 45cm;
+    padding: 2rem;
     justify-content: center;
-    border-top: 1px solid red;
+    background-color:#347AE2;
+    margin-bottom: 2rem;
+}
+.li{
+    display:flex;
+    border: 1px solid red;
+    justify-content: space-around;
+    align-items: center;
+}
+.beta{
+    border: 1px solid pink;
+    max-width: 50%;
+    flex-wrap: wrap;
 }

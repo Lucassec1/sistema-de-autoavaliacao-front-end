@@ -1,6 +1,6 @@
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
+import { Card } from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Row from 'react-bootstrap/Row';
@@ -11,11 +11,14 @@ function OffcanvasExample() {
     function voltar() {
         window.history.back();
     }
+    function teste(){
+        alert('trabalhando nisso')
+    }
 
     return (
         <>
             <div>
-                <div id='teste'>
+                <div className='teste'>
                     <Navbar variant="primary" style={{ color: '#fff' }} expand="lg">
                         <Container>
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -29,12 +32,26 @@ function OffcanvasExample() {
                         </Container>
                     </Navbar>
                 </div>
-
-                <Row className="justify-content-md-center mt-5">
-                    <div className="form">
-                        
+                <div className="li">
+                    <div className="beta">
+                        <h4>pesquisas</h4>
+                        <div>
+                            <Card style={{ width: '30rem', borderRadius: '23px' }}>
+                                <Card.Body class="alinhar">
+                                    <div>
+                                        <Card.Title >Pergunta da uc tal</Card.Title>
+                                        <Card.Subtitle className="mb-4 text-muted">Professor fulano de tal</Card.Subtitle>
+                                        {/*<Card.Link href="/home">Começar</Card.Link>*/}
+                                        <Button variant="primary" onClick={teste} >abrir</Button>
+                                    </div>
+                                </Card.Body>
+                            </Card>
+                        </div>
                     </div>
-                </Row>
+                    <div className="beta">
+                        <h4>dashbord gerado com a pesquisa </h4>
+                    </div>
+                </div>
             </div>
         </>
     );
