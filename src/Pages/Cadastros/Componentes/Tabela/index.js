@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 // import Highlighter from 'react-highlight-words';
 import Highlighter from 'react-highlight-words';
 import api from '../../../../api'
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
 function Tabela() {
   const [usuario, setUsuario] = useState();
@@ -23,7 +24,7 @@ function Tabela() {
               title: coluna,
               dataIndex: coluna,
               key: coluna,
-              width: '30%',
+              width: '15vw',
               ...getColumnSearchProps(coluna),
             })
           })
@@ -160,17 +161,14 @@ function Tabela() {
       {
         cols &&
         <>
-          {/* {console.log(cols)} */}
-          <Table columns={cols} dataSource={usuario} />
+          {console.log(cols)}
+          <Table columns={cols} 
+            dataSource={usuario} 
+            pagination={{
+              pageSize: 15,
+            }}/>
         </>
       }
-      {/* <ul style={{overflowY: 'scroll'}}>
-          {usuario.map((user) =>(
-            <li key={user.id} style={{border: '1px solid red'}}>
-              <p>{user.nome}</p>
-            </li>
-          ))}
-        </ul> */}
     </>
 
   )

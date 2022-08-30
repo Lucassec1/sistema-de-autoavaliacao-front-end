@@ -21,7 +21,7 @@ export default function NavBarHome() {
                                     Pesquisas Adicionadas
                                     <NumericEstatistica>+7%</NumericEstatistica>
                                 </HeaderCardHome>
-                                <Contador>44444</Contador>
+                                <Contador>3514</Contador>
                                 <Textp>Período de 7 dias</Textp>
                                 <div style={{height: "70px", width: "75%"}}>
                                     <LineChart />
@@ -35,7 +35,7 @@ export default function NavBarHome() {
                                     Pesquisas Ativas
                                     <NumericEstatistica>+7%</NumericEstatistica>
                                 </HeaderCardHome>
-                                <Contador>44444</Contador>
+                                <Contador>1584</Contador>
                                 <Textp>Período de 7 dias</Textp>
                                 <div style={{height: "70px", width: "75%"}}>
                                     <LineChart />
@@ -48,7 +48,7 @@ export default function NavBarHome() {
                                     Pessoas Adicionadas
                                     <NumericEstatistica>+7%</NumericEstatistica>
                                 </HeaderCardHome>
-                                <Contador>44444</Contador>
+                                <Contador>2379</Contador>
                                 <Textp>Período de 7 dias</Textp>
                                 <div style={{height: "70px", width: "75%"}}>
                                     <LineChart />

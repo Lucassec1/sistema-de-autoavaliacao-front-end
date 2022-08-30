@@ -26,3 +26,12 @@ export const Grafico = styled.div`
 
     
 `;
+
+export const NomeUsuario = styled.div`
+    font-family: 'Mulish';
+    font-style: normal;
+    font-size: 1.2rem;
+    line-height: 22px;
+    color: #06152B;
+    margin-left: 2%;
+`;
