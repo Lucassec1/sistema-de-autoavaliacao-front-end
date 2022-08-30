@@ -18,14 +18,15 @@
   --Warning: #FFD747;
   --Success: #00DC7D;
 
-  --Mulish: 'Mulish', sans-serif;
+  
 }
+#root {
+  font-family: var(--Mulish);
+}
+*/
 
 * {
   margin: 0;
   padding: 0;
+  --Mulish: 'Mulish', sans-serif;
 }
-
-#root {
-  font-family: var(--Mulish);
-}*/

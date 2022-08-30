@@ -23,7 +23,7 @@ function Tabela() {
         .then(response => {
             setUsuario(response.data);
             // var colunas = Object.keys(response.data[0])
-            var colunas = ['id', 'nome', 'email', 'tipo']
+            var colunas = ['id', 'nome', 'email', 'tipo', 'actions']
             columns = []
             colunas.forEach(coluna => {
               columns.push({
@@ -31,7 +31,6 @@ function Tabela() {
                 dataIndex: coluna,
                 key: coluna,
                 width: '30%'
-                // ...getColumnSearchProps(coluna),
               })
             })
             setCols(columns)
@@ -45,7 +44,6 @@ function Tabela() {
             }
             getCadastros()
           }, []);
-
           //   const [searchText, setSearchText] = useState('');
   //   const [searchedColumn, setSearchedColumn] = useState('');
   //   const searchInput = useRef('');

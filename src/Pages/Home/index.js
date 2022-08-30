@@ -1,4 +1,3 @@
-
 import NavBarHome from "../../Components/NavBar/navbar"
 import { CardUsuarios } from "./styles"
 import { Grafico } from "./styles"
