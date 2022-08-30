@@ -4,6 +4,8 @@ import { CardHome } from './styles';
 import { HeaderCardHome } from './styles';
 import { NumericEstatistica } from './styles';
 import { Card, Col, Row } from 'antd';
+import LineChart from '../LinearChart';
+
 export default function NavBarHome() {
     return (
         <>
@@ -17,6 +19,9 @@ export default function NavBarHome() {
                                     Pesquisas Adicionadas
                                     <NumericEstatistica>+7%</NumericEstatistica>
                                 </HeaderCardHome>
+                                <div style={{height: "70px", width: "75%"}}>
+                                    <LineChart />
+                                </div>
                                 
                             </Card>
                         </Col>
@@ -26,6 +31,9 @@ export default function NavBarHome() {
                                     Pesquisas Ativas
                                     <NumericEstatistica>+7%</NumericEstatistica>
                                 </HeaderCardHome>
+                                <div style={{height: "70px", width: "75%"}}>
+                                    <LineChart />
+                                </div>
                             </Card>
                         </Col>
                         <Col span={8}>
@@ -34,6 +42,9 @@ export default function NavBarHome() {
                                     Pessoas Adicionadas
                                     <NumericEstatistica>+7%</NumericEstatistica>
                                 </HeaderCardHome>
+                                <div style={{height: "70px", width: "75%"}}>
+                                    <LineChart />
+                                </div>
                             </Card>
                         </Col>
                     </Row>

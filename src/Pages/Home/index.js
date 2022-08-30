@@ -3,6 +3,7 @@ import NavBarHome from "../../Components/NavBar/navbar"
 import { CardUsuarios } from "./styles"
 import { Grafico } from "./styles"
 import  Graficouse  from './components/graficouse';
+
 export default function Home() {
 
     return (
