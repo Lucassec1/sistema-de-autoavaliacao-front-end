@@ -7,6 +7,7 @@ import Login from './Pages/Login/Login';
 import SideBar from './Components/SideBar';
 import Formula from './Pages/formulario/Formulario'
 import Criarpesquisa from './Pages/formulario/criarpesquisa/Criarpesquisa'
+import Pesk from './Pages/formulario/pesquisa/pesquisa'
 /*const PrivateRoute = ({ component: Component, iara...rest }) => (
     <Route {...rest} render={props => 
         isAuthenticated() ? (
@@ -31,6 +32,7 @@ const Rotas = () => (
             <Route exact path="/home" element={<PrivateRoute Item={Home} />} />
             <Route exact path="/cadastros" element={<PrivateRoute Item={Cadastros} />} />
             <Route exact path="/pesquisas" element={<PrivateRoute Item={Formula} />} />
+            <Route exact path="/Pesk" element={<PrivateRoute Item={Pesk} />} />
             <Route exact path="/criarpesquisa" element={<PrivateRoute Item={Criarpesquisa} />} />
         </Routes>
     </BrowserRouter>

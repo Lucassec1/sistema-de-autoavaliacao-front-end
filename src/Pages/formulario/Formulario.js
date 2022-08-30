@@ -26,7 +26,7 @@ function app() {
                             <Navbar.Collapse id="basic-navbar-nav">
                                 <Nav className="me-auto">
                                     <Nav.Link href="/criarpesquisa"> Criar Pesquisa</Nav.Link>
-                                    <Nav.Link href="/home">Minhas Pesquisa</Nav.Link>
+                                    <Nav.Link href="/Pesk">Minhas Pesquisa</Nav.Link>
                                 </Nav>
                             </Navbar.Collapse>
                         </Container>
