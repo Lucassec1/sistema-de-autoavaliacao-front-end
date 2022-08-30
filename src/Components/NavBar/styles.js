@@ -50,3 +50,19 @@ export const NumericEstatistica = styled.div`
     width: 40px;
     height: 25px;
 `;
+
+export const Contador = styled.div`
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 30px;
+    letter-spacing: -0.0375em;
+
+    /* Title */
+
+    color: #163A6F;
+`;
+export const Textp = styled.div`
+   
+`;

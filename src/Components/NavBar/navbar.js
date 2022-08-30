@@ -3,6 +3,8 @@ import { HeaderHome } from './styles';
 import { CardHome } from './styles';
 import { HeaderCardHome } from './styles';
 import { NumericEstatistica } from './styles';
+import { Contador } from './styles';
+import { Textp } from './styles';
 import { Card, Col, Row } from 'antd';
 import LineChart from '../LinearChart';
 
@@ -19,6 +21,8 @@ export default function NavBarHome() {
                                     Pesquisas Adicionadas
                                     <NumericEstatistica>+7%</NumericEstatistica>
                                 </HeaderCardHome>
+                                <Contador>3514</Contador>
+                                <Textp>Período de 7 dias</Textp>
                                 <div style={{height: "70px", width: "75%"}}>
                                     <LineChart />
                                 </div>
@@ -31,6 +35,8 @@ export default function NavBarHome() {
                                     Pesquisas Ativas
                                     <NumericEstatistica>+7%</NumericEstatistica>
                                 </HeaderCardHome>
+                                <Contador>1584</Contador>
+                                <Textp>Período de 7 dias</Textp>
                                 <div style={{height: "70px", width: "75%"}}>
                                     <LineChart />
                                 </div>
@@ -42,6 +48,8 @@ export default function NavBarHome() {
                                     Pessoas Adicionadas
                                     <NumericEstatistica>+7%</NumericEstatistica>
                                 </HeaderCardHome>
+                                <Contador>2379</Contador>
+                                <Textp>Período de 7 dias</Textp>
                                 <div style={{height: "70px", width: "75%"}}>
                                     <LineChart />
                                 </div>
