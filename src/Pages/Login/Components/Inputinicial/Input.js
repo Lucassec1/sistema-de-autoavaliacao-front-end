@@ -63,7 +63,8 @@ const NumericInput = (props) => {
         localStorage.setItem('user', JSON.stringify(res.data.nome).substring(1, (res.data.nome).length + 1));
         localStorage.setItem('tipo', JSON.stringify(res.data.tipo));
         api.defaults.headers.Authorization = `Bearer ${res.data.token}`;
-        window.location.pathname = "/home";
+        console.log(localStorage.getItem('tipo'))
+        localStorage.getItem('tipo') !== "3" ? window.location.pathname = "/home" : window.location.pathname = "/homeU"
       })
       .catch((e) => {
         setLoading(false);
@@ -163,8 +164,7 @@ const NumericInput = (props) => {
         <ButtonContainer>
           <LoginButton
             htmlType="submit"
-            type="primary"
-            htmlType="submit"
+            type="primary"      
             loading={loading}
             size="large"
             onClick={PostCpf}

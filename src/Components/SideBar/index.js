@@ -48,7 +48,6 @@ export default function SideBar(props) {
     const navigate = useNavigate();
 
     const signout = () =>{
-      window.location.reload();
       localStorage.removeItem("token");
       localStorage.removeItem("user")
       localStorage.removeItem("tipo")
@@ -56,7 +55,6 @@ export default function SideBar(props) {
     }
 
     const UserCpf = useContext(UserContext);
-    console.log(UserCpf)
     return (
         <>
           <Sidebar>
