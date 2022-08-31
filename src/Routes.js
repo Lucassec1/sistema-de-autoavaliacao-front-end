@@ -14,6 +14,7 @@ import SideBar from './Components/SideBar';
 import Formula from './Pages/formulario/Formulario'
 import CriarPesquisaMenu from './Pages/formulario/CriarPesquisaMenu'
 import CriarPesquisa from './Pages/formulario/CriarPesquisa'
+import Pesk from './Pages/formulario/pesquisa/Pesquisa'
 
 const PrivateRoute = ({ Item }) => {
   const token = localStorage.getItem("token");
@@ -31,7 +32,7 @@ const Rotas = () => (
             <Route exact path="/pesquisas" element={<PrivateRoute Item={Formula} />} />
             <Route exact path="/criarpesquisa" element={<PrivateRoute Item={CriarPesquisaMenu} />} />
             <Route exact path="/criarpesquisa/:tipo" element={<PrivateRoute Item={CriarPesquisa} />}/>
-            {/* <Route exact path="/pesk" element={<PrivateRoute Item={Pesk} />} /> */}
+            <Route exact path="/pesk" element={<PrivateRoute Item={Pesk} />} />
         </Routes>
     </BrowserRouter>
 );
