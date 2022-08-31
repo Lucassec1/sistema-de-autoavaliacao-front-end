@@ -38,8 +38,7 @@ function Tabela() {
           getCadastros()
         }, []);
       
-        
-          //   const [searchText, setSearchText] = useState('');
+  //   const [searchText, setSearchText] = useState('');
   //   const [searchedColumn, setSearchedColumn] = useState('');
   //   const searchInput = useRef('');
   
