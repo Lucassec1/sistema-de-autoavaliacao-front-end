@@ -6,10 +6,12 @@ import { Select } from 'antd';
 import { AddButton } from './style';
 import { PrimaryButton } from "../../../../Components/PrimaryButton/style.js";
 import { SecondaryButton } from "../../../../Components/SecondaryButton/style.js";
-
+import { validEmail, validPassword, validCPF } from '../../../../Components/Regex/index'
 
 const { Option } = Select;
 const App = () => {
+    
+
     const [loading, setLoading] = useState(false);
     const [visible, setVisible] = useState(false);
 
@@ -24,8 +26,6 @@ const App = () => {
             setVisible(false);
         }, 3000);
     };
-
-
 
     const onFinish = (values) => {
         console.log('Success:', values);
@@ -46,7 +46,6 @@ const App = () => {
         }
     };
 
-    
     const [nome, setNome] = useState()
     const [email, setEmail] = useState()
     const [cpf, setCpf] = useState()

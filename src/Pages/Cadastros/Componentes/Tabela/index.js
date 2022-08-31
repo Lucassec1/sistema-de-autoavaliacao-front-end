@@ -24,9 +24,11 @@ function Tabela() {
                 title: coluna,
                 dataIndex: coluna,
                 key: coluna,
-                width: '30%'
+                width: '20vw',
+                ...getColumnSearchProps('id'),
               })
             })
+            setCols(columns)
           })
         .catch(err => {
             if(err.response.status == 401) {
