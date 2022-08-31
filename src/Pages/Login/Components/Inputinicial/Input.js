@@ -95,14 +95,17 @@ const NumericInput = (props) => {
         autoComplete="off"
       >
         <Form.Item
+          type="number"
           label="CPF"
           name="cpf"
-          
-          
           rules={[
             {
               required: true,
               message: "O CPF é obrigatório!",
+            }, 
+            {
+              pattern: /^(?:\d*)$/,
+              message: "O CPF deve conter apenas números!",
             },
           ]}
           value={cpf}
@@ -111,7 +114,7 @@ const NumericInput = (props) => {
             setCpf(e.target.value);
           }}
         >
-          <InputNumber keyboard placeholder='Digite seu CPF' style={{width: '235px'}}/>
+          <Input maxLength={11} minLength={11} placeholder='Digite seu CPF' style={{width: '235px'}}/>
         </Form.Item>
 
         <Form.Item
@@ -134,6 +137,7 @@ const NumericInput = (props) => {
 
         <ButtonContainer>
           <LoginButton
+            htmlType="submit"
             type="primary"
             htmlType="submit"
             loading={loading}
