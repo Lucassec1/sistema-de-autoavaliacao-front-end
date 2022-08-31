@@ -2,7 +2,7 @@
 
 O Sistema de Avaliação e Pesquisa - SAP deve ser capaz de gerenciar avaliações de desempenho e pesquisas de satisfação a ser executado com colaboradores e cliente fazendo uso de diversas metodologias.
 
-<strong> &#x1F517; <a href="https://github.com/larissacard/Sistema-de-Autoavaliacao-BackEnd" target="_blank">Link</a> do repositório Back-End. </strong>
+- <strong> &#x1F517; [Link](https://github.com/larissacard/Sistema-de-Autoavaliacao-BackEnd) do repositório Back-End. </strong>
 
 ## Bibliotecas usadas
 
@@ -12,7 +12,7 @@ O Sistema de Avaliação e Pesquisa - SAP deve ser capaz de gerenciar avaliaçõ
 
 - [React Icons](https://react-icons.github.io/react-icons/) - ícones;
 
-- [Chart.Js](https://www.chartjs.org) - gráficos.
+- [Recharts](https://recharts.org/en-US/) - gráficos.
 
 ## Usuário
 
