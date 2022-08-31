@@ -39,9 +39,9 @@ function app() {
                 </div>
                 <div>
                     <Row className="justify-content-md-center mt-5">
-                        <div className="lucas">
+                        <div class="lucas">
                             <Card  style={{ width: '30rem', borderRadius: '23px' }}>
-                                <Card.Body className="alinhar">
+                                <Card.Body class="alinhar">
                                     <div>
                                         <Card.Title >Pergunta da uc tal</Card.Title>
                                         <Card.Subtitle className="mb-4 text-muted">Professor fulano de tal</Card.Subtitle>
