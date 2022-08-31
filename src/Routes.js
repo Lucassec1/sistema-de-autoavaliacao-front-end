@@ -18,7 +18,9 @@ import HomeUser from './Pages/User Comum/Home User/index'
 
 const PrivateRoute = ({ Item }) => {
   const token = localStorage.getItem("token");
-  return token ? <Item /> : <Login />;
+  const userType = localStorage.getItem("tipo");
+  
+  return token ? userType !== '3' ?  <Item /> : <HomeUser/> : <Login />;
 };
 
 const Rotas = () => (
