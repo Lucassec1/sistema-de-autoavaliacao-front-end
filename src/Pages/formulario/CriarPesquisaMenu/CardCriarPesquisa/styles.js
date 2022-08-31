@@ -6,7 +6,8 @@ export const Container = styled.a`
     align-items: flex-start;
     border: 0;
     background-color: transparent;
-    
+    text-decoration: none;
+
     h2 {
         font-size: 20px;
         margin-left: 3px;

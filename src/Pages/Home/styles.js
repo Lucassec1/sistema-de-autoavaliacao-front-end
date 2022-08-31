@@ -15,14 +15,14 @@ export const CardUsuarios = styled.div`
 `;
 
 export const Grafico = styled.div`
-    width: 40rem;
+    width: 43rem;
     height: 30rem;
     background: #FAFAFA;
     border: 1px solid #EBEBEB;
     box-shadow: 0px 1px 5px rgba(32, 90, 177, 0.1);
     border-radius: 10px;
     margin-top: 22rem;
-    margin-left: 5%;
+    margin-left: 3%;
 
     
 `;
@@ -34,4 +34,11 @@ export const NomeUsuario = styled.div`
     line-height: 22px;
     color: #06152B;
     margin-left: 2%;
+`;
+
+export const HeaderRenderUsusarios = styled.div` 
+    font-size: 1.5rem;
+    color: #36383A;
+    padding: 3%;
+    margin-bottom: 6%;
 `;

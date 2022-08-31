@@ -6,10 +6,12 @@ import { Select } from 'antd';
 import { AddButton } from './style';
 import { PrimaryButton } from "../../../../Components/PrimaryButton/style.js";
 import { SecondaryButton } from "../../../../Components/SecondaryButton/style.js";
-
+import { validEmail, validPassword, validCPF } from '../../../../Components/Regex/index'
 
 const { Option } = Select;
 const App = () => {
+    
+
     const [loading, setLoading] = useState(false);
     const [visible, setVisible] = useState(false);
 
@@ -24,8 +26,6 @@ const App = () => {
             setVisible(false);
         }, 3000);
     };
-
-
 
     const onFinish = (values) => {
         console.log('Success:', values);
@@ -46,7 +46,6 @@ const App = () => {
         }
     };
 
-    
     const [nome, setNome] = useState()
     const [email, setEmail] = useState()
     const [cpf, setCpf] = useState()
@@ -108,6 +107,7 @@ const App = () => {
                 ]}
             >
                 <Form
+                    layout='vertical'
                     name="basic"
                     labelCol={{
                         span: 4,
@@ -185,20 +185,24 @@ const App = () => {
                     </Form.Item>
 
                     <Form.Item
-                        label="Cpf"
+                        label="CPF"
                         name="Cpf"
                         maxLength={11}
                         minLength={11}
                         rules={[
                             {
                                 required: true,
-                                message: 'O Cpf é obrigatório!',
+                                message: 'O CPF é obrigatório!',
+                            },
+                            {
+                                pattern: /^(?:\d*)$/,
+                                message: "O CPF deve conter apenas números!",
                             },
                         ]}
                         value={cpf}
                         onChange={e => setCpf(e.target.value)}
                     >
-                        <Input type='number' />
+                        <Input maxLength={11} minLength={11} />
                     </Form.Item>
 
                     <Form.Item

@@ -71,9 +71,28 @@ const NumericInput = (props) => {
           setVisible("block");
           console.log("Erroooooo");
           setSenha("");
+        } else if (e.response.status == 404) {
+          setNotFound(true);
+        } else if (e.response.status == 400) {
+          setWrongPassword(true);
         }
       });
     //setContext(cpf);
+  }
+
+  const [notFound, setNotFound] = useState(false);
+  const [wrongPassword, setWrongPassword] = useState(false);
+
+  let helpMessage;
+  let status;
+  let wrongPasswordMessage;
+
+  if (notFound) {
+    helpMessage = "Usuário não encontrado.";
+    status = "error";
+  } else if (wrongPassword) {
+    wrongPasswordMessage = "Senha incorreta.!";
+    status = "error";
   }
 
   return (
@@ -97,28 +116,34 @@ const NumericInput = (props) => {
         <Form.Item
           label="CPF"
           name="cpf"
-          
-          
+          validateStatus={status}
+          help={helpMessage}
           rules={[
             {
               required: true,
               message: "O CPF é obrigatório!",
+            }, 
+            {
+              pattern: /^(?:\d*)$/,
+              message: "O CPF deve conter apenas números!",
             },
           ]}
           value={cpf}
           onChange={(e) => {
             handleChange(e);
             setCpf(e.target.value);
+            setNotFound(false);
           }}
         >
-          <InputNumber keyboard placeholder='Digite seu CPF' style={{width: '235px'}}/>
+          <Input maxLength={11} minLength={11} placeholder='Digite seu CPF' style={{width: '235px'}}/>
         </Form.Item>
 
         <Form.Item
           style={{ display: visible }}
           minLength={8}
           label="Senha"
-          
+          validateStatus={status}
+          help={wrongPasswordMessage}
           name="senha"
           rules={[
             {
@@ -127,14 +152,19 @@ const NumericInput = (props) => {
             },
           ]}
           value={senha}
-          onChange={(e) => setSenha(e.target.value)}
+          onChange={(e) => {
+            setSenha(e.target.value);
+            setWrongPassword(false);
+          }}
         >
           <Input.Password placeholder="Digite sua senha" type="password" />
         </Form.Item>
 
         <ButtonContainer>
           <LoginButton
+            htmlType="submit"
             type="primary"
+            htmlType="submit"
             loading={loading}
             size="large"
             onClick={PostCpf}

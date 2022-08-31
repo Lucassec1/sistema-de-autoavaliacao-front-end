@@ -48,7 +48,6 @@ export default function SideBar(props) {
     const navigate = useNavigate();
 
     const signout = () =>{
-      window.location.reload();
       localStorage.removeItem("token");
       localStorage.removeItem("user")
       localStorage.removeItem("tipo")
@@ -56,7 +55,6 @@ export default function SideBar(props) {
     }
 
     const UserCpf = useContext(UserContext);
-    console.log(UserCpf)
     return (
         <>
           <Sidebar>
@@ -67,7 +65,7 @@ export default function SideBar(props) {
                   {localStorage.getItem('user')}
                 </Name>
                 <UserType>
-                  {localStorage.getItem('tipo') === '1' ? 'ROOT' : localStorage.getItem('tipo') === '2' ? 'ADMIN' : localStorage.getItem('tipo') === '3' ? 'USUÁRIO' : 'quem é você? -policial disfarçado'}
+                  {localStorage.getItem('tipo') === '1' ? 'ROOT' : localStorage.getItem('tipo') === '2' ? 'ADMIN' : localStorage.getItem('tipo') === '3' ? 'USUÁRIO' :    'quem é você? -policial disfarçado'}
                 </UserType>
               </ProfileContent>
             </ProfileContainer>
