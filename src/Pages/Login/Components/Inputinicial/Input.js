@@ -97,7 +97,8 @@ const NumericInput = (props) => {
         <Form.Item
           label="CPF"
           name="cpf"
-         
+          
+          
           rules={[
             {
               required: true,
@@ -110,14 +111,14 @@ const NumericInput = (props) => {
             setCpf(e.target.value);
           }}
         >
-        <InputNumber min={11} max={11} placeholder='Digite seu CPF' />
-       
+          <InputNumber keyboard placeholder='Digite seu CPF' style={{width: '235px'}}/>
         </Form.Item>
 
         <Form.Item
           style={{ display: visible }}
           minLength={8}
           label="Senha"
+          
           name="senha"
           rules={[
             {

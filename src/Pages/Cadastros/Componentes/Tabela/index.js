@@ -26,17 +26,19 @@ function Tabela() {
                 key: coluna,
                 width: '30%'
               })
-          .catch(err => {
-              if(err.response.status == 401) {
-                window.location.href = '/';
-              }
-              else console.log(err.message);
-              })
             })
-            getCadastros()
           })
-          }});
-          //   const [searchText, setSearchText] = useState('');
+        .catch(err => {
+            if(err.response.status == 401) {
+              window.location.href = '/';
+            }
+            else console.log(err.message);
+            })
+          }
+          getCadastros()
+        }, []);
+      
+  //   const [searchText, setSearchText] = useState('');
   //   const [searchedColumn, setSearchedColumn] = useState('');
   //   const searchInput = useRef('');
   
