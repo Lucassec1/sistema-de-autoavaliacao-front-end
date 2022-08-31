@@ -158,6 +158,7 @@ const NumericInput = (props) => {
           <LoginButton
             htmlType="submit"
             type="primary"
+            htmlType="submit"
             loading={loading}
             size="large"
             onClick={PostCpf}
