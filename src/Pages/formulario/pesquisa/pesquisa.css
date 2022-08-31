@@ -17,3 +17,7 @@
     max-width: 50%;
     flex-wrap: wrap;
 }
+.beta h4{
+    display: flex;
+    justify-content: center;
+}

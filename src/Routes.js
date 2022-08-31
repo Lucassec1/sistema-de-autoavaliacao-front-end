@@ -14,27 +14,25 @@ import SideBar from './Components/SideBar';
 import Formula from './Pages/formulario/Formulario'
 import CriarPesquisaMenu from './Pages/formulario/CriarPesquisaMenu'
 import CriarPesquisa from './Pages/formulario/CriarPesquisa'
-import HomeUser from './Pages/User Comum/Home User/index'
+import Pesk from './Pages/formulario/pesquisa/Pesquisa'
 
 const PrivateRoute = ({ Item }) => {
   const token = localStorage.getItem("token");
-  const userType = localStorage.getItem("tipo");
-  
-  return token ? userType !== '3' ?  <Item /> : <HomeUser/> : <Login />;
+  console.log(token);
+  return token ? <Item /> : <Login />;
 };
 
 const Rotas = () => (
     <BrowserRouter>
         {localStorage.getItem('token') ? <SideBar /> : null}
         <Routes>
-            <Route exact path='/' element={<Login />} />
+            {localStorage.getItem('token') ? <Route exact path="/" element={<PrivateRoute Item={Home} />} /> : <Route exact path='/' element={<Login />} />}
             <Route exact path="/home" element={<PrivateRoute Item={Home} />} />
             <Route exact path="/cadastros" element={<PrivateRoute Item={Cadastros} />} />
             <Route exact path="/pesquisas" element={<PrivateRoute Item={Formula} />} />
             <Route exact path="/criarpesquisa" element={<PrivateRoute Item={CriarPesquisaMenu} />} />
             <Route exact path="/criarpesquisa/:tipo" element={<PrivateRoute Item={CriarPesquisa} />}/>
-            <Route exact path="/homeU" element={<PrivateRoute Item={HomeUser} />} />
-            {/* <Route exact path="/pesk" element={<PrivateRoute Item={Pesk} />} /> */}
+            <Route exact path="/pesk" element={<PrivateRoute Item={Pesk} />} />
         </Routes>
     </BrowserRouter>
 );
