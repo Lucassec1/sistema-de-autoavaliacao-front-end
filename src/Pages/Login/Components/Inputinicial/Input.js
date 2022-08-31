@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "antd/dist/antd.css";
+import { InputNumber } from 'antd';
 import { Input, Tooltip, Form, Button } from "antd";
 import api from "../../../../api";
 import { ButtonContainer, LoginButton } from "./styles.js";
+import { createContext } from "react";
+import UserContext from "../../../../UserContext";
+
+//export const CpfContext = createContext([]);
 
 const formatNumber = (value) => new Intl.NumberFormat().format(value);
 
@@ -37,9 +42,10 @@ const NumericInput = (props) => {
   );
 
   const [visible, setVisible] = useState("none");
-  const [cpf, setCpf] = useState();
+  const [cpf, setCpf] = useState("");
   const [senha, setSenha] = useState();
   const [loading, setLoading] = useState(false);
+  //const [context, setContext] = useContext(UserContext);
 
   async function PostCpf(e) {
     e.preventDefault();
@@ -65,6 +71,7 @@ const NumericInput = (props) => {
           setSenha("");
         }
       });
+    //setContext(cpf);
   }
 
   return (
@@ -86,10 +93,9 @@ const NumericInput = (props) => {
         autoComplete="off"
       >
         <Form.Item
-          minLength={11}
-          maxLength={11}
           label="CPF"
           name="cpf"
+         
           rules={[
             {
               required: true,
@@ -102,7 +108,8 @@ const NumericInput = (props) => {
             setCpf(e.target.value);
           }}
         >
-          <Input placeholder="Digite seu CPF" />
+        <InputNumber min={11} max={11} placeholder='Digite seu CPF' />
+       
         </Form.Item>
 
         <Form.Item
@@ -139,6 +146,7 @@ const NumericInput = (props) => {
 
 export const Inputt = () => {
   const [value, setValue] = useState("");
+
   return (
     <NumericInput
       style={{

@@ -1,5 +1,11 @@
-import React from 'react';
-import { BrowserRouter, Route, Routes, Navigate, Switch } from 'react-router-dom';
+import React from "react";
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  Navigate,
+  Switch,
+} from "react-router-dom";
 import Home from "./Pages/Home";
 import Cadastros from "./Pages/Cadastros/index.js";
 import Pesquisas from './Pages/Pesquisar';
@@ -8,21 +14,12 @@ import SideBar from './Components/SideBar';
 import Formula from './Pages/formulario/Formulario'
 import CriarPesquisaMenu from './Pages/formulario/CriarPesquisaMenu'
 import CriarPesquisa from './Pages/formulario/CriarPesquisa'
-/*const PrivateRoute = ({ component: Component, iara...rest }) => (
-    <Route {...rest} render={props => 
-        isAuthenticated() ? (
-            <Component {...props} />
-        ) : (
-            <Navigate to={{ pathname: "/", state: { from: props.location } }} />
-        )
-    } /> 
-);*/
 
-const PrivateRoute = ({Item}) =>{
-    const token  = localStorage.getItem('token');
-    console.log(token)
-    return token ? <Item /> : <Login/>;
-}
+const PrivateRoute = ({ Item }) => {
+  const token = localStorage.getItem("token");
+  console.log(token);
+  return token ? <Item /> : <Login />;
+};
 
 const Rotas = () => (
     <BrowserRouter>
@@ -34,9 +31,10 @@ const Rotas = () => (
             <Route exact path="/pesquisas" element={<PrivateRoute Item={Formula} />} />
             <Route exact path="/criarpesquisa" element={<PrivateRoute Item={CriarPesquisaMenu} />} />
             <Route exact path="/criarpesquisa/:tipo" element={<PrivateRoute Item={CriarPesquisa} />}/>
+            {/* <Route exact path="/pesk" element={<PrivateRoute Item={Pesk} />} /> */}
         </Routes>
     </BrowserRouter>
-)
+);
 
 export default Rotas;
 
