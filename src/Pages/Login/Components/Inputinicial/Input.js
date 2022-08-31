@@ -91,7 +91,7 @@ const NumericInput = (props) => {
     helpMessage = "Usuário não encontrado.";
     status = "error";
   } else if (wrongPassword) {
-    wrongPasswordMessage = "Senha incorreta.!";
+    wrongPasswordMessage = "Senha incorreta!";
     status = "error";
   }
 
@@ -162,7 +162,6 @@ const NumericInput = (props) => {
 
         <ButtonContainer>
           <LoginButton
-            htmlType="submit"
             type="primary"
             htmlType="submit"
             loading={loading}
