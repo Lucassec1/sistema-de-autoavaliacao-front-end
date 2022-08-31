@@ -1,13 +1,23 @@
 import React from 'react';
+import CabecalhoPesquisa from '../components/CabecalhoPesquisa';
+import { AiOutlinePlus } from "react-icons/ai";
+import CardPergunta from '../components/CardPergunta';
+import { Container, Pagina, BodyPesquisa, AdicionarPergunta } from './styles';
 
-import { Container } from './styles';
-
-function criarpesquisa() {
+function Criarpesquisa() {
   return (
     <Container>
-      aqui vai ser um molde de pesquisa
+      <Pagina>
+        <CabecalhoPesquisa/>
+
+        <BodyPesquisa>
+          <CardPergunta />
+          <AdicionarPergunta><AiOutlinePlus/></AdicionarPergunta>
+        </BodyPesquisa>
+
+      </Pagina>
     </Container>
   );
 }
 
-export default criarpesquisa;
+export default Criarpesquisa;
