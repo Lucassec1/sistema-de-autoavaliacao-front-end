@@ -32,7 +32,6 @@ export const CabecalhoPesquisa = styled.form`
     flex-direction: column;
 `;
 
-
 export const BodyPesquisa = styled.div`
   margin-top: 20px;
   width: 100%;
@@ -41,3 +40,17 @@ export const BodyPesquisa = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+
+export const AdicionarPergunta = styled.div`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 30px;
+  line-height: 10px;
+`

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Container, Titulo, NotaButtons, Nota } from './styles';
 
 function CardPergunta() {
+    const [titulo, setTitulo] = useState('Pergunta sem título')
+
     const [notaEscolhida, setNotaEscolhida] = useState()
     const [nota, setNota] = useState(-1)  // State da nota que o mouse está em cima
 
@@ -16,15 +18,18 @@ function CardPergunta() {
     return 1
   }
 
-  console.log(notaEscolhida)
-
   return (
     <Container>
-        <Titulo tipe="text" value="Pergunta 1"/>
+        <Titulo
+          tipe="text"
+          value={titulo}
+          onChange={(e) => setTitulo(e.target.value)}
+        />
         <NotaButtons
             onMouseLeave={() => setNota(-1)}>
             {colors.map((n, index) => (
                 <Nota
+                  key={index}
                   type="button"
                   value={index}
                   onMouseEnter={() => setNota(index)}
