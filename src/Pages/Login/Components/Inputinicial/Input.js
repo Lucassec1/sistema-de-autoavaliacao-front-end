@@ -56,12 +56,14 @@ const NumericInput = (props) => {
         senha: senha,
       })
       .then((res) => {
+        // console.log(res)
         setLoading(false);
+        console.log(e);
         localStorage.setItem("token", JSON.stringify(res.data.token));
         localStorage.setItem('user', JSON.stringify(res.data.nome).substring(1, (res.data.nome).length + 1));
         localStorage.setItem('tipo', JSON.stringify(res.data.tipo));
         api.defaults.headers.Authorization = `Bearer ${res.data.token}`;
-        localStorage.getItem('tipo') !== "3" ? window.location.pathname = "/home" : window.location.pathname = "/homeU";
+        window.location.pathname = "/home";
       })
       .catch((e) => {
         setLoading(false);
@@ -89,7 +91,7 @@ const NumericInput = (props) => {
     helpMessage = "Usuário não encontrado.";
     status = "error";
   } else if (wrongPassword) {
-    wrongPasswordMessage = "Senha incorreta!";
+    wrongPasswordMessage = "Senha incorreta.!";
     status = "error";
   }
 
@@ -161,7 +163,8 @@ const NumericInput = (props) => {
         <ButtonContainer>
           <LoginButton
             htmlType="submit"
-            type="primary"      
+            type="primary"
+            htmlType="submit"
             loading={loading}
             size="large"
             onClick={PostCpf}

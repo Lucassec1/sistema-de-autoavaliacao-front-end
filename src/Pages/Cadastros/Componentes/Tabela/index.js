@@ -16,7 +16,7 @@ function Tabela() {
         .get('/usuarios')
         .then(response => {
             setUsuario(response.data);
-            var colunas = Object.keys(response.data[0])
+            // var colunas = Object.keys(response.data[0])
             var colunas = ['id', 'nome', 'email', 'tipo', 'actions']
             columns = []
             colunas.forEach(coluna => {
@@ -26,19 +26,19 @@ function Tabela() {
                 key: coluna,
                 width: '20vw',
                 ...getColumnSearchProps('id'),
+              })
             })
+            setCols(columns)
           })
-          setCols(columns)
-        })
         .catch(err => {
-          if (err.response.status == 401) {
-            window.location.href = '/';
+            if(err.response.status == 401) {
+              window.location.href = '/';
+            }
+            else console.log(err.message);
+            })
           }
-          else console.log(err.message);
-        })
-    }
-    getCadastros()
-  }, []);
+          getCadastros()
+        }, []);
       
   //   const [searchText, setSearchText] = useState('');
   //   const [searchedColumn, setSearchedColumn] = useState('');
