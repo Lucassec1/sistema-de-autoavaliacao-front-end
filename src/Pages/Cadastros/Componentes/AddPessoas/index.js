@@ -6,19 +6,20 @@ import { Select } from 'antd';
 import { AddButton } from './style';
 import { PrimaryButton } from "../../../../Components/PrimaryButton/style.js";
 import { SecondaryButton } from "../../../../Components/SecondaryButton/style.js";
-import { validEmail, validPassword, validCPF } from '../../../../Components/Regex/index'
+import { validEmail, validPassword } from '../../../../Components/Regex/index'
 
 const { Option } = Select;
-const App = () => {
-    
+const Cadastro = () => {
+    const [inputEmailErr, setInputEmailErr] = useState(false);
+    const [inputSenhaErr, setInputSenhaErr] = useState(false);
 
     const [loading, setLoading] = useState(false);
     const [visible, setVisible] = useState(false);
-
+    
     const showModal = () => {
         setVisible(true);
     };
-
+    
     const handleOk = () => {
         setLoading(true);
         setTimeout(() => {
@@ -45,22 +46,41 @@ const App = () => {
             setDisableSenha(false)
         }
     };
-
+    
     const [nome, setNome] = useState()
     const [email, setEmail] = useState()
     const [cpf, setCpf] = useState()
     const [foto, setFoto] = useState()
     const [senha, setSenha] = useState('')
     const [tipo, setTipo] = useState(3)
-    const [disableSenha, setDisableSenha] = useState(false)
-
+    const [disableSenha, setDisableSenha] = useState(true)
+    
+    const validate = () => {
+        if (!validEmail.test(email)) {
+            setInputEmailErr(true);
+        } else {
+            setInputEmailErr(false);
+        }
+        if (!validPassword.test(senha)) {
+            setInputSenhaErr(true);
+        } else { 
+            setInputSenhaErr(false);
+        }
+    }
+    
     const handleCancel = () => {
         setVisible(false);
     };
-
+    
     function Cadastrar(e) {
         e.preventDefault()
-        api.post('/auth/cadastrar', {
+        tipo === 3 ? api.post('/auth/cadastrar', {
+            nome: nome,
+            email: email,
+            cpf: cpf,
+            foto: foto,
+            tipo: tipo
+        }) : api.post('/auth/cadastrar', {
             nome: nome,
             email: email,
             senha: senha,
@@ -101,7 +121,7 @@ const App = () => {
                     <SecondaryButton key="back" onClick={handleCancel}>
                         Cancelar
                     </SecondaryButton>,
-                    <PrimaryButton key="submit" type="primary" loading={loading} onClick={(e) => Cadastrar(e)}>
+                    <PrimaryButton key="submit" type="primary" loading={loading} onClick={(e) => {Cadastrar(e); validate()}}>
                         Enviar
                     </PrimaryButton>
                 ]}
@@ -166,6 +186,7 @@ const App = () => {
                         onChange={e => setEmail(e.target.value)}
                     >
                         <Input type='email' />
+                        {inputEmailErr && <p>Por favor digite um email válido!</p>}
                     </Form.Item>
 
                     <Form.Item
@@ -182,6 +203,8 @@ const App = () => {
                         onChange={e => setSenha(e.target.value)}
                     >
                         <Input.Password type='password' disabled={disableSenha} />
+                        {inputSenhaErr && <p>Por favor digite uma senha segura</p>}
+
                     </Form.Item>
 
                     <Form.Item
@@ -228,4 +251,4 @@ const App = () => {
     );
 };
 
-export default App;
+export default Cadastro;

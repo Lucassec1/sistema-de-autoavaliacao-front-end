@@ -17,15 +17,15 @@ function Tabela() {
         .then(response => {
             setUsuario(response.data);
             // var colunas = Object.keys(response.data[0])
-            var colunas = ['id', 'nome', 'email', 'tipo', 'actions']
+            var colunas = ['id', 'nome', 'email', 'tipo', 'cpf', 'actions']
             columns = []
             colunas.forEach(coluna => {
               columns.push({
                 title: coluna,
                 dataIndex: coluna,
                 key: coluna,
-                width: '20vw',
-                ...getColumnSearchProps('id'),
+                width: '15vw',
+                ...getColumnSearchProps(coluna),
               })
             })
             setCols(columns)
@@ -168,7 +168,7 @@ function Tabela() {
           <Table columns={cols} 
             dataSource={usuario} 
             pagination={{
-              pageSize: 15,
+              pageSize: 12,
             }}/>
         </>
       }
