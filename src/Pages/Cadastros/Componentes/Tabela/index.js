@@ -32,9 +32,10 @@ function Tabela() {
               }
               else console.log(err.message);
               })
-            }
+            })
             getCadastros()
-          }, []);
+          })
+          }});
           //   const [searchText, setSearchText] = useState('');
   //   const [searchedColumn, setSearchedColumn] = useState('');
   //   const searchInput = useRef('');
