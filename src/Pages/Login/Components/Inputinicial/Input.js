@@ -71,10 +71,27 @@ const NumericInput = (props) => {
           setVisible("block");
           console.log("Erroooooo");
           setSenha("");
+        } else if (e.response.status == 404) {
+          setNotFound(true);
         }
       });
     //setContext(cpf);
   }
+
+  const [notFound, setNotFound] = useState(false);
+  //const [helpMessage, setHelpMessage] = useState("");
+  //const [status, setStatus] = useState("");
+  let helpMessage;
+  let status;
+
+  if (notFound) {
+    helpMessage = "Usuário não encontrado";
+    status = "error";
+  } 
+  // else {
+  //   setHelpMessage("Usuário não encontrado");
+  //   setStatus("")
+  // }
 
   return (
     <>
@@ -95,9 +112,10 @@ const NumericInput = (props) => {
         autoComplete="off"
       >
         <Form.Item
-          type="number"
           label="CPF"
           name="cpf"
+          validateStatus={status}
+          help={helpMessage}
           rules={[
             {
               required: true,
@@ -112,6 +130,7 @@ const NumericInput = (props) => {
           onChange={(e) => {
             handleChange(e);
             setCpf(e.target.value);
+            setNotFound(false);
           }}
         >
           <Input maxLength={11} minLength={11} placeholder='Digite seu CPF' style={{width: '235px'}}/>

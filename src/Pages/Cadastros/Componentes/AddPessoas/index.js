@@ -108,6 +108,7 @@ const App = () => {
                 ]}
             >
                 <Form
+                    layout='vertical'
                     name="basic"
                     labelCol={{
                         span: 4,
@@ -185,20 +186,24 @@ const App = () => {
                     </Form.Item>
 
                     <Form.Item
-                        label="Cpf"
+                        label="CPF"
                         name="Cpf"
                         maxLength={11}
                         minLength={11}
                         rules={[
                             {
                                 required: true,
-                                message: 'O Cpf é obrigatório!',
+                                message: 'O CPF é obrigatório!',
+                            },
+                            {
+                                pattern: /^(?:\d*)$/,
+                                message: "O CPF deve conter apenas números!",
                             },
                         ]}
                         value={cpf}
                         onChange={e => setCpf(e.target.value)}
                     >
-                        <Input type='number' />
+                        <Input maxLength={11} minLength={11} />
                     </Form.Item>
 
                     <Form.Item
