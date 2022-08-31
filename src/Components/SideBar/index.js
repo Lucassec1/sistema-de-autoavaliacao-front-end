@@ -50,6 +50,8 @@ export default function SideBar(props) {
     const signout = () =>{
       window.location.reload();
       localStorage.removeItem("token");
+      localStorage.removeItem("user")
+      localStorage.removeItem("tipo")
       window.location.pathname = "/";
     }
 
@@ -62,10 +64,10 @@ export default function SideBar(props) {
               <Avatar style={{display: "flex", alignItems: "center", justifyContent: "center"}} size={64} icon={<UserOutlined />} />
               <ProfileContent>
                 <Name>
-                  Lucas Emmanuel Siqueira
+                  {localStorage.getItem('user')}
                 </Name>
                 <UserType>
-                  Root
+                  {localStorage.getItem('tipo') === '1' ? 'ROOT' : localStorage.getItem('tipo') === '2' ? 'ADMIN' : localStorage.getItem('tipo') === '3' ? 'USUÁRIO' : 'quem é você? -policial disfarçado'}
                 </UserType>
               </ProfileContent>
             </ProfileContainer>
