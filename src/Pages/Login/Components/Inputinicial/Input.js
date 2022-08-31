@@ -73,25 +73,27 @@ const NumericInput = (props) => {
           setSenha("");
         } else if (e.response.status == 404) {
           setNotFound(true);
+        } else if (e.response.status == 400) {
+          setWrongPassword(true);
         }
       });
     //setContext(cpf);
   }
 
   const [notFound, setNotFound] = useState(false);
-  //const [helpMessage, setHelpMessage] = useState("");
-  //const [status, setStatus] = useState("");
+  const [wrongPassword, setWrongPassword] = useState(false);
+
   let helpMessage;
   let status;
+  let wrongPasswordMessage;
 
   if (notFound) {
-    helpMessage = "Usuário não encontrado";
+    helpMessage = "Usuário não encontrado.";
     status = "error";
-  } 
-  // else {
-  //   setHelpMessage("Usuário não encontrado");
-  //   setStatus("")
-  // }
+  } else if (wrongPassword) {
+    wrongPasswordMessage = "Senha incorreta.!";
+    status = "error";
+  }
 
   return (
     <>
@@ -140,7 +142,8 @@ const NumericInput = (props) => {
           style={{ display: visible }}
           minLength={8}
           label="Senha"
-          
+          validateStatus={status}
+          help={wrongPasswordMessage}
           name="senha"
           rules={[
             {
@@ -149,7 +152,10 @@ const NumericInput = (props) => {
             },
           ]}
           value={senha}
-          onChange={(e) => setSenha(e.target.value)}
+          onChange={(e) => {
+            setSenha(e.target.value);
+            setWrongPassword(false);
+          }}
         >
           <Input.Password placeholder="Digite sua senha" type="password" />
         </Form.Item>
