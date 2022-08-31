@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from 'antd';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { UserOutlined } from '@ant-design/icons';
 import { Avatar } from 'antd';
 import { MenuContainer, CustomMenu, Sidebar, ProfileContainer, ProfileContent, Name, UserType } from './style';
@@ -8,8 +8,9 @@ import { IoHomeOutline } from "react-icons/io5";
 import { BsFileEarmarkPerson } from "react-icons/bs";
 import { AiOutlineForm } from "react-icons/ai";
 import { IoIosLogOut } from "react-icons/io";
+import UserContext from "../../UserContext";
 
-export default function SideBar() {
+export default function SideBar(props) {
   function getItem(label, key, icon, children, type) {
     return {
       key,
@@ -52,6 +53,8 @@ export default function SideBar() {
       window.location.pathname = "/";
     }
 
+    const UserCpf = useContext(UserContext);
+    console.log(UserCpf)
     return (
         <>
           <Sidebar>

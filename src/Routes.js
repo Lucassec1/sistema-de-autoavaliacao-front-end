@@ -1,5 +1,11 @@
-import React from 'react';
-import { BrowserRouter, Route, Routes, Navigate, Switch } from 'react-router-dom';
+import React from "react";
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  Navigate,
+  Switch,
+} from "react-router-dom";
 import Home from "./Pages/Home";
 import Cadastros from "./Pages/Cadastros/index.js";
 import Pesquisas from './Pages/Pesquisar';
@@ -18,11 +24,11 @@ import Criarpesquisa from './Pages/formulario/criarpesquisa/Criarpesquisa'
     } /> 
 );*/
 
-const PrivateRoute = ({Item}) =>{
-    const token  = localStorage.getItem('token');
-    console.log(token)
-    return token ? <Item /> : <Login/>;
-}
+const PrivateRoute = ({ Item }) => {
+  const token = localStorage.getItem("token");
+  console.log(token);
+  return token ? <Item /> : <Login />;
+};
 
 const Rotas = () => (
     <BrowserRouter>
@@ -36,7 +42,7 @@ const Rotas = () => (
             <Route exact path="/criarpesquisa" element={<PrivateRoute Item={Criarpesquisa} />} />
         </Routes>
     </BrowserRouter>
-)
+);
 
 export default Rotas;
 
