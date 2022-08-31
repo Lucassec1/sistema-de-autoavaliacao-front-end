@@ -15,6 +15,7 @@ import Formula from './Pages/formulario/Formulario'
 import CriarPesquisaMenu from './Pages/formulario/CriarPesquisaMenu'
 import CriarPesquisa from './Pages/formulario/CriarPesquisa'
 import HomeUser from './Pages/User Comum/Home User/index'
+import ResUser from "./Pages/User Comum/Resposta User";
 
 const PrivateRoute = ({ Item }) => {
   const token = localStorage.getItem("token");
@@ -23,7 +24,9 @@ const PrivateRoute = ({ Item }) => {
   return token ? userType !== '3' ?  <Item /> : <HomeUser/> : <Login />;
 };
 
-const Rotas = () => (
+export default function Rotas(){
+
+    return(
     <BrowserRouter>
         {localStorage.getItem('token') ? <SideBar /> : null}
         <Routes>
@@ -34,22 +37,9 @@ const Rotas = () => (
             <Route exact path="/criarpesquisa" element={<PrivateRoute Item={CriarPesquisaMenu} />} />
             <Route exact path="/criarpesquisa/:tipo" element={<PrivateRoute Item={CriarPesquisa} />}/>
             <Route exact path="/homeU" element={<PrivateRoute Item={HomeUser} />} />
-            {/* <Route exact path="/pesk" element={<PrivateRoute Item={Pesk} />} /> */}
+            <Route exact path="/pesquisa/res" element={<PrivateRoute Item={ResUser} />} />
         </Routes>
     </BrowserRouter>
-);
-
-export default Rotas;
-
-/*export default function Rotas() {
-    return (
-        <BrowserRouter>
-            <Routes>
-                <Route exect path="/" element={<Login />} />
-                <Route exect path='/home' element={<Home />} />
-                <Route exect path="/cadastros" element={<Cadastros />} />
-                <Route exect path="/pesquisas" element={<Pesquisas />} />
-            </Routes>
-        </BrowserRouter>
     )
-}*/
+}
+

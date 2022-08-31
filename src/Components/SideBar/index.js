@@ -65,7 +65,7 @@ export default function SideBar(props) {
                   {localStorage.getItem('user')}
                 </Name>
                 <UserType>
-                  {localStorage.getItem('tipo') === '1' ? 'ROOT' : localStorage.getItem('tipo') === '2' ? 'ADMIN' : localStorage.getItem('tipo') === '3' ? 'USUÁRIO' : 'quem é você? -policial disfarçado'}
+                  {localStorage.getItem('tipo') === '1' ? 'ROOT' : localStorage.getItem('tipo') === '2' ? 'ADMIN' : localStorage.getItem('tipo') === '3' ? 'USUÁRIO' :    'quem é você? -policial disfarçado'}
                 </UserType>
               </ProfileContent>
             </ProfileContainer>
