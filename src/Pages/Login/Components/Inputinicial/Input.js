@@ -60,6 +60,8 @@ const NumericInput = (props) => {
         setLoading(false);
         console.log(e);
         localStorage.setItem("token", JSON.stringify(res.data.token));
+        localStorage.setItem('user', JSON.stringify(res.data.nome).substring(1, (res.data.nome).length + 1));
+        localStorage.setItem('tipo', JSON.stringify(res.data.tipo));
         api.defaults.headers.Authorization = `Bearer ${res.data.token}`;
         window.location.pathname = "/home";
       })
