@@ -1,11 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { DownOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Dropdown, Menu, message, Space, Tooltip } from 'antd';
-import { Container, Foto, Logo } from './styles'
+import { 
+    Button, 
+    Dropdown, 
+    Menu, 
+    message, 
+    Space,
+    Tooltip,
+ } from 'antd';
+import { Container, 
+    Foto, 
+    Logo,
+    Info,
+ } from './styles'
 
 export default function UserHeader() {
     const [foto, setFoto] = useState(localStorage.getItem('foto'));
-    console.log(foto)
 
     const handleButtonClick = (e) => {
         message.info('Click on left button.');
@@ -36,7 +46,7 @@ export default function UserHeader() {
     return (
         <Container>
             <Logo></Logo>
-            <div>Informações da Instituição</div>
+            <Info>Informações sobre a Instituição</Info>
 
             <Dropdown.Button overlay={menu} placement="bottom" icon={<UserOutlined />} >
                 {localStorage.getItem('user')}

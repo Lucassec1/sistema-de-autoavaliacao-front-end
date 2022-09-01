@@ -2,7 +2,14 @@ import React, { useEffect, useState } from "react";
 import api from '../../../api';
 import UserHeader from "../components/userBar";
 
-import { AllCards, Card, Container } from './styles'
+import { 
+    AllCards,
+    Card, 
+    Container, 
+    Title,
+    Description,
+    Button,
+} from './styles'
 
 export default function HomeUser(){
     const [pesquisa, setPesquisa] = useState();
@@ -18,15 +25,28 @@ export default function HomeUser(){
           })
       }, [])
 
-      console.log(pesquisa)
+        //   console.log(pesquisa)
 
     return(
         <Container>
             <UserHeader />
             <AllCards>
-                <Card>Tent</Card>
-            </AllCards>
-            
+                {/* <Card>Tent</Card> */}
+ 
+                {pesquisa?.length > 0 ? (
+                        pesquisa?.map((p) => (
+                            <Card key={p.id}>
+                                <Title>{p.titulo}</Title>
+                                <Description>Pesquisa de Satisfação</Description>
+                                <Button>Começar</Button>
+                            </Card>
+                        ))
+                    ) : (
+                        <div>
+                            Não há pesquisas :()
+                        </div>
+                    )}
+            </AllCards>         
         </Container>
     )
 }

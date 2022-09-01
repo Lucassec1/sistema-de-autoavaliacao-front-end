@@ -10,8 +10,8 @@ export const Container = styled.div`
     flex-direction: row;
     justify-content: space-between;
     
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
     padding-top: 20px;
 `;
 
@@ -25,3 +25,10 @@ export const Logo = styled.div`
     border: none;
 `;
 
+export const Info = styled.div`
+    width: 180px;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+`;
