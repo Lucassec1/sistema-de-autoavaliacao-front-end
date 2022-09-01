@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Container, Titulo, NotaButtons, Nota } from './styles';
 
-function CardPergunta() {
-    const [titulo, setTitulo] = useState('Pergunta sem título')
+function CardPergunta({ pergunta, index, perguntas, setPerguntas }) {
+    const [titulo, setTitulo] = useState(pergunta.titulo)
 
     const [notaEscolhida, setNotaEscolhida] = useState()
     const [nota, setNota] = useState(-1)  // State da nota que o mouse está em cima
@@ -18,12 +18,22 @@ function CardPergunta() {
     return 1
   }
 
+  const handleChange = (e) => {
+    let atualizado = perguntas
+    atualizado[index] = {titulo: e.target.value}
+    setTitulo(e.target.value)
+    setPerguntas(atualizado)
+    // setTitulo(valorAntigo => {
+    //   console.log(valorAntigo)
+    // })
+  }
+
   return (
     <Container>
         <Titulo
           tipe="text"
           value={titulo}
-          onChange={(e) => setTitulo(e.target.value)}
+          onChange={(e) => handleChange(e)}
         />
         <NotaButtons
             onMouseLeave={() => setNota(-1)}>
