@@ -1,5 +1,5 @@
 import { Layout } from 'antd';
-import React from 'react';
+import React, { useEffect, useState, } from "react";
 import { Card } from 'react-bootstrap';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
@@ -8,19 +8,29 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
-import {Button} from 'antd';
+import { Button } from 'antd';
 
-function teste(){
+function teste() {
     alert('trabalhando nisso')
 }
 
-function app() {
+function Formulario() {
+    const [age, setAge] = useState('');
+
+    const handleChange = (event) => {
+        setAge(event.target.value);
+    };
     return (
         <>
             <div>
                 <div id='teste'>
-                    <Navbar variant="primary" style={{ color:'#fff'}} expand="lg">
+                    <Navbar variant="primary" style={{ color: '#fff' }} expand="lg">
                         <Container>
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                             <Navbar.Collapse id="basic-navbar-nav">
@@ -32,15 +42,35 @@ function app() {
                         </Container>
                     </Navbar>
                 </div>
-                <div>
-                    <Card>
-                        <Card.Body id='titulo'>Pesquisas recentes.</Card.Body>
-                    </Card>
+                <div className='seletor'>
+                    <div >
+                        <h1 id='titulo' >Pesquisas recentes.</h1>
+                        <div className='displayflex'>
+                            <Box sx={{ minWidth: 120 }}>
+                                <FormControl fullWidth>
+                                    <InputLabel id="demo-simple-select-label">Filtro</InputLabel>
+                                    <Select
+                                        labelId="demo-simple-select-label"
+                                        id="demo-simple-select"
+                                        value={age}
+                                        label="Age"
+                                        onChange={handleChange}
+                                    >
+                                        <MenuItem value={"nome empresa"}>nome empresa</MenuItem>
+                                        <MenuItem value={"nome Pessoa"}>nome Pessoa</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </Box>
+                            <div >
+                                <input id='pesquisainput' type='text' placeholder='digite aqui...'></input>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div>
                     <Row className="justify-content-md-center mt-5">
                         <div class="lucas">
-                            <Card  style={{ width: '30rem', borderRadius: '23px' }}>
+                            <Card style={{ width: '30rem', borderRadius: '23px' }}>
                                 <Card.Body class="alinhar">
                                     <div>
                                         <Card.Title >Pergunta da uc tal</Card.Title>
@@ -58,4 +88,4 @@ function app() {
         </>
     );
 }
-export default app;
+export default Formulario;

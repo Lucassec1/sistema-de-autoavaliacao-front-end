@@ -53,7 +53,7 @@ function resp(){
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                             <Navbar.Collapse id="basic-navbar-nav">
                                 <Nav className="me-auto">
-                                    <Nav.Link href="/pesquisas"> <BsArrowLeftShort /></Nav.Link>
+                                    <Nav.Link href="/criarpesquisa"> <BsArrowLeftShort /></Nav.Link>
                                     <Nav.Link href="/criarpesquisa"> Criar Pesquisa</Nav.Link>
                                     <Nav.Link href="/pesk">Minhas Pesquisa</Nav.Link>
                                 </Nav>

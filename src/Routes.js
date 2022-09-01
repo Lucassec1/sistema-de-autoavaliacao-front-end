@@ -14,7 +14,7 @@ import SideBar from './Components/SideBar';
 import Formula from './Pages/formulario/Formulario'
 import CriarPesquisaMenu from './Pages/formulario/CriarPesquisaMenu'
 import CriarPesquisa from './Pages/formulario/CriarPesquisa'
-import Pesk from './Pages/formulario/pesquisa/Pesquisa'
+import Pesk from './Pages/formulario/pesquisa/pesquisa' 
 
 const PrivateRoute = ({ Item }) => {
   const token = localStorage.getItem("token");

@@ -11,10 +11,11 @@
     display:flex;
     justify-content: center;
     align-items: center;
+    font-size: 25px;
+    margin-bottom: 2rem;
 }
 .lucas{
     flex-wrap: wrap;
-    border:1px solid red;
     display:flex;
     max-width:90%;
     overflow:none;
@@ -27,4 +28,21 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+}
+.seletor{
+    display: flex;
+    max-width: 100%;
+    justify-content: center;
+}
+
+.displayflex{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+#pesquisainput{
+    width: 400px;
+    height: 50px;
+    border-radius: 9px;
+    
 }
