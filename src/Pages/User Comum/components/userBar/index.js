@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { DownOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Dropdown, Menu, message, Space, Tooltip } from 'antd';
 import { Container, Foto, Logo } from './styles'
-import fotoUser from '../../../../assets/user.svg';
 
 export default function UserHeader() {
     const [foto, setFoto] = useState(localStorage.getItem('foto'));
