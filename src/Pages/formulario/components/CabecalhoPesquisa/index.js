@@ -18,6 +18,7 @@ function CabecalhoPesquisa() {
 
     return (
         <Container>
+            
             <Titulo
               name="titulo"
               type="text"

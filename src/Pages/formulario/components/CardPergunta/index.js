@@ -41,6 +41,7 @@ function CardPergunta() {
                   }}
                 />
               ))}
+              
         </NotaButtons>
     </Container>
   );

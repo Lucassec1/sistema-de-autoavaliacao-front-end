@@ -15,11 +15,13 @@ import Formula from './Pages/formulario/Formulario'
 import CriarPesquisaMenu from './Pages/formulario/CriarPesquisaMenu'
 import CriarPesquisa from './Pages/formulario/CriarPesquisa'
 import HomeUser from './Pages/User Comum/Home User/index'
-import ResUser from "./Pages/User Comum/Resposta User";
+import ResUser from "./Pages/User Comum/Resposta User/index";
 
 const PrivateRoute = ({ Item }) => {
   const token = localStorage.getItem("token");
   const userType = localStorage.getItem("tipo");
+
+  if(Item === ResUser) return token ? <Item /> : <Login />;
   
   return token ? userType !== '3' ?  <Item /> : <HomeUser/> : <Login />;
 };
@@ -28,7 +30,7 @@ export default function Rotas(){
 
     return(
     <BrowserRouter>
-        {localStorage.getItem('token') ? <SideBar /> : null}
+        {localStorage.getItem('token') ? localStorage.getItem("tipo") !== '3' ? <SideBar /> : null : null}
         <Routes>
             <Route exact path='/' element={<Login />} />
             <Route exact path="/home" element={<PrivateRoute Item={Home} />} />
