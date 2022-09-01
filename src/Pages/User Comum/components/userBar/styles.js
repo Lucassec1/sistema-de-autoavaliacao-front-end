@@ -12,27 +12,16 @@ export const Container = styled.div`
     
     padding-left: 20px;
     padding-right: 20px;
-    
-`;
-
-export const Foto = styled.button`
-    width: 50px;
-    height: 50px;
-
-    border-radius: 50%;
-
-    display: flex;
-    align-items: center;
-    justify-content: center
+    padding-top: 20px;
 `;
 
 export const Logo = styled.div`
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
 
     border-radius: 50%;
 
-    background-color: grey;
+    background-color: white;
     border: none;
 `;
 
