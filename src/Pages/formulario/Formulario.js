@@ -13,11 +13,15 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { BsArrowLeftShort } from "react-icons/bs";
 
 import { Button } from 'antd';
 
 function teste() {
     alert('trabalhando nisso')
+}
+function voltar() {
+    window.history.back();
 }
 
 function Formulario() {
@@ -35,6 +39,7 @@ function Formulario() {
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                             <Navbar.Collapse id="basic-navbar-nav">
                                 <Nav className="me-auto">
+                                    <Nav.Link > <BsArrowLeftShort onClick={voltar}/></Nav.Link>
                                     <Nav.Link href="/criarpesquisa"> Criar Pesquisa</Nav.Link>
                                     <Nav.Link href="/Pesk">Minhas Pesquisa</Nav.Link>
                                 </Nav>
