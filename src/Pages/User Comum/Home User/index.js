@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import api from '../../../api';
 import UserHeader from "../components/userBar";
 
+import { AllCards, Card, Container } from './styles'
+
 export default function HomeUser(){
     const [pesquisa, setPesquisa] = useState();
     
@@ -19,8 +21,12 @@ export default function HomeUser(){
       console.log(pesquisa)
 
     return(
-        <>
+        <Container>
             <UserHeader />
-        </>
+            <AllCards>
+                <Card>Tent</Card>
+            </AllCards>
+            
+        </Container>
     )
 }

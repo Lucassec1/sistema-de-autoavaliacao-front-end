@@ -12,13 +12,13 @@ export default function UserHeader() {
         console.log('click left button', e);
     };
 
-    
-    const signout = () =>{
+
+    const signout = () => {
         localStorage.removeItem("token");
         localStorage.removeItem("user")
         localStorage.removeItem("tipo")
         window.location.pathname = "/";
-      }
+    }
 
     const menu = (
         <Menu
@@ -38,9 +38,9 @@ export default function UserHeader() {
             <Logo></Logo>
             <div>Informações da Instituição</div>
 
-            {foto == "" ? <Foto><img src={foto} /></Foto> : <Dropdown.Button overlay={menu} placement="bottom" icon={<UserOutlined />} >
-            {localStorage.getItem('user')}
-                </Dropdown.Button>}
+            <Dropdown.Button overlay={menu} placement="bottom" icon={<UserOutlined />} >
+                {localStorage.getItem('user')}
+            </Dropdown.Button>
         </Container>
     )
 }
