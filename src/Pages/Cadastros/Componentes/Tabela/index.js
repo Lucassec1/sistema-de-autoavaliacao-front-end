@@ -2,16 +2,16 @@ import { SearchOutlined } from '@ant-design/icons';
 import { Button, Input, Space, Table, Tag } from 'antd';
 import React, { useEffect, useRef, useState } from 'react';
 // import Highlighter from 'react-highlight-words';
+import Dialog from '../deletemessage';
 import Highlighter from 'react-highlight-words';
 import api from '../../../../api'
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { MdDeleteOutline, MdOutlineEdit } from "react-icons/md";
 
 function Tabela() {
   const [usuario, setUsuario] = useState();
   const [cols, setCols] = useState()
 
   const deleteUser = (user) => {
-    // console.log(user.id) 
     api
       .delete(`/usuarios/${user.id}`)
       .then(() => {
@@ -43,8 +43,9 @@ function Tabela() {
             dataIndex: '',
             key: 'x',
             render: (_, record) => <>
-              <button onClick={() => deleteUser(record)}>Delete</button>
-              <button>Editar</button>
+              <Dialog record={record} />
+              {/* <Button icon={<MdDeleteOutline/>} onClick={() => deleteUser(record)} style={{border: 'none'}}/>
+              <Button icon={<MdOutlineEdit/>}/> */}
             </>
           })
           setCols(columns)

@@ -1,19 +1,22 @@
 
-import React, { useState } from 'react';
-// import api from '../../api';
+import React from 'react';
 import Tabela from './Componentes/Tabela';
-import Form from './Componentes/Form';
-import SideBar from '../../Components/SideBar';
 import AddPessoas from './Componentes/AddPessoas/index';
+import { Divider } from 'antd';
+import { Container, Header } from './styles';
 
 export default function Cadastros() {
   
   return (
     <>
-      <div>
+      <Container>
+        <Header>
+          <h2>Cadastro de Usuários</h2>
+          <AddPessoas />
+        </Header>
+        <Divider />
         <Tabela />
-        <AddPessoas />
-      </div>
+      </Container>
     </>
   )
 }

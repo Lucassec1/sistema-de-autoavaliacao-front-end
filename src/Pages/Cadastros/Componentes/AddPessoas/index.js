@@ -55,18 +55,19 @@ const Cadastro = () => {
     const [tipo, setTipo] = useState(3)
     const [disableSenha, setDisableSenha] = useState(true)
     
-    const validate = () => {
-        if (!validEmail.test(email)) {
-            setInputEmailErr(true);
-        } else {
-            setInputEmailErr(false);
-        }
-        if (!validPassword.test(senha)) {
-            setInputSenhaErr(true);
-        } else { 
-            setInputSenhaErr(false);
-        }
-    }
+    // const validate = (tipo) => {
+    //     if (!validEmail.test(email)) {
+    //         setInputEmailErr(true);
+    //     } else {
+    //         setInputEmailErr(false);
+    //     }
+        
+    //     if (!validPassword.test(senha) && tipo !== 3) {
+    //         setInputSenhaErr(true);
+    //     } else { 
+    //         setInputSenhaErr(false);
+    //     }
+    // }
     
     const handleCancel = () => {
         setVisible(false);
@@ -121,7 +122,7 @@ const Cadastro = () => {
                     <SecondaryButton key="back" onClick={handleCancel}>
                         Cancelar
                     </SecondaryButton>,
-                    <PrimaryButton key="submit" type="primary" loading={loading} onClick={(e) => {Cadastrar(e); validate()}}>
+                    <PrimaryButton key="submit" type="primary" loading={loading} onClick={(e) => Cadastrar(e)}>
                         Enviar
                     </PrimaryButton>
                 ]}
@@ -186,7 +187,6 @@ const Cadastro = () => {
                         onChange={e => setEmail(e.target.value)}
                     >
                         <Input type='email' />
-                        {inputEmailErr && <p>Por favor digite um email válido!</p>}
                     </Form.Item>
 
                     <Form.Item
@@ -203,8 +203,6 @@ const Cadastro = () => {
                         onChange={e => setSenha(e.target.value)}
                     >
                         <Input.Password type='password' disabled={disableSenha} />
-                        {inputSenhaErr && <p>Por favor digite uma senha segura</p>}
-
                     </Form.Item>
 
                     <Form.Item

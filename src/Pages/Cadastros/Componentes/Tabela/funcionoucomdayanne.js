@@ -17,7 +17,6 @@ function Tabela() {
       <button>Teste1</button>
     </div>
   }
-  
   var columns = ['actions']
   useEffect(() => {
     const getCadastros = async () => {
@@ -235,4 +234,4 @@ function Tabela() {
 
 export default Tabela;
 
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-== Ela é muito boa, sério -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-== Ela é muito boa, sério -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
