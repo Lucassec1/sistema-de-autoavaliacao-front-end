@@ -1,0 +1,17 @@
+#lista{
+    overflow: auto;
+    height: 25rem;
+    width: 49rem;
+}
+
+#lista::-webkit-scrollbar{
+    background: #fafafa;
+    width: 8px;
+}
+
+
+#lista::-webkit-scrollbar-thumb {
+    background-color: rgba(122, 125, 127, 0.2);
+    border-radius: 20px;
+
+}
