@@ -9,6 +9,16 @@ import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 function Tabela() {
   const [usuario, setUsuario] = useState();
   const [cols, setCols] = useState()
+
+  const deleteUser = (user) => {
+    // console.log(user.id) 
+    api
+      .delete(`/user/${user.id}`)
+      .then(() => {
+        console.log("deletado")
+      })
+  }
+
   var columns = []
   useEffect(() => {
     const getCadastros = async () => {
@@ -17,7 +27,7 @@ function Tabela() {
         .then(response => {
             setUsuario(response.data);
             // var colunas = Object.keys(response.data[0])
-            var colunas = ['id', 'nome', 'email', 'tipo', 'cpf', 'actions']
+            var colunas = ['id', 'nome', 'email', 'tipo', 'cpf']
             columns = []
             colunas.forEach(coluna => {
               columns.push({
@@ -27,6 +37,15 @@ function Tabela() {
                 width: '15vw',
                 ...getColumnSearchProps(coluna),
               })
+            })
+            columns.push({
+              title: 'Action',
+              dataIndex: '',
+              key: 'x',
+              render: (_, record) => <>
+                  <button onClick={() => deleteUser(record)}>Delete</button>
+                  <button>Editar</button>
+              </>
             })
             setCols(columns)
           })
