@@ -27,7 +27,6 @@ const PrivateRoute = ({ Item }) => {
 };
 
 export default function Rotas(){
-
     return(
     <BrowserRouter>
         {localStorage.getItem('token') ? localStorage.getItem("tipo") !== '3' ? <SideBar /> : null : null}
