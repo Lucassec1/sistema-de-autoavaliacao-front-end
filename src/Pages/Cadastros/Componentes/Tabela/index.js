@@ -13,7 +13,7 @@ function Tabela() {
   const deleteUser = (user) => {
     // console.log(user.id) 
     api
-      .delete(`/user/${user.id}`)
+      .delete(`/usuarios/${user.id}`)
       .then(() => {
         console.log("deletado")
       })

@@ -1,33 +1,53 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CabecalhoPesquisa from '../components/CabecalhoPesquisa';
 import { AiOutlinePlus } from "react-icons/ai";
 import CardPergunta from '../components/CardPergunta';
-import { Container, Pagina, BodyPesquisa, AdicionarPergunta } from './styles';
 import { BsArrowLeftShort } from "react-icons/bs";
 
-function Criarpesquisa() {
-  function Setavoltar(){
-    function voltar(){
-        window.history.back();
-    }
-    return(
-        <>
-            <BsArrowLeftShort onClick={voltar} style={{fontSize: '20px'}}/>
-        </>
-    )
-} 
+import { Container, Pagina, BodyPesquisa, AdicionarPergunta, ListaPerguntas, BtnConcluir, FixedBar } from './styles';
 
+function Criarpesquisa() {
+  const [perguntas, setPerguntas] = useState([{titulo: "Primeira Pergunta"}])
+
+  const adicionarPergunta = () => {
+    setPerguntas(valoresAntigos => {
+      return ([
+        ...valoresAntigos,
+        {titulo: "Nova Pergunta"}
+      ])
+    })
+  }
+
+  function Setavoltar(){
+    function voltar(){  window.history.back(); }
+    return <BsArrowLeftShort onClick={voltar} style={{fontSize: '20px'}}/>
+  } 
+
+  console.log(perguntas)
+  
   return (
     <Container>
-      <Setavoltar/>
+      <FixedBar>
+        <div style={{display: "flex", alignItems: "center"}}>
+          <Setavoltar/>
+          <span>Criando Nova Pesquisa</span>
+        </div>
+        <BtnConcluir>Concluir Criação da Pesquisa</BtnConcluir>
+      </FixedBar>
       <Pagina>
+
         <CabecalhoPesquisa/>
 
         <BodyPesquisa>
-          <CardPergunta />
-          <AdicionarPergunta><AiOutlinePlus/></AdicionarPergunta>
-        </BodyPesquisa>
+          <ListaPerguntas>
+            {perguntas.map((perg, index) => <CardPergunta pergunta={perg} perguntas={perguntas} setPerguntas={setPerguntas} index={index}/> )}
+          </ListaPerguntas>
 
+          <AdicionarPergunta onClick={() => adicionarPergunta()}>
+            <AiOutlinePlus/>
+          </AdicionarPergunta>
+
+          </BodyPesquisa>
       </Pagina>
     </Container>
   );
