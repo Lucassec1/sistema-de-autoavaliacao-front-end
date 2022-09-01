@@ -14,40 +14,31 @@ import SideBar from './Components/SideBar';
 import Formula from './Pages/formulario/Formulario'
 import CriarPesquisaMenu from './Pages/formulario/CriarPesquisaMenu'
 import CriarPesquisa from './Pages/formulario/CriarPesquisa'
-import Pesk from './Pages/formulario/pesquisa/pesquisa' 
+import HomeUser from './Pages/User Comum/Home User/index'
+import ResUser from "./Pages/User Comum/Resposta User";
 
 const PrivateRoute = ({ Item }) => {
   const token = localStorage.getItem("token");
-  console.log(token);
-  return token ? <Item /> : <Login />;
+  const userType = localStorage.getItem("tipo");
+  
+  return token ? userType !== '3' ?  <Item /> : <HomeUser/> : <Login />;
 };
 
-const Rotas = () => (
+export default function Rotas(){
+
+    return(
     <BrowserRouter>
         {localStorage.getItem('token') ? <SideBar /> : null}
         <Routes>
-            {localStorage.getItem('token') ? <Route exact path="/" element={<PrivateRoute Item={Home} />} /> : <Route exact path='/' element={<Login />} />}
+            <Route exact path='/' element={<Login />} />
             <Route exact path="/home" element={<PrivateRoute Item={Home} />} />
             <Route exact path="/cadastros" element={<PrivateRoute Item={Cadastros} />} />
             <Route exact path="/pesquisas" element={<PrivateRoute Item={Formula} />} />
             <Route exact path="/criarpesquisa" element={<PrivateRoute Item={CriarPesquisaMenu} />} />
             <Route exact path="/criarpesquisa/:tipo" element={<PrivateRoute Item={CriarPesquisa} />}/>
-            <Route exact path="/pesk" element={<PrivateRoute Item={Pesk} />} />
+            <Route exact path="/homeU" element={<PrivateRoute Item={HomeUser} />} />
+            <Route exact path="/pesquisa/res" element={<PrivateRoute Item={ResUser} />} />
         </Routes>
     </BrowserRouter>
-);
-
-export default Rotas;
-
-/*export default function Rotas() {
-    return (
-        <BrowserRouter>
-            <Routes>
-                <Route exect path="/" element={<Login />} />
-                <Route exect path='/home' element={<Home />} />
-                <Route exect path="/cadastros" element={<Cadastros />} />
-                <Route exect path="/pesquisas" element={<Pesquisas />} />
-            </Routes>
-        </BrowserRouter>
     )
-}*/
+}
