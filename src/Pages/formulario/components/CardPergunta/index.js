@@ -43,9 +43,9 @@ function CardPergunta({ pergunta, index, perguntas, setPerguntas, edit }) {
                   onMouseEnter={() => setNota(index)}
                   onClick={() => setNotaEscolhida(index)}
                   style={{
-                    opacity: checkOpacity(index),
+                    opacity: edit ? '0.3' : checkOpacity(index),
                     background: n,
-                    border: notaEscolhida == index ? "1px solid #555" : "1px solid transparent"
+                    border: edit ? '0' : notaEscolhida == index ? "1px solid #555" : "1px solid transparent"
                   }}
                 />
               ))}

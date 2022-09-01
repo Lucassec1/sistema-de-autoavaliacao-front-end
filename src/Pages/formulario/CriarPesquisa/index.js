@@ -40,7 +40,7 @@ function Criarpesquisa() {
 
         <BodyPesquisa>
           <ListaPerguntas>
-            {perguntas.map((perg, index) => <CardPergunta pergunta={perg} perguntas={perguntas} setPerguntas={setPerguntas} index={index}/> )}
+            {perguntas.map((perg, index) => <CardPergunta pergunta={perg} perguntas={perguntas} setPerguntas={setPerguntas} index={index} edit={true}/> )}
           </ListaPerguntas>
 
           <AdicionarPergunta onClick={() => adicionarPergunta()}>

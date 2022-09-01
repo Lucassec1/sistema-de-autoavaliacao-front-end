@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Container, Titulo, Descricao } from './styles';
-import CardPergunta from '../CardPergunta';
 
 function CabecalhoPesquisa() {
     const [cabecalhoPesquisa, setCabecalhoPesquisa] = useState({
@@ -19,7 +18,6 @@ function CabecalhoPesquisa() {
 
     return (
         <Container>
-            <CardPergunta edit={false} pergunta={{titulo: "tu é?"}}/>
             <Titulo
               name="titulo"
               type="text"
