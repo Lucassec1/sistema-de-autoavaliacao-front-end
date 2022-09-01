@@ -7,19 +7,18 @@ import api from '../../../../api'
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
 function Tabela() {
+  const data = []
+
   const [usuario, setUsuario] = useState();
   const [cols, setCols] = useState()
-
-  const deleteUser = (user) => {
-    // console.log(user.id) 
-    api
-      .delete(`/usuarios/${user.id}`)
-      .then(() => {
-        console.log("deletado")
-      })
+  const actions = () => {
+    <div style={{ display: 'flex' }}>
+      <button>Teste</button>
+      <button>Teste1</button>
+    </div>
   }
-
-  var columns = []
+  
+  var columns = ['actions']
   useEffect(() => {
     const getCadastros = async () => {
       api
@@ -27,27 +26,18 @@ function Tabela() {
         .then(response => {
           setUsuario(response.data);
           // var colunas = Object.keys(response.data[0])
-          var colunas = ['id', 'nome', 'email', 'tipo', 'cpf']
-          columns = []
-          colunas.forEach(coluna => {
-            columns.push({
-              title: coluna,
-              dataIndex: coluna,
-              key: coluna,
-              width: '15vw',
-              ...getColumnSearchProps(coluna),
-            })
-          })
-          columns.push({
-            title: 'Action',
-            dataIndex: '',
-            key: 'x',
-            render: (_, record) => <>
-              <button onClick={() => deleteUser(record)}>Delete</button>
-              <button>Editar</button>
-            </>
-          })
-          setCols(columns)
+          // var colunas = ['id', 'nome', 'email', 'tipo', 'cpf', 'actions']
+          // columns = []
+          // colunas.forEach(coluna => {
+          //   columns.push({
+          //     title: coluna,
+          //     dataIndex: coluna,
+          //     key: coluna,
+          //     width: '15vw',
+          //     ...getColumnSearchProps(coluna),
+          //   })
+          // })
+          // setCols(columns)
         })
         .catch(err => {
           if (err.response.status == 401) {
@@ -59,15 +49,35 @@ function Tabela() {
     getCadastros()
   }, []);
 
-  usuario?.map(u => {
-    if (u.tipo === 3) {
-      u.tipo = "Usuário comum"
-    } else if (u.tipo === 2) {
-      u.tipo = "Administrador"
-    } else if (u.tipo == 1) {
-      u.tipo = "Root";
+  console.log(usuario)
+  function StringType(tipo) {
+    if (tipo === 3) {
+      return "Usuário comum"
+    } else if (tipo === 2) {
+      return "Administrador"
+    } else if (tipo == 1) {
+      return "Root";
     }
+  }
+
+  function Actions() {
+    return (
+      <button>Delete</button>
+    )
+  }
+
+  usuario?.map(u => {
+    data.push({
+      key: u.id,
+      nome: u.nome,
+      email: u.email,
+      tipo: StringType(u.tipo),
+      cpf: u.cpf,
+      actions: Actions()
+    })
   });
+
+  console.log(data);
 
   cols?.map(c => (
     c.title = c.title.charAt(0).toUpperCase() + c.title.slice(1)
@@ -173,22 +183,56 @@ function Tabela() {
       ),
   });
 
+  const colunas = [
+    {
+      title: 'Nome',
+      dataIndex: 'nome',
+      key: 'nome',
+      width: '30%',
+      ...getColumnSearchProps('nome'),
+    },
+    {
+      title: 'Email',
+      dataIndex: 'email',
+      key: 'email',
+      width: '30%',
+      ...getColumnSearchProps('email'),
+    },
+    {
+      title: 'Tipo',
+      dataIndex: 'tipo',
+      key: 'tipo',
+      width: '30%',
+      ...getColumnSearchProps('tipo'),
+    },
+    {
+      title: 'CPF',
+      dataIndex: 'cpf',
+      key: 'cpf',
+      width: '30%',
+      ...getColumnSearchProps('cpf'),
+    },
+    {
+      title: 'Ações',
+      dataIndex: 'actions',
+      key: 'actions',
+      width: '30%',
+
+    },
+  ]
   return (
     <>
-      {
-        cols &&
-        <>
-          {console.log(cols)}
-          <Table columns={cols}
-            dataSource={usuario}
-            pagination={{
-              pageSize: 12,
-            }} />
-        </>
-      }
+      <Table columns={colunas}
+        bordered
+        dataSource={data}
+        pagination={{
+          pageSize: 12,
+        }} />
     </>
 
   )
 };
 
 export default Tabela;
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-== Ela é muito boa, sério -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
