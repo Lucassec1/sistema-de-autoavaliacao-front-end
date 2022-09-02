@@ -5,11 +5,13 @@ import api from '../../../api';
 import React from 'react';
 
 export default function Dialog(props) {
+    console.log(props)
     const deleteUser = (user) => {
         api
-          .delete(`/usuarios/${user.id}`)
+          .delete(`/usuarios/${props.record.key}`)
           .then(() => {
             console.log("deletado")
+            props.update()
           })
         // window.location.reload();
       }
