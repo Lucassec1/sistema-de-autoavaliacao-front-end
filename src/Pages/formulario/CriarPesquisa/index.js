@@ -7,13 +7,13 @@ import { BsArrowLeftShort } from "react-icons/bs";
 import { Container, Pagina, BodyPesquisa, AdicionarPergunta, ListaPerguntas, BtnConcluir, FixedBar } from './styles';
 
 function Criarpesquisa() {
-  const [perguntas, setPerguntas] = useState([{titulo: "Primeira Pergunta"}])
+  const [perguntas, setPerguntas] = useState([{enunciado: "Primeira Pergunta"}])
 
   const adicionarPergunta = () => {
     setPerguntas(valoresAntigos => {
       return ([
         ...valoresAntigos,
-        {titulo: "Nova Pergunta"}
+        {enunciado: "Nova Pergunta"}
       ])
     })
   }
