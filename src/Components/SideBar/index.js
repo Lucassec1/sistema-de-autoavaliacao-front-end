@@ -49,8 +49,9 @@ export default function SideBar(props) {
 
     const signout = () =>{
       localStorage.removeItem("token");
-      localStorage.removeItem("user")
-      localStorage.removeItem("tipo")
+      localStorage.removeItem("user");
+      localStorage.removeItem("tipo");
+      localStorage.removeItem('id');
       window.location.pathname = "/";
     }
 

@@ -27,6 +27,7 @@ export default function UserHeader() {
         localStorage.removeItem("token");
         localStorage.removeItem("user")
         localStorage.removeItem("tipo")
+        localStorage.removeItem("id")
         window.location.pathname = "/";
     }
 

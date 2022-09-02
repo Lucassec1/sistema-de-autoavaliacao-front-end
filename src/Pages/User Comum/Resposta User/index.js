@@ -3,6 +3,11 @@ import CardPergunta from "../../formulario/components/CardPergunta";
 import UserHeader from "../components/userBar";
 import api from "../../../api";
 
+import { 
+    AllCards,
+    Container
+} from './styles'
+
 
 export default function ResUser(props) {
     const [Pesquisa, setPesquisa] = useState('');
@@ -10,7 +15,8 @@ export default function ResUser(props) {
     useEffect(() => {
         const fetchPesquisa = async () => {
             try {
-                const response = await api.get('/pesquisa/' + props.id_pesquisa);
+                const path = window.location.pathname;
+                const response = await api.get(path);
                 setPesquisa(response.data);
                 setPerguntas(Pesquisa.perguntas);
             } catch (error) {
@@ -25,12 +31,12 @@ export default function ResUser(props) {
 
     return (
         <>
+        <Container>
             <UserHeader/>
-            {Perguntas?.map(e => {
+            <AllCards>
                 
-                
-            })}
-            <div>Larissa a+ linda</div>
+            </AllCards>
+        </Container>
         </>
     )
 }  

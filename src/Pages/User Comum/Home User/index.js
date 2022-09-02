@@ -14,10 +14,10 @@ import {
 
 export default function HomeUser(){
     const [pesquisa, setPesquisa] = useState();
-    const {id} = useParams();
+    const id = localStorage.getItem('id').substring(1, (localStorage.getItem('id')).length - 1)
     
     useEffect(() => {
-        api.get('/pesquisa')
+        api.get('/usuarios/'+id+'/pesquisas')
         .then((response) => {
             setPesquisa(response.data)
         })
