@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import api from '../../../api';
 import UserHeader from "../components/userBar";
 
@@ -13,6 +14,7 @@ import {
 
 export default function HomeUser(){
     const [pesquisa, setPesquisa] = useState();
+    const {id} = useParams();
     
     useEffect(() => {
         api.get('/pesquisa')
@@ -35,10 +37,10 @@ export default function HomeUser(){
  
                 {pesquisa?.length > 0 ? (
                         pesquisa?.map((p) => (
-                            <Card key={p.id}>
+                            <Card key={p.id} >
                                 <Title>{p.titulo}</Title>
                                 <Description>Pesquisa de Satisfação</Description>
-                                <Button>Começar</Button>
+                                <Link to={"/pesquisa/" + p.id}>Começar</Link>
                             </Card>
                         ))
                     ) : (
