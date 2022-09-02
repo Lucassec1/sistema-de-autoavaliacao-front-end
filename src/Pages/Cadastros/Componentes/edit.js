@@ -1,22 +1,29 @@
 import React, { useState } from 'react';
-import api from '../../../../api';
+import api from '../../../api';
 
+import { PrimaryButton } from '../../../Components/PrimaryButton/style';
+import { SecondaryButton } from "../../../Components/SecondaryButton/style.js";
+import { MdOutlineEdit } from "react-icons/md";
 import { Button, Modal, Form, Input } from 'antd';
-import { AiOutlineUserAdd } from "react-icons/ai";
 import { Select } from 'antd';
-import { AddButton } from './style';
-import { PrimaryButton } from "../../../../Components/PrimaryButton/style.js";
-import { SecondaryButton } from "../../../../Components/SecondaryButton/style.js";
 
-const { Option } = Select;
-const Cadastro = () => {
+export default function EditarCadastro(props) {
     const [loading, setLoading] = useState(false);
     const [visible, setVisible] = useState(false);
     
+    const [editarNome, setEditarNome] = useState(props.record.nome)
+    const [editarEmail, setEditarEmail] = useState(props.record.email)
+    const [editarCpf, setEditarCpf] = useState(props.record.cpf)
+    const [editarFoto, setEditarFoto] = useState(props.record.foto)
+    const [editarSenha, setEditarSenha] = useState(props.record.senha)
+    const [editarTipo, setEditarTipo] = useState(props.record.tipo)
+    const [disableSenha, setDisableSenha] = useState(true)
+    
+    const { Option } = Select;
     const showModal = () => {
         setVisible(true);
     };
-    
+
     const handleOk = () => {
         setLoading(true);
         setTimeout(() => {
@@ -24,92 +31,70 @@ const Cadastro = () => {
             setVisible(false);
         }, 3000);
     };
-
+    
     const onFinish = (values) => {
         console.log('Success:', values);
     };
-
+    
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
-
-    // select
+    
     const handleChange = (value) => {
         console.log(`selected ${value}`);
-        setTipo(value);
+        setEditarTipo(value);
         if (value === 3) {
             setDisableSenha(true)
         } else {
             setDisableSenha(false)
         }
     };
-    
-    const [nome, setNome] = useState()
-    const [email, setEmail] = useState()
-    const [cpf, setCpf] = useState()
-    const [foto, setFoto] = useState()
-    const [senha, setSenha] = useState('')
-    const [tipo, setTipo] = useState(3)
-    const [disableSenha, setDisableSenha] = useState(true)
-    
-    // const validate = (tipo) => {
-    //     if (!validEmail.test(email)) {
-    //         setInputEmailErr(true);
-    //     } else {
-    //         setInputEmailErr(false);
-    //     }
+
+    console.log(props.record.key)
         
-    //     if (!validPassword.test(senha) && tipo !== 3) {
-    //         setInputSenhaErr(true);
-    //     } else { 
-    //         setInputSenhaErr(false);
-    //     }
-    // }
-    
+    function Update(e)  {
+        e.preventDefault()
+        editarTipo === 3 ? 
+        api.put(`/usuarios/${props.record.key}`, {
+            nome: editarNome,
+            email: editarEmail,
+            cpf: editarCpf,
+            foto: editarFoto,
+            tipo: editarTipo
+        }) : api
+                .put(`/usuarios/${props.record.key}`, {
+                    nome: editarNome,
+                    email: editarEmail,
+                    senha: editarSenha,
+                    cpf: editarCpf,
+                    foto: editarFoto,
+                    tipo: editarTipo
+            })
+            .then(res => {
+                console.log('Deu Certo!')
+            })
+            .catch(err => {
+                console.log('Bugou oh!')
+            })
+        }
+
     const handleCancel = () => {
         setVisible(false);
     };
-    
-    function Cadastrar(e) {
-        e.preventDefault()
-        tipo === 3 ? api.post('/auth/cadastrar', {
-            nome: nome,
-            email: email,
-            cpf: cpf,
-            foto: foto,
-            tipo: tipo
-        }) : api.post('/auth/cadastrar', {
-            nome: nome,
-            email: email,
-            senha: senha,
-            cpf: cpf,
-            foto: foto,
-            tipo: tipo
-        })
-        .then(res => {
-            console.log('Deu Certo!')
-        })
-        .catch(err => {
-            console.log('Bugou oh!')
-        })
-        console.log(nome)
-        console.log(email)
-        console.log(senha)
-        console.log(cpf)
-        console.log(foto)
-        console.log(tipo)
-        // setLoading(true);
-        // setTimeout(() => {
-        //     setLoading(false);
-        //     setVisible(false);
-        // }, 3000);
-    }
+
+    console.log(editarNome)
+    console.log(editarEmail)
+    console.log(editarSenha)
+    console.log(editarCpf)
+    console.log(editarFoto)
+    console.log(editarTipo)
 
     return (
         <>
-            <PrimaryButton type="primary" onClick={showModal}>
-                <AiOutlineUserAdd size={18} /><span>Adicionar Nova Pessoa</span>
-            </PrimaryButton>
+            <>
+                <Button icon={<MdOutlineEdit />} onClick={showModal} style={{ border: 'none' }} />
+            </>
+
             <Modal
                 visible={visible}
                 title="Cadastrar Pessoa"
@@ -119,8 +104,8 @@ const Cadastro = () => {
                     <SecondaryButton key="back" onClick={handleCancel}>
                         Cancelar
                     </SecondaryButton>,
-                    <PrimaryButton key="submit" type="primary" loading={loading} onClick={(e) => Cadastrar(e)}>
-                        Enviar
+                    <PrimaryButton key="submit" type="primary" loading={loading} onClick={(e) => Update(e)}>
+                        Salvar
                     </PrimaryButton>
                 ]}
             >
@@ -165,8 +150,8 @@ const Cadastro = () => {
                                 message: 'O nome é obrigatório!',
                             },
                         ]}
-                        value={nome}
-                        onChange={e => setNome(e.target.value)}
+                        value={editarNome}
+                        onChange={e => setEditarNome(e.target.value)}
                     >
                         <Input type='text' />
                     </Form.Item>
@@ -180,8 +165,8 @@ const Cadastro = () => {
                                 message: 'O email é obrigatório!',
                             },
                         ]}
-                        value={email}
-                        onChange={e => setEmail(e.target.value)}
+                        value={editarEmail}
+                        onChange={e => setEditarEmail(e.target.value)}
                     >
                         <Input type='email' />
                     </Form.Item>
@@ -196,8 +181,8 @@ const Cadastro = () => {
                                 message: 'A senha é obrigatória!',
                             },
                         ]}
-                        value={senha}
-                        onChange={e => setSenha(e.target.value)}
+                        value={editarSenha}
+                        onChange={e => setEditarSenha(e.target.value)}
                     >
                         <Input.Password type='password' disabled={disableSenha} />
                     </Form.Item>
@@ -217,8 +202,8 @@ const Cadastro = () => {
                                 message: "O CPF deve conter apenas números!",
                             },
                         ]}
-                        value={cpf}
-                        onChange={e => setCpf(e.target.value)}
+                        value={editarCpf}
+                        onChange={e => setEditarCpf(e.target.value)}
                     >
                         <Input maxLength={11} minLength={11} />
                     </Form.Item>
@@ -226,12 +211,11 @@ const Cadastro = () => {
                     <Form.Item
                         label="Foto"
                         name="Foto"
-                        value={foto}
-                        onChange={e => setFoto(e.target.value)}
+                        value={editarFoto}
+                        onChange={e => setEditarFoto(e.target.value)}
                     >
                         <Input type='text' />
                     </Form.Item>
-
 
                     <Form.Item
                         wrapperCol={{
@@ -243,7 +227,5 @@ const Cadastro = () => {
                 </Form>
             </Modal>
         </>
-    );
-};
-
-export default Cadastro;
+    )
+}
