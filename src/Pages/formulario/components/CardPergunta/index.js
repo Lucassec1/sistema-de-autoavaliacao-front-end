@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Container, Titulo, NotaButtons, Nota } from './styles';
 
 function CardPergunta({ pergunta, index, perguntas, setPerguntas, edit }) {
-    const [titulo, setTitulo] = useState(pergunta.titulo)
+    const [titulo, setTitulo] = useState(pergunta.enunciado)
 
     const [notaEscolhida, setNotaEscolhida] = useState()
     const [nota, setNota] = useState(-1)  // State da nota que o mouse está em cima

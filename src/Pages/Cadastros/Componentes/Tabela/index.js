@@ -1,74 +1,55 @@
-import { SearchOutlined } from '@ant-design/icons';
-import { Button, Input, Space, Table, Tag } from 'antd';
-import React, { useEffect, useRef, useState } from 'react';
-// import Highlighter from 'react-highlight-words';
-import Dialog from '../deletemessage';
-import Highlighter from 'react-highlight-words';
+import React, { useRef, useState } from 'react';
 import api from '../../../../api'
-import { MdDeleteOutline, MdOutlineEdit } from "react-icons/md";
+
+import { SearchOutlined } from '@ant-design/icons';
+import { Button, Input, Space, Table } from 'antd';
+
+import Highlighter from 'react-highlight-words';
+import EditarCadastro from '../edit';
+import Dialog from '../deletemessage';
 
 function Tabela() {
+  const data = []
+
   const [usuario, setUsuario] = useState();
   const [cols, setCols] = useState()
-
-  const deleteUser = (user) => {
+  const getCadastros = async () => {
     api
-      .delete(`/usuarios/${user.id}`)
-      .then(() => {
-        console.log("deletado")
+      .get('/usuarios')
+      .then(response => {
+        setUsuario(response.data);
+      })
+      .catch(err => {
+        if (err.response.status == 401) {
+          window.location.href = '/';
+        }
+        else console.log(err.message);
       })
   }
+  if (!usuario) getCadastros()
 
-  var columns = []
-  useEffect(() => {
-    const getCadastros = async () => {
-      api
-        .get('/usuarios')
-        .then(response => {
-          setUsuario(response.data);
-          // var colunas = Object.keys(response.data[0])
-          var colunas = ['id', 'nome', 'email', 'tipo', 'cpf']
-          columns = []
-          colunas.forEach(coluna => {
-            columns.push({
-              title: coluna,
-              dataIndex: coluna,
-              key: coluna,
-              width: '15vw',
-              ...getColumnSearchProps(coluna),
-            })
-          })
-          columns.push({
-            title: 'Action',
-            dataIndex: '',
-            key: 'x',
-            render: (_, record) => <>
-              <Dialog record={record} />
-              {/* <Button icon={<MdDeleteOutline/>} onClick={() => deleteUser(record)} style={{border: 'none'}}/>
-              <Button icon={<MdOutlineEdit/>}/> */}
-            </>
-          })
-          setCols(columns)
-        })
-        .catch(err => {
-          if (err.response.status == 401) {
-            window.location.href = '/';
-          }
-          else console.log(err.message);
-        })
+  // console.log(usuario)
+  function StringType(tipo) {
+    if (tipo === 3) {
+      return "Usuário comum"
+    } else if (tipo === 2) {
+      return "Administrador"
+    } else if (tipo == 1) {
+      return "Root";
     }
-    getCadastros()
-  }, []);
+  }
 
   usuario?.map(u => {
-    if (u.tipo === 3) {
-      u.tipo = "Usuário comum"
-    } else if (u.tipo === 2) {
-      u.tipo = "Administrador"
-    } else if (u.tipo == 1) {
-      u.tipo = "Root";
-    }
+    data.push({
+      key: u.id,
+      nome: u.nome,
+      email: u.email,
+      tipo: StringType(u.tipo),
+      cpf: u.cpf
+    })
   });
+
+  // console.log(data);
 
   cols?.map(c => (
     c.title = c.title.charAt(0).toUpperCase() + c.title.slice(1)
@@ -174,21 +155,56 @@ function Tabela() {
       ),
   });
 
+  const colunas = [
+    {
+      title: 'Nome',
+      dataIndex: 'nome',
+      key: 'nome',
+      width: '20vw',
+      ...getColumnSearchProps('nome'),
+    },
+    {
+      title: 'Email',
+      dataIndex: 'email',
+      key: 'email',
+      width: '30vw',
+      ...getColumnSearchProps('email'),
+    },
+    {
+      title: 'Tipo',
+      dataIndex: 'tipo',
+      key: 'tipo',
+      width: '5vw',
+      ...getColumnSearchProps('tipo'),
+    },
+    {
+      title: 'CPF',
+      dataIndex: 'cpf',
+      key: 'cpf',
+      width: '20vw',
+      ...getColumnSearchProps('cpf'),
+    },
+    {
+      title: 'Ações',
+      dataIndex: 'actions',
+      key: 'actions',
+      width: '5vw',
+      render: (_, record) => <>
+        <EditarCadastro record={record} update={getCadastros}/>,
+        <Dialog record={record} update={getCadastros}/>,
+      </>
+    },
+  ]
   return (
     <>
-      {
-        cols &&
-        <>
-          {console.log(cols)}
-          <Table columns={cols}
-            dataSource={usuario}
-            pagination={{
-              pageSize: 12,
-            }} />
-        </>
-      }
+      <Table columns={colunas}
+        bordered
+        dataSource={data}
+        pagination={{
+          pageSize: 12,
+        }} 
+      />
     </>
-
   )
 };
 

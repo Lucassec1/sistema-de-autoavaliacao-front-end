@@ -12,13 +12,14 @@ import {
 export default function ResUser(props) {
     const [Pesquisa, setPesquisa] = useState('');
     const [Perguntas, setPerguntas] = useState('');
+    const path = window.location.pathname;
     useEffect(() => {
         const fetchPesquisa = async () => {
             try {
-                const path = window.location.pathname;
                 const response = await api.get(path);
+                console.log(path)
                 setPesquisa(response.data);
-                setPerguntas(Pesquisa.perguntas);
+                setPerguntas(response.data.perguntas);
             } catch (error) {
                 console.log(error);
                 if (error.response.status === 401) {
@@ -28,13 +29,20 @@ export default function ResUser(props) {
         };
         fetchPesquisa();
     }, []);
-
     return (
         <>
         <Container>
             <UserHeader/>
             <AllCards>
-                
+            {Perguntas?.length > 0 ? (
+                        Perguntas?.map((p) => (
+                            <CardPergunta key={p.id} edit={false} pergunta={p} />
+                        ))
+                    ) : (
+                        <div>
+                            Não há pesquisas :()
+                        </div>
+                    )}
             </AllCards>
         </Container>
         </>
