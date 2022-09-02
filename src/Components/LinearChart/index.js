@@ -56,8 +56,6 @@ export default function LinearChart(props) {
       })
     }
 
-    console.log(data);
-
     return (
       <ResponsiveContainer width="100%" height="110%">
         <LineChart width={400} height={200} style={{ marginLeft: '35%', marginTop: '-12%' }} data={data}>

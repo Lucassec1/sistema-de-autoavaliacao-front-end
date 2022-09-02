@@ -10,7 +10,6 @@ import LineChart from '../LinearChart';
 
 export default function NavBarHome(props) {
     const users = props.usuarios;
-    //console.log(users);
 
     const dates = [];
     const daysLastWeek = [];
@@ -18,13 +17,11 @@ export default function NavBarHome(props) {
     users.map(d => {
         dates.push(new Date(d.created_at).toISOString().split('T')[0])
     })
-    console.log(dates);
 
     for(let i = 0; i < 7; i++) {
         const date = new Date(today.setDate(today.getDate() - 1))
         daysLastWeek.push(date.toISOString().split('T')[0])
     }
-    console.log(daysLastWeek);
 
     const count = [0, 0, 0, 0, 0, 0, 0];
 
@@ -37,9 +34,9 @@ export default function NavBarHome(props) {
             }
           })
     })
+
     count.reverse();
     daysLastWeek.reverse();
-    console.log(count);
     
     return (
         <>
