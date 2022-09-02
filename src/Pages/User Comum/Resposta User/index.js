@@ -19,6 +19,8 @@ export default function ResUser(props) {
                 const response = await api.get(path);
                 setPesquisa(response.data);
                 setPerguntas(Pesquisa.perguntas);
+                console.log(Pesquisa)
+                console.log(Perguntas)
             } catch (error) {
                 console.log(error);
                 if (error.response.status === 401) {
