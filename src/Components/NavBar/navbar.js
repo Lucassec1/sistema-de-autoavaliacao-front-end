@@ -8,7 +8,39 @@ import { Textp } from './styles';
 import { Card, Col, Row } from 'antd';
 import LineChart from '../LinearChart';
 
-export default function NavBarHome() {
+export default function NavBarHome(props) {
+    const users = props.usuarios;
+    //console.log(users);
+
+    const dates = [];
+    const daysLastWeek = [];
+    const today = new Date();
+    users.map(d => {
+        dates.push(new Date(d.created_at).toISOString().split('T')[0])
+    })
+    console.log(dates);
+
+    for(let i = 0; i < 7; i++) {
+        const date = new Date(today.setDate(today.getDate() - 1))
+        daysLastWeek.push(date.toISOString().split('T')[0])
+    }
+    console.log(daysLastWeek);
+
+    const count = [0, 0, 0, 0, 0, 0, 0];
+
+    dates.map(t => {
+          let i = -1;
+          daysLastWeek?.map(u => {
+            i++;
+            if (t === u) {
+                count[i]++;
+            }
+          })
+    })
+    count.reverse();
+    daysLastWeek.reverse();
+    console.log(count);
+    
     return (
         <>
             <HeaderHome class="navbar bg-light">
@@ -24,7 +56,7 @@ export default function NavBarHome() {
                                 <Contador>3514</Contador>
                                 <Textp>Período de 7 dias</Textp>
                                 <div style={{height: "70px", width: "75%"}}>
-                                    <LineChart />
+                                    <LineChart  />
                                 </div>
                                 
                             </Card>
@@ -48,10 +80,10 @@ export default function NavBarHome() {
                                     Pessoas Adicionadas
                                     <NumericEstatistica>+7%</NumericEstatistica>
                                 </HeaderCardHome>
-                                <Contador>2379</Contador>
+                                <Contador>{users.length}</Contador>
                                 <Textp>Período de 7 dias</Textp>
                                 <div style={{height: "70px", width: "75%"}}>
-                                    <LineChart />
+                                    <LineChart data={count} days={daysLastWeek} />
                                 </div>
                             </Card>
                         </Col>
