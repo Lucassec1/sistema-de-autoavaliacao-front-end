@@ -1,8 +1,8 @@
-import { message, Popconfirm, Button } from 'antd';
-import { MdDeleteOutline, MdOutlineEdit } from "react-icons/md";
-import { Alert } from 'antd';
-import api from '../../../api';
 import React from 'react';
+import api from '../../../api';
+
+import { message, Popconfirm, Button } from 'antd';
+import { MdDeleteOutline } from "react-icons/md";
 
 export default function Dialog(props) {
     console.log(props)
@@ -13,7 +13,9 @@ export default function Dialog(props) {
             console.log("deletado")
             props.update()
           })
-        // window.location.reload();
+          .catth(err => {
+            console.log(err)
+          })
       }
 
     const Confirmar = (e) => {
@@ -24,7 +26,6 @@ export default function Dialog(props) {
     
     const Cancelar = (e) => {
         console.log(e);
-        //message.error('Não');
     };
 
     return (
@@ -37,7 +38,5 @@ export default function Dialog(props) {
         >
             <Button icon={<MdDeleteOutline/>} style={{border: 'none'}}/>
         </Popconfirm>
-      
     )
-
 }
