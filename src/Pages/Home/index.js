@@ -34,7 +34,7 @@ export default function Home() {
     const nome = receber.map((nameuser) => nameuser?.nome);
     return (
         <>
-            <NavBarHome />
+            <NavBarHome usuarios={usuarios} />
             <CardUsuarios class="row justify-content-around">
                 <div class="col-6">
                     <HeaderRenderUsusarios>Analise de usuarios</HeaderRenderUsusarios>

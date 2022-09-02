@@ -40,7 +40,7 @@ export default function HomeUser(){
                             <Card key={p.id} >
                                 <Title>{p.titulo}</Title>
                                 <Description>Pesquisa de Satisfação</Description>
-                                <Link to={"/pesquisa/" + p.id}>Começar</Link>
+                                <Link style={{width: '134px', height: '51px', backgroundColor: '#2269D3', color: 'white', borderRadius: '4px', textDecoration: 'none', display:'flex', alignItems: 'center', justifyContent: 'center'}} to={"/pesquisa/" + p.id}>Começar</Link>
                             </Card>
                         ))
                     ) : (

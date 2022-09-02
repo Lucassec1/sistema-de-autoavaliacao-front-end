@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Titulo, NotaButtons, Nota } from './styles';
 
-function CardPergunta({ pergunta, index, perguntas, setPerguntas, edit }) {
+function CardPergunta({ pergunta, index, perguntas, setPerguntas, edit, setResposta, respostas }) {
     const [titulo, setTitulo] = useState(pergunta.enunciado)
 
     const [notaEscolhida, setNotaEscolhida] = useState()
@@ -23,6 +23,14 @@ function CardPergunta({ pergunta, index, perguntas, setPerguntas, edit }) {
     atualizado[index] = {titulo: e.target.value}
     setTitulo(e.target.value)
     setPerguntas(atualizado)
+    setResposta(notaEscolhida)
+  }
+
+  const changeRespostas = (nota) => {
+    let respostasAtualizadas = respostas
+    respostasAtualizadas[index].nota = nota
+    setResposta(respostasAtualizadas)
+    console.log(respostasAtualizadas)
   }
 
   return (
@@ -41,7 +49,7 @@ function CardPergunta({ pergunta, index, perguntas, setPerguntas, edit }) {
                   type="button"
                   value={index}
                   onMouseEnter={() => setNota(index)}
-                  onClick={() => setNotaEscolhida(index)}
+                  onClick={() => { setNotaEscolhida(index); changeRespostas(index) }}
                   style={{
                     opacity: edit ? '0.3' : checkOpacity(index),
                     background: n,

@@ -157,6 +157,13 @@ function Tabela() {
 
   const colunas = [
     {
+      title: 'ID',
+      dataIndex: 'id',
+      key: 'id',
+      width: '5vw',
+      ...getColumnSearchProps('id'),
+    },
+    {
       title: 'Nome',
       dataIndex: 'nome',
       key: 'nome',

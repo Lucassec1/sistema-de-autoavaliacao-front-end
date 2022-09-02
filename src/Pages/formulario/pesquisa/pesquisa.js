@@ -29,8 +29,8 @@ function OffcanvasExample() {
     const handleClose = () => setOpen(false);
 
 function resp(){
-    const handleClose = () => setOpen(false);
     alert('a resposta e four(4)')
+    setOpen(false);
 }
     return (
         <>

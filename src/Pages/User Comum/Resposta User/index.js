@@ -5,7 +5,8 @@ import api from "../../../api";
 
 import { 
     AllCards,
-    Container
+    Container,
+    Button,
 } from './styles'
 
 
@@ -13,13 +14,20 @@ export default function ResUser(props) {
     const [Pesquisa, setPesquisa] = useState('');
     const [Perguntas, setPerguntas] = useState('');
     const path = window.location.pathname;
+    // const [Respostas, setRespostas] = useState('');
+    // function dadosResposta(id, nota){
+    //     Respostas.push({id, nota})
+
+    // }
+
+    const [Respostas, setRespostas] = useState()
     useEffect(() => {
         const fetchPesquisa = async () => {
             try {
                 const response = await api.get(path);
-                console.log(path)
                 setPesquisa(response.data);
-                setPerguntas(response.data.perguntas);
+                setPerguntas(response.data.perguntas)
+                setRespostas(response.data.perguntas);
             } catch (error) {
                 console.log(error);
                 if (error.response.status === 401) {
@@ -29,20 +37,24 @@ export default function ResUser(props) {
         };
         fetchPesquisa();
     }, []);
+
+    console.log(Respostas)
     return (
         <>
         <Container>
             <UserHeader/>
             <AllCards>
             {Perguntas?.length > 0 ? (
-                        Perguntas?.map((p) => (
-                            <CardPergunta key={p.id} edit={false} pergunta={p} />
+                        Perguntas?.map((p, index) => (
+                            <CardPergunta key={p.id} edit={false} pergunta={p} setResposta={setRespostas} index={index} respostas={Respostas}/>
                         ))
                     ) : (
                         <div>
-                            Não há pesquisas :()
+                            Não há perguntas :()
                         </div>
                     )}
+
+            <Button>Enviar</Button>
             </AllCards>
         </Container>
         </>
