@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  background-color: #70A1EA;
+  /* background-color: #70A1EA; */
+  background-image: linear-gradient(-225deg, #5D9FFFCC 0%, #B8DCFFCC 48%, #6BBBFFCC 100%);
   width: 100%;
 
   display: flex;
@@ -14,6 +15,7 @@ export const Container = styled.div`
 
 export const Pagina = styled.div`
   background-color: #eee;
+  border-radius: 5px;
   width: 70%;
   height: 100%;
 
@@ -42,6 +44,8 @@ export const BodyPesquisa = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  padding-bottom: 30%;
 `;
 
 export const AdicionarPergunta = styled.button`
@@ -110,6 +114,6 @@ export const FixedBar = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  position: absolute;
+  position: sticky;
   top: 0;
 `;
