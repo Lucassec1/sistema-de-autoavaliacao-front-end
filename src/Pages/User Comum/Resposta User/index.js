@@ -18,9 +18,7 @@ export default function ResUser(props) {
                 const path = window.location.pathname;
                 const response = await api.get(path);
                 setPesquisa(response.data);
-                setPerguntas(Pesquisa.perguntas);
-                console.log(Pesquisa)
-                console.log(Perguntas)
+                setPerguntas(response.data.perguntas);
             } catch (error) {
                 console.log(error);
                 if (error.response.status === 401) {
