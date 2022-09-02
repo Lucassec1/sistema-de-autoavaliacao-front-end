@@ -16,6 +16,7 @@ import CriarPesquisaMenu from './Pages/formulario/CriarPesquisaMenu'
 import CriarPesquisa from './Pages/formulario/CriarPesquisa'
 import HomeUser from './Pages/User Comum/Home User/index'
 import ResUser from "./Pages/User Comum/Resposta User/index";
+import Minhapesquisa from './Pages/formulario/pesquisa/pesquisa'
 
 const PrivateRoute = ({ Item }) => {
   const token = localStorage.getItem("token");
@@ -35,6 +36,7 @@ export default function Rotas(){
             <Route exact path="/home" element={<PrivateRoute Item={Home} />} />
             <Route exact path="/cadastros" element={<PrivateRoute Item={Cadastros} />} />
             <Route exact path="/pesquisas" element={<PrivateRoute Item={Formula} />} />
+            <Route exact path="/minhapesquisa" element={<PrivateRoute Item={Minhapesquisa} />} />
             <Route exact path="/criarpesquisa" element={<PrivateRoute Item={CriarPesquisaMenu} />} />
             <Route exact path="/criarpesquisa/:tipo" element={<PrivateRoute Item={CriarPesquisa} />}/>
             <Route exact path="/homeU" element={<PrivateRoute Item={HomeUser} />} />
