@@ -34,3 +34,17 @@ export const AllCards = styled.div`
     border-radius: 10px;
   }
 `;
+
+export const Button = styled.button`
+    width: 134px;
+    height: 51px;
+    
+    background: #205AB1;
+    color: white;
+    border-radius: 4px;
+    border: none;
+    
+    :hover{
+      background: #163A6F;
+    }
+`;

@@ -22,6 +22,8 @@ export const AllCards = styled.div`
 
     overflow-y: scroll;
 
+    scrollbar: 
+
     ::-webkit-scrollbar-thumb{
     background: #347AE2;
     border-radius: 10px;
@@ -36,10 +38,10 @@ export const AllCards = styled.div`
 `;
 
 export const Card = styled.div`
-    height: 40%;
+    height: 30%;
     width: 60%; 
 
-    background: #D9D9D9;
+    background: rgba(217, 217, 217, 0.3);
     border-radius: 20px;
 
     margin-top: 15px;
@@ -49,7 +51,7 @@ export const Card = styled.div`
 
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
     align-items: center;
 `;
 
@@ -67,16 +69,5 @@ export const Description = styled.div`
     color: #252628;
 `;
 
-export const Button = styled.button`
-    width: 134px;
-    height: 51px;
 
-    background-color: #2269D3;
-    color: white;
-    border-radius: 4px;
-    border: none;
 
-    :hover{
-        background-color: red;
-    }
-`;
