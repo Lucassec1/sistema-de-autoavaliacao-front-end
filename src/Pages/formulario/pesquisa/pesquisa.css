@@ -11,7 +11,8 @@
     justify-content: space-around;
     align-items: center;
 }
-.beta{
+.betas{
+    border: 1px solid red;
     max-width: 50%;
     flex-wrap: wrap;
 }

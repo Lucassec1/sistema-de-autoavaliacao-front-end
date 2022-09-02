@@ -1,11 +1,6 @@
-import { Layout } from 'antd';
 import React, { useEffect, useState, } from "react";
 import { Card } from 'react-bootstrap';
 import Row from 'react-bootstrap/Row';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 import Box from '@mui/material/Box';
@@ -13,15 +8,11 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { BsArrowLeftShort } from "react-icons/bs";
-
+import Navbargeral from "./navbar"
 import { Button } from 'antd';
 
 function teste() {
     alert('trabalhando nisso')
-}
-function voltar() {
-    window.history.back();
 }
 
 function Formulario() {
@@ -34,18 +25,7 @@ function Formulario() {
         <>
             <div>
                 <div id='teste'>
-                    <Navbar variant="primary" style={{ color: '#fff' }} expand="lg">
-                        <Container>
-                            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                            <Navbar.Collapse id="basic-navbar-nav">
-                                <Nav className="me-auto">
-                                    <Nav.Link > <BsArrowLeftShort onClick={voltar}/></Nav.Link>
-                                    <Nav.Link href="/criarpesquisa"> Criar Pesquisa</Nav.Link>
-                                    <Nav.Link href="/Pesk">Minhas Pesquisa</Nav.Link>
-                                </Nav>
-                            </Navbar.Collapse>
-                        </Container>
-                    </Navbar>
+                    <Navbargeral/>
                 </div>
                 <div className='seletor'>
                     <div >
