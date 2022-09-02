@@ -1,11 +1,6 @@
 import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
 import { Card } from 'react-bootstrap';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
 import React, { useState } from 'react';
-import { BsArrowLeftShort } from "react-icons/bs";
-import { useForm } from "react-hook-form";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
@@ -13,9 +8,8 @@ import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
 import './pesquisa.css';
-
+import Navbargeral from '../navbar'
 
 const style = {
     position: 'absolute',
@@ -30,36 +24,19 @@ const style = {
 };
 
 function OffcanvasExample() {
-    function voltar() {
-        window.history.back();
-    }
-    function teste() {
-        alert('trabalhando nisso')
-    }
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
 function resp(){
-    const handleClose = () => setOpen(false);
     alert('a resposta e four(4)')
+    setOpen(false);
 }
     return (
         <>
             <div>
                 <div className='teste'>
-                    <Navbar variant="primary" style={{ color: '#fff' }} expand="lg">
-                        <Container>
-                            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                            <Navbar.Collapse id="basic-navbar-nav">
-                                <Nav className="me-auto">
-                                    <Nav.Link > <BsArrowLeftShort onClick={voltar}/></Nav.Link>
-                                    <Nav.Link href="/criarpesquisa"> Criar Pesquisa</Nav.Link>
-                                    <Nav.Link href="/pesk">Minhas Pesquisa</Nav.Link>
-                                </Nav>
-                            </Navbar.Collapse>
-                        </Container>
-                    </Navbar>
+                    <Navbargeral/>
                 </div>
                 <div className="li">
                     <div className="beta">
@@ -115,10 +92,10 @@ function resp(){
                             </Card>
                         </div>
                     </div>
-                    <div className="beta">
+                    <div className="betas">
                         <h4>dashbord gerado com a pesquisa </h4>
                         <div>
-
+                            
                         </div>
                     </div>
                 </div>
