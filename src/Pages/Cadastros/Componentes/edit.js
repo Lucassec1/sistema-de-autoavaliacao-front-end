@@ -41,8 +41,8 @@ export default function EditarCadastro(props) {
     };
     
     const handleChange = (value) => {
-        console.log(`selected ${value}`);
-        setEditarTipo(value);
+        console.log(value);
+        // setEditarTipo(value);
         if (value === 3) {
             setDisableSenha(true)
         } else {
@@ -54,6 +54,7 @@ export default function EditarCadastro(props) {
         
     function Update(e)  {
         e.preventDefault()
+        console.log(props.record.key)
         editarTipo === 3 ? 
         api.put(`/usuarios/${props.record.key}`, {
             nome: editarNome,
@@ -124,7 +125,7 @@ export default function EditarCadastro(props) {
                 >
                     <Form.Item label="Tipo"
                         name="Tipo"
-                        initialValue={3}
+                        initialValue={editarTipo}
                         rules={[
                             {
                                 required: true,
@@ -150,7 +151,7 @@ export default function EditarCadastro(props) {
                                 message: 'O nome é obrigatório!',
                             },
                         ]}
-                        value={editarNome}
+                        initialValue={editarNome}
                         onChange={e => setEditarNome(e.target.value)}
                     >
                         <Input type='text' />
@@ -165,7 +166,7 @@ export default function EditarCadastro(props) {
                                 message: 'O email é obrigatório!',
                             },
                         ]}
-                        value={editarEmail}
+                        initialValue={editarEmail}
                         onChange={e => setEditarEmail(e.target.value)}
                     >
                         <Input type='email' />
@@ -181,7 +182,7 @@ export default function EditarCadastro(props) {
                                 message: 'A senha é obrigatória!',
                             },
                         ]}
-                        value={editarSenha}
+                        initialValue={editarSenha}
                         onChange={e => setEditarSenha(e.target.value)}
                     >
                         <Input.Password type='password' disabled={disableSenha} />
@@ -202,7 +203,7 @@ export default function EditarCadastro(props) {
                                 message: "O CPF deve conter apenas números!",
                             },
                         ]}
-                        value={editarCpf}
+                        initialValue={editarCpf}
                         onChange={e => setEditarCpf(e.target.value)}
                     >
                         <Input maxLength={11} minLength={11} />
@@ -211,7 +212,7 @@ export default function EditarCadastro(props) {
                     <Form.Item
                         label="Foto"
                         name="Foto"
-                        value={editarFoto}
+                        initialValue={editarFoto}
                         onChange={e => setEditarFoto(e.target.value)}
                     >
                         <Input type='text' />
