@@ -27,7 +27,6 @@ export default function ResUser(props) {
             }
         };
         respostas();
-
     }
 
 
