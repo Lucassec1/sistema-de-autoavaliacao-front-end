@@ -12,13 +12,14 @@ export default function NavBarHome(props) {
     const users = props.usuarios;
 
     const dates = [];
-    const daysLastWeek = [];
+    const daysLastWeek = [new Date().toISOString().split('T')[0],];
     const today = new Date();
     users.map(d => {
         dates.push(new Date(d.created_at).toISOString().split('T')[0])
+
     })
 
-    for(let i = 0; i < 7; i++) {
+    for(let i = 0; i < 6; i++) {
         const date = new Date(today.setDate(today.getDate() - 1))
         daysLastWeek.push(date.toISOString().split('T')[0])
     }
@@ -34,10 +35,22 @@ export default function NavBarHome(props) {
             }
           })
     })
+    
 
     count.reverse();
     daysLastWeek.reverse();
-    
+
+    console.log(dates)
+    console.log(daysLastWeek)
+    console.log(count)
+
+    const sum = count.reduce((accumulator, value) => {
+        return accumulator + value;
+      }, 0);
+    console.log(sum)
+
+    const aumento = (sum/users.length) * 100;
+
     return (
         <>
             <HeaderHome class="navbar bg-light">
@@ -75,7 +88,7 @@ export default function NavBarHome(props) {
                             <Card bordered={false} style={{ background: '#fafafa', border: '1px solid #EBEBEB', boxShadow: '0px 1px 5px rgba(32, 90, 177, 0.1)', borderRadius: '4px' }}>
                                 <HeaderCardHome>
                                     Pessoas Adicionadas
-                                    <NumericEstatistica>+7%</NumericEstatistica>
+                                    <NumericEstatistica>+{aumento.toFixed(1)}%</NumericEstatistica>
                                 </HeaderCardHome>
                                 <Contador>{users.length}</Contador>
                                 <Textp>Período de 7 dias</Textp>
