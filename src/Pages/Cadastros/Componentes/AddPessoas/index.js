@@ -10,7 +10,7 @@ import { SecondaryButton } from "../../../../Components/SecondaryButton/style.js
 import { propTypes } from 'react-bootstrap/esm/Image';
 
 const { Option } = Select;
-const Cadastro = (props) => {
+function Cadastro (props) {
     const [loading, setLoading] = useState(false);
     const [visible, setVisible] = useState(false);
     
@@ -59,24 +59,7 @@ const Cadastro = (props) => {
     function Cadastrar(e) {
         e.preventDefault()
         setLoading(true)
-        tipo === 3 ? api.post('/auth/cadastrar', {
-            nome: nome,
-            email: email,
-            senha: '',
-            tipo: tipo,
-            cpf: cpf,
-            foto: foto,
-        })
-        .then(res => {
-            setLoading(false)
-            setVisible(false)
-            console.log('Deu Certo!')
-            props.update()
-        })
-        .catch(err => {
-            setLoading(false)
-            console.log('Bugou oh!')
-        }) : api.post('/auth/cadastrar', {
+        api.post('/auth/cadastrar', {
             nome: nome,
             email: email,
             senha: senha,
@@ -85,9 +68,9 @@ const Cadastro = (props) => {
             foto: foto,
         })
         .then(res => {
+            props.getCadastros()
             setVisible(false)
             console.log('Deu Certo!')
-            props.update()
         })
         .catch(err => {
             console.log('Bugou oh!')

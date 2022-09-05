@@ -19,6 +19,7 @@ export default function ResUser(props) {
                     fk_usuario: localStorage.getItem('id').substring(1, (localStorage.getItem('id')).length - 1),
                     Respostas
                 })
+                window.location.href = '/homeU'
             } catch (error) {
                 console.log(error);
                 if (error.response.status === 401) {

@@ -8,25 +8,9 @@ import Highlighter from 'react-highlight-words';
 import EditarCadastro from '../edit';
 import Dialog from '../deletemessage';
 
-function Tabela() {
+function Tabela({ usuario, getCadastros }) {
   const data = []
-
-  const [usuario, setUsuario] = useState();
   const [cols, setCols] = useState()
-  const getCadastros = async () => {
-    api
-      .get('/usuarios')
-      .then(response => {
-        setUsuario(response.data);
-      })
-      .catch(err => {
-        if (err.response.status == 401) {
-          window.location.href = '/';
-        }
-        else console.log(err.message);
-      })
-  }
-  if (!usuario) getCadastros()
 
   // console.log(usuario)
   function StringType(tipo) {
@@ -49,7 +33,8 @@ function Tabela() {
     })
   });
 
-  // console.log(data);
+  console.log(usuario)
+  console.log(data);
 
   cols?.map(c => (
     c.title = c.title.charAt(0).toUpperCase() + c.title.slice(1)
@@ -96,6 +81,8 @@ function Tabela() {
             size="small"
             style={{
               width: 90,
+              display: 'flex',
+              alignItems: 'center'
             }}
           >
             Search
@@ -107,7 +94,7 @@ function Tabela() {
               width: 90,
             }}
           >
-            Reset
+            Resetar
           </Button>
           <Button
             type="link"
@@ -120,7 +107,7 @@ function Tabela() {
               setSearchedColumn(dataIndex);
             }}
           >
-            Filter
+            Filtrar
           </Button>
         </Space>
       </div>
@@ -161,6 +148,7 @@ function Tabela() {
       dataIndex: 'key',
       key: 'id',
       width: '5vw',
+      align: 'center',
       ...getColumnSearchProps('id'),
     },
     {
@@ -168,6 +156,7 @@ function Tabela() {
       dataIndex: 'nome',
       key: 'nome',
       width: '20vw',
+      align: 'center',
       ...getColumnSearchProps('nome'),
     },
     {
@@ -175,30 +164,34 @@ function Tabela() {
       dataIndex: 'email',
       key: 'email',
       width: '30vw',
+      align: 'center',
       ...getColumnSearchProps('email'),
     },
     {
       title: 'Tipo',
       dataIndex: 'tipo',
       key: 'tipo',
-      width: '5vw',
+      width: '8vw',
+      align: 'center',
       ...getColumnSearchProps('tipo'),
     },
     {
       title: 'CPF',
       dataIndex: 'cpf',
       key: 'cpf',
-      width: '20vw',
+      width: '12vw',
+      align: 'center',
       ...getColumnSearchProps('cpf'),
     },
     {
       title: 'Ações',
       dataIndex: 'actions',
       key: 'actions',
-      width: '5vw',
-      render: (_, record) => <>
-        <EditarCadastro record={record} update={getCadastros}/>,
-        <Dialog record={record} update={getCadastros}/>,
+      width: '8vw',
+      render: (_, record) => 
+      <>
+        <EditarCadastro record={record} update={getCadastros}/>
+        <Dialog record={record} update={getCadastros}/>
       </>
     },
   ]
@@ -208,9 +201,9 @@ function Tabela() {
         bordered
         dataSource={data}
         pagination={{
-          pageSize: 7,
+          pageSize: 10,
         }} 
-      />
+        />
     </>
   )
 };
