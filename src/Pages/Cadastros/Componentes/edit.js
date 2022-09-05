@@ -98,7 +98,7 @@ export default function EditarCadastro(props) {
 
             <Modal
                 visible={visible}
-                title="Cadastrar Pessoa"
+                title="Editar Cadastro"
                 onOk={handleOk}
                 onCancel={handleCancel}
                 footer={[
