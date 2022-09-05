@@ -1,14 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Container, Titulo, Descricao } from './styles';
 
-function CabecalhoPesquisa() {
-    const [cabecalhoPesquisa, setCabecalhoPesquisa] = useState({
-        titulo: "Nova Pesquisa em Branco",
-        descricao: "Descrição"
-    })
-    
+function CabecalhoPesquisa({ titulo, setTitulo }) {
     const updateCabecalho = (e) => {
-        setCabecalhoPesquisa(valorAntigo => {
+        setTitulo(valorAntigo => {
             return {
                 ...valorAntigo,
                 [e.target.name]: e.target.value
@@ -21,13 +16,13 @@ function CabecalhoPesquisa() {
             <Titulo
               name="titulo"
               type="text"
-              value={cabecalhoPesquisa.titulo}
+              value={titulo.titulo}
               onChange={(e) => updateCabecalho(e)}
             />
             <Descricao
               name="descricao"
               type="text"
-              value={cabecalhoPesquisa.descricao}
+              value={titulo.descricao}
               onChange={(e) => updateCabecalho(e)}
             />
         </Container>

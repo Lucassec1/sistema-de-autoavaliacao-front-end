@@ -5,7 +5,6 @@ import api from "../../../../api";
 import FormPesquisa from "./form";
 
 function CardCriarPesquisa(props) {
-    console.log(props.tipoPesquisa)
     const [visible, setVisible] = useState(false);
     const [titulo, setTitulo] = useState()
     const [grupo, setGrupo] = useState(0)
@@ -24,7 +23,7 @@ function CardCriarPesquisa(props) {
         })
         .then((res) => {
             setTimeout(() => { setVisible(false)}, 0);
-            window.location.href = `/criarpesquisa/${titulo}`
+            window.location.href = `/criarpesquisa/${res.data.id.rows[0].id}`
         })
     };
 
@@ -41,7 +40,6 @@ function CardCriarPesquisa(props) {
 
     if (!grupos) getGrupos()
 
-    console.log(grupo)
     return (
         grupos &&
         <Container onClick={showModal}>
