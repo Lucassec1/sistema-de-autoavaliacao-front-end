@@ -34,8 +34,7 @@ function CardCriarPesquisa(props) {
 
     const [grupos, setGrupos] = useState()
     const getGrupos = () => {
-        api
-            .get('/grupos')
+        api.get('/grupos')
             .then((res) => { setGrupos(res.data) })
             .catch(err => { console.log(err) })
     }
