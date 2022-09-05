@@ -8,26 +8,9 @@ import Highlighter from 'react-highlight-words';
 import EditarCadastro from '../edit';
 import Dialog from '../deletemessage';
 
-function Tabela() {
+function Tabela({ usuario, getCadastros }) {
   const data = []
-
-  const [usuario, setUsuario] = useState();
   const [cols, setCols] = useState()
-  const getCadastros = async () => {
-    api
-      .get('/usuarios')
-      .then(response => {
-        setUsuario(response.data);
-      })
-      .catch(err => {
-        if (err.response.status == 401) {
-          window.location.href = '/';
-        }
-        else console.log(err.message);
-      })
-  }
-  
-  if (!usuario) getCadastros()
 
   // console.log(usuario)
   function StringType(tipo) {
@@ -50,7 +33,8 @@ function Tabela() {
     })
   });
 
-  // console.log(data);
+  console.log(usuario)
+  console.log(data);
 
   cols?.map(c => (
     c.title = c.title.charAt(0).toUpperCase() + c.title.slice(1)

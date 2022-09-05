@@ -59,24 +59,7 @@ function Cadastro (props) {
     function Cadastrar(e) {
         e.preventDefault()
         setLoading(true)
-        tipo === 3 ? api.post('/auth/cadastrar', {
-            nome: nome,
-            email: email,
-            senha: '',
-            tipo: tipo,
-            cpf: cpf,
-            foto: foto,
-        })
-        .then(res => {
-            props.update()
-            setLoading(false)
-            setVisible(false)
-            console.log('Deu Certo!')
-        })
-        .catch(err => {
-            setLoading(false)
-            console.log('Bugou oh!')
-        }) : api.post('/auth/cadastrar', {
+        api.post('/auth/cadastrar', {
             nome: nome,
             email: email,
             senha: senha,
@@ -85,7 +68,7 @@ function Cadastro (props) {
             foto: foto,
         })
         .then(res => {
-            props.update()
+            props.getCadastros()
             setVisible(false)
             console.log('Deu Certo!')
         })
