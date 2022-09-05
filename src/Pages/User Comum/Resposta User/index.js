@@ -3,7 +3,7 @@ import CardPergunta from "../../formulario/components/CardPergunta";
 import UserHeader from "../components/userBar";
 import api from "../../../api";
 
-import { 
+import {
     AllCards,
     Container,
     Button,
@@ -11,6 +11,25 @@ import {
 
 
 export default function ResUser(props) {
+
+    function postRespostas(Respostas) {
+        const respostas = async () => {
+            try {
+                api.post('/resposta', {
+                    fk_usuario: localStorage.getItem('id').substring(1, (localStorage.getItem('id')).length - 1),
+                    Respostas
+                })
+            } catch (error) {
+                console.log(error);
+                if (error.response.status === 401) {
+                    window.location.href = '/'
+                }
+            }
+        };
+        respostas();
+    }
+
+
     const [Pesquisa, setPesquisa] = useState('');
     const [Perguntas, setPerguntas] = useState('');
     const path = window.location.pathname;
@@ -38,15 +57,14 @@ export default function ResUser(props) {
         fetchPesquisa();
     }, []);
 
-    console.log(Respostas)
     return (
         <>
-        <Container>
-            <UserHeader/>
-            <AllCards>
-            {Perguntas?.length > 0 ? (
+            <Container>
+                <UserHeader />
+                <AllCards>
+                    {Perguntas?.length > 0 ? (
                         Perguntas?.map((p, index) => (
-                            <CardPergunta key={p.id} edit={false} pergunta={p} setResposta={setRespostas} index={index} respostas={Respostas}/>
+                            <CardPergunta key={p.id} edit={false} pergunta={p} setResposta={setRespostas} index={index} respostas={Respostas} />
                         ))
                     ) : (
                         <div>
@@ -54,9 +72,9 @@ export default function ResUser(props) {
                         </div>
                     )}
 
-            <Button>Enviar</Button>
-            </AllCards>
-        </Container>
+                    <Button onClick={(e) => postRespostas(Respostas)} >Enviar</Button>
+                </AllCards>
+            </Container>
         </>
     )
 }  

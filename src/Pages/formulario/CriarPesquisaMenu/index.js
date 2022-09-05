@@ -10,13 +10,13 @@ function CriarpesquisaMenu() {
 
     const [tiposPesquisa, setTiposPesquisa] = useState()
     const getTiposPesquisa = () => {
-        api
-            .get(`/tipoPesquisa`)
+        api.get(`/tipoPesquisa`)
             .then(res => { setTiposPesquisa(res.data) })
             .catch(err => { alert(err) })
     }
     
     if (!tiposPesquisa) getTiposPesquisa()
+    
     function Setavoltar(){
         function voltar(){
             window.history.back();
@@ -29,6 +29,7 @@ function CriarpesquisaMenu() {
     }
     return (
         tiposPesquisa &&
+        
         <Container>
             <Top>
                 <Setavoltar/>
