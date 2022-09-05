@@ -6,6 +6,7 @@ export const Container = styled.div`
   border-radius: 10px;
   padding: 20px;
   border-left: 5px solid #0e4d8770;
+  position: relative;
 `;
 
 export const Titulo = styled.input`
@@ -32,3 +33,10 @@ export const Nota = styled.input`
   color: black;
 `;
 
+export const CloseButton = styled.button`
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  background-color: transparent;
+  border: 0;
+`

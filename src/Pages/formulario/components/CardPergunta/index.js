@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Container, Titulo, NotaButtons, Nota } from './styles';
+import { useEffect } from 'react';
+import { Container, Titulo, NotaButtons, Nota, CloseButton } from './styles';
 
 function CardPergunta({ pergunta, index, perguntas, setPerguntas, edit, setResposta, respostas }) {
     const [titulo, setTitulo] = useState(pergunta.enunciado)
@@ -22,7 +23,8 @@ function CardPergunta({ pergunta, index, perguntas, setPerguntas, edit, setRespo
     let atualizado = perguntas
     atualizado[index] = {titulo: e.target.value}
     setTitulo(e.target.value)
-    setPerguntas(atualizado)
+    
+    edit ? setPerguntas(atualizado) :
     setResposta(notaEscolhida)
   }
 
@@ -33,8 +35,14 @@ function CardPergunta({ pergunta, index, perguntas, setPerguntas, edit, setRespo
     console.log(respostasAtualizadas)
   }
 
+  const removePergunta = () => {
+    let atualizado = perguntas.filter((pe, ind) => ind != index)
+    setPerguntas(atualizado)
+  }
+
   return (
     <Container>
+        {/* { edit && <CloseButton onClick={() => removePergunta()}>x</CloseButton>} */}
         <Titulo
           tipe="text"
           value={titulo}
@@ -49,7 +57,7 @@ function CardPergunta({ pergunta, index, perguntas, setPerguntas, edit, setRespo
                   type="button"
                   value={index}
                   onMouseEnter={() => setNota(index)}
-                  onClick={() => { setNotaEscolhida(index); changeRespostas(index) }}
+                  onClick={() =>  { !edit && setNotaEscolhida(index); changeRespostas(index) }}
                   style={{
                     opacity: edit ? '0.3' : checkOpacity(index),
                     background: n,
