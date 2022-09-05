@@ -10,7 +10,7 @@ import { SecondaryButton } from "../../../../Components/SecondaryButton/style.js
 import { propTypes } from 'react-bootstrap/esm/Image';
 
 const { Option } = Select;
-const Cadastro = (props) => {
+function Cadastro (props) {
     const [loading, setLoading] = useState(false);
     const [visible, setVisible] = useState(false);
     
@@ -68,10 +68,10 @@ const Cadastro = (props) => {
             foto: foto,
         })
         .then(res => {
+            props.update()
             setLoading(false)
             setVisible(false)
             console.log('Deu Certo!')
-            props.update()
         })
         .catch(err => {
             setLoading(false)
@@ -85,9 +85,9 @@ const Cadastro = (props) => {
             foto: foto,
         })
         .then(res => {
+            props.update()
             setVisible(false)
             console.log('Deu Certo!')
-            props.update()
         })
         .catch(err => {
             console.log('Bugou oh!')

@@ -26,6 +26,7 @@ function Tabela() {
         else console.log(err.message);
       })
   }
+  
   if (!usuario) getCadastros()
 
   // console.log(usuario)
@@ -96,6 +97,8 @@ function Tabela() {
             size="small"
             style={{
               width: 90,
+              display: 'flex',
+              alignItems: 'center'
             }}
           >
             Search
@@ -107,7 +110,7 @@ function Tabela() {
               width: 90,
             }}
           >
-            Reset
+            Resetar
           </Button>
           <Button
             type="link"
@@ -120,7 +123,7 @@ function Tabela() {
               setSearchedColumn(dataIndex);
             }}
           >
-            Filter
+            Filtrar
           </Button>
         </Space>
       </div>
@@ -161,6 +164,7 @@ function Tabela() {
       dataIndex: 'key',
       key: 'id',
       width: '5vw',
+      align: 'center',
       ...getColumnSearchProps('id'),
     },
     {
@@ -168,6 +172,7 @@ function Tabela() {
       dataIndex: 'nome',
       key: 'nome',
       width: '20vw',
+      align: 'center',
       ...getColumnSearchProps('nome'),
     },
     {
@@ -175,30 +180,34 @@ function Tabela() {
       dataIndex: 'email',
       key: 'email',
       width: '30vw',
+      align: 'center',
       ...getColumnSearchProps('email'),
     },
     {
       title: 'Tipo',
       dataIndex: 'tipo',
       key: 'tipo',
-      width: '5vw',
+      width: '8vw',
+      align: 'center',
       ...getColumnSearchProps('tipo'),
     },
     {
       title: 'CPF',
       dataIndex: 'cpf',
       key: 'cpf',
-      width: '20vw',
+      width: '12vw',
+      align: 'center',
       ...getColumnSearchProps('cpf'),
     },
     {
       title: 'Ações',
       dataIndex: 'actions',
       key: 'actions',
-      width: '5vw',
-      render: (_, record) => <>
-        <EditarCadastro record={record} update={getCadastros}/>,
-        <Dialog record={record} update={getCadastros}/>,
+      width: '8vw',
+      render: (_, record) => 
+      <>
+        <EditarCadastro record={record} update={getCadastros}/>
+        <Dialog record={record} update={getCadastros}/>
       </>
     },
   ]
@@ -208,9 +217,9 @@ function Tabela() {
         bordered
         dataSource={data}
         pagination={{
-          pageSize: 7,
+          pageSize: 10,
         }} 
-      />
+        />
     </>
   )
 };
