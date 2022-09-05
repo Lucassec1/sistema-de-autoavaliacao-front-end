@@ -7,9 +7,10 @@ import { Select } from 'antd';
 import { AddButton } from './style';
 import { PrimaryButton } from "../../../../Components/PrimaryButton/style.js";
 import { SecondaryButton } from "../../../../Components/SecondaryButton/style.js";
+import { propTypes } from 'react-bootstrap/esm/Image';
 
 const { Option } = Select;
-const Cadastro = () => {
+const Cadastro = (props) => {
     const [loading, setLoading] = useState(false);
     const [visible, setVisible] = useState(false);
     
@@ -35,7 +36,6 @@ const Cadastro = () => {
 
     // select
     const handleChange = (value) => {
-        console.log(`selected ${value}`);
         setTipo(value);
         if (value === 3) {
             setDisableSenha(true)
@@ -52,57 +52,46 @@ const Cadastro = () => {
     const [tipo, setTipo] = useState(3)
     const [disableSenha, setDisableSenha] = useState(true)
     
-    // const validate = (tipo) => {
-    //     if (!validEmail.test(email)) {
-    //         setInputEmailErr(true);
-    //     } else {
-    //         setInputEmailErr(false);
-    //     }
-        
-    //     if (!validPassword.test(senha) && tipo !== 3) {
-    //         setInputSenhaErr(true);
-    //     } else { 
-    //         setInputSenhaErr(false);
-    //     }
-    // }
-    
     const handleCancel = () => {
         setVisible(false);
     };
     
     function Cadastrar(e) {
         e.preventDefault()
+        setLoading(true)
         tipo === 3 ? api.post('/auth/cadastrar', {
             nome: nome,
             email: email,
+            senha: '',
+            tipo: tipo,
             cpf: cpf,
             foto: foto,
-            tipo: tipo
+        })
+        .then(res => {
+            setLoading(false)
+            setVisible(false)
+            console.log('Deu Certo!')
+            props.update()
+        })
+        .catch(err => {
+            setLoading(false)
+            console.log('Bugou oh!')
         }) : api.post('/auth/cadastrar', {
             nome: nome,
             email: email,
             senha: senha,
+            tipo: tipo,
             cpf: cpf,
             foto: foto,
-            tipo: tipo
         })
         .then(res => {
+            setVisible(false)
             console.log('Deu Certo!')
+            props.update()
         })
         .catch(err => {
             console.log('Bugou oh!')
         })
-        console.log(nome)
-        console.log(email)
-        console.log(senha)
-        console.log(cpf)
-        console.log(foto)
-        console.log(tipo)
-        // setLoading(true);
-        // setTimeout(() => {
-        //     setLoading(false);
-        //     setVisible(false);
-        // }, 3000);
     }
 
     return (

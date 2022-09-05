@@ -13,7 +13,7 @@ export default function Dialog(props) {
             console.log("deletado")
             props.update()
           })
-          .catth(err => {
+          .catch(err => {
             console.log(err)
           })
       }

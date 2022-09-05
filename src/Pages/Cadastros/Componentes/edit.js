@@ -10,14 +10,24 @@ import { Select } from 'antd';
 export default function EditarCadastro(props) {
     const [loading, setLoading] = useState(false);
     const [visible, setVisible] = useState(false);
+
+    function StringType(tipo) {
+        if (tipo === "Usuário comum") {
+          return "3"
+        } else if (tipo === "Administrador") {
+          return "2"
+        } else if (tipo == "Root") {
+          return "1";
+        }
+      }
     
     const [editarNome, setEditarNome] = useState(props.record.nome)
     const [editarEmail, setEditarEmail] = useState(props.record.email)
     const [editarCpf, setEditarCpf] = useState(props.record.cpf)
     const [editarFoto, setEditarFoto] = useState(props.record.foto)
     const [editarSenha, setEditarSenha] = useState(props.record.senha)
-    const [editarTipo, setEditarTipo] = useState(props.record.tipo)
-    const [disableSenha, setDisableSenha] = useState(true)
+    const [editarTipo, setEditarTipo] = useState(StringType(props.record.tipo))
+    //const [disableSenha, setDisableSenha] = useState(true)
     
     const { Option } = Select;
     const showModal = () => {
@@ -42,41 +52,33 @@ export default function EditarCadastro(props) {
     
     const handleChange = (value) => {
         console.log(value);
-        // setEditarTipo(value);
-        if (value === 3) {
-            setDisableSenha(true)
-        } else {
-            setDisableSenha(false)
-        }
+        
+        setEditarTipo(value);
     };
-
-    console.log(props.record.key)
         
     function Update(e)  {
         e.preventDefault()
+        setLoading(true)
         console.log(props.record.key)
-        editarTipo === 3 ? 
         api.put(`/usuarios/${props.record.key}`, {
             nome: editarNome,
             email: editarEmail,
+            senha: editarSenha,
+            tipo: editarTipo,
             cpf: editarCpf,
             foto: editarFoto,
-            tipo: editarTipo
-        }) : api
-                .put(`/usuarios/${props.record.key}`, {
-                    nome: editarNome,
-                    email: editarEmail,
-                    senha: editarSenha,
-                    cpf: editarCpf,
-                    foto: editarFoto,
-                    tipo: editarTipo
-            })
-            .then(res => {
-                console.log('Deu Certo!')
-            })
-            .catch(err => {
-                console.log('Bugou oh!')
-            })
+        })      
+        .then(res => {
+            setLoading(false)
+            console.log('Deu Certo!')
+            setVisible(false)
+            props.update()
+
+        })
+        .catch(err => {
+            setLoading(false)
+            console.log('Bugou oh!')
+        })
         }
 
     const handleCancel = () => {
@@ -134,11 +136,12 @@ export default function EditarCadastro(props) {
                         ]}>
 
                         <Select
+                        disabled
                             onChange={handleChange}
                         >
-                            <Option value={3}>Usuário Comum</Option>
-                            <Option value={2}>Administrador</Option>
-                            <Option disabled={true} value={1}>Root</Option>
+                            <Option  value={"3"}>Usuário Comum</Option>
+                            <Option  value={"2"}>Administrador</Option>
+                            <Option  value={"1"}>Root</Option>
                         </Select>
                     </Form.Item>
 
@@ -185,7 +188,7 @@ export default function EditarCadastro(props) {
                         initialValue={editarSenha}
                         onChange={e => setEditarSenha(e.target.value)}
                     >
-                        <Input.Password type='password' disabled={disableSenha} />
+                        <Input.Password type='password' disabled />
                     </Form.Item>
 
                     <Form.Item

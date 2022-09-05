@@ -158,7 +158,7 @@ function Tabela() {
   const colunas = [
     {
       title: 'ID',
-      dataIndex: 'id',
+      dataIndex: 'key',
       key: 'id',
       width: '5vw',
       ...getColumnSearchProps('id'),
@@ -208,7 +208,7 @@ function Tabela() {
         bordered
         dataSource={data}
         pagination={{
-          pageSize: 12,
+          pageSize: 7,
         }} 
       />
     </>
