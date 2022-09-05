@@ -15,7 +15,7 @@ import HomeUser from './Pages/User Comum/Home User/index'
 import ResUser from "./Pages/User Comum/Resposta User/index";
 import Minhapesquisa from './Pages/formulario/pesquisa/pesquisa'
 import Criarpesquisamenu from './Pages/formulario/CriarPesquisaMenu'
-import Criarpesquisa from './Pages/formulario/criarpesquisa/index'
+import Criarpesquisa from './Pages/formulario/CriarPesquisa/index'
 const PrivateRoute = ({ Item }) => {
   const token = localStorage.getItem("token");
   const userType = localStorage.getItem("tipo");

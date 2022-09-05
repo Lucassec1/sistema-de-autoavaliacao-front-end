@@ -60,7 +60,7 @@ function resp(){
                                                     titulo da pesquisa
                                                 </Typography>
                                                 <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                                                    <h3 style={{ fontSize: '12px' }}> pergunta: quantos dedos LULA tem?</h3>
+                                                    <h3 style={{ fontSize: '12px' }}> pergunta: quanto é 2+3?</h3>
                                                     <FormControl component="fieldset">
                                                         <FormGroup aria-label="position" row>
                                                             <FormControlLabel
