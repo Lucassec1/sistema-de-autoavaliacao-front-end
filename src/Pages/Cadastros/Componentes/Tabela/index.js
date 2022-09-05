@@ -188,6 +188,7 @@ function Tabela({ usuario, getCadastros }) {
       dataIndex: 'actions',
       key: 'actions',
       width: '8vw',
+      align: 'center',
       render: (_, record) => 
       <>
         <EditarCadastro record={record} update={getCadastros}/>
