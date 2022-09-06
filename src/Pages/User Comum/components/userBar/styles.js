@@ -9,10 +9,12 @@ export const Container = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 20px;
+    align-items: center;
+
+    div {
+        display: flex;
+        justify-content: center;
+    }
 `;
 
 export const Logo = styled.div`
@@ -26,7 +28,6 @@ export const Logo = styled.div`
 `;
 
 export const Info = styled.div`
-    width: 180px;
     font-weight: 700;
     font-size: 20px;
     line-height: 24px;

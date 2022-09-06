@@ -14,11 +14,11 @@ export default function ResUser(props) {
 
     function postRespostas(Respostas) {
         const respostas = async () => {
+            api.post('/resposta', {
+                fk_usuario: localStorage.getItem('id').substring(1, (localStorage.getItem('id')).length - 1),
+                Respostas
+            })
             try {
-                api.post('/resposta', {
-                    fk_usuario: localStorage.getItem('id').substring(1, (localStorage.getItem('id')).length - 1),
-                    Respostas
-                })
                 window.location.href = '/homeU'
             } catch (error) {
                 console.log(error);
@@ -65,7 +65,7 @@ export default function ResUser(props) {
                 <AllCards>
                     {Perguntas?.length > 0 ? (
                         Perguntas?.map((p, index) => (
-                            <CardPergunta key={p.id} edit={false} pergunta={p} setResposta={setRespostas} index={index} respostas={Respostas} />
+                            <CardPergunta perguntas={Perguntas} key={p.id} edit={false} pergunta={p} setResposta={setRespostas} index={index} respostas={Respostas} />
                         ))
                     ) : (
                         <div>
@@ -73,7 +73,7 @@ export default function ResUser(props) {
                         </div>
                     )}
 
-                    <Button onClick={(e) => postRespostas(Respostas)} >Enviar</Button>
+                    <Button onClick={() => postRespostas(Respostas)} >Enviar</Button>
                 </AllCards>
             </Container>
         </>

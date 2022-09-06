@@ -8,7 +8,6 @@ import api from '../../../api'
 
 function Criarpesquisa() {
   const id = window.location.pathname.substring(15,)
-  console.log(id)
   const [perguntas, setPerguntas] = useState([{enunciado: "Primeira Pergunta"}])
   const [dadosRecebidos, setDadosRecebidos] = useState(false)
   const [titulo, setTitulo] = useState({ 
@@ -25,6 +24,12 @@ function Criarpesquisa() {
     })
   }
 
+  const removerPergunta = (index) => {
+    setPerguntas(valoresAntigos => {
+      return (valoresAntigos.filter((perg, ind) => ind !== index))
+    })
+  }
+
   const getDados = () => {
     api
       .get(`/pesquisa/${id}`)
@@ -38,23 +43,17 @@ function Criarpesquisa() {
     getDados()
   } 
 
+  const PostPerguntas = (e) => {
+    e.preventDefault()
+    api
+      .post(`/perguntas/pesquisa/${id}`, { perguntas: perguntas })
+      .then((res) => console.log(res))
+  }
+
   function Setavoltar(){
     function voltar(){  window.history.back(); }
     return <BsArrowLeftShort onClick={voltar} style={{fontSize: '20px'}}/>
   } 
-
-  const postPesquisa = (e) => {
-    e.PreventDefault()
-
-    api.post('/pesquisa', {
-      id: localStorage.getItem['id'],
-      titulo, perguntas, 
-    })
-    .then(res => {
-      console.log(res)
-    })
-    .catch(err => alert(err))
-  }
   
   return (
     dadosRecebidos &&
@@ -64,7 +63,7 @@ function Criarpesquisa() {
           <Setavoltar/>
           <span>Criando Nova Pesquisa</span>
         </div>
-        <BtnConcluir onClick={(e) => { postPesquisa(e) }}>Concluir Criação da Pesquisa</BtnConcluir>
+        <BtnConcluir onClick={(e) => { PostPerguntas(e) }}>Concluir Criação da Pesquisa</BtnConcluir>
       </FixedBar>
 
       <Pagina>
@@ -72,7 +71,14 @@ function Criarpesquisa() {
 
         <BodyPesquisa>
           <ListaPerguntas>
-            {perguntas.map((perg, index) => <CardPergunta key={index} pergunta={perg} perguntas={perguntas} setPerguntas={setPerguntas} index={index} edit={true}/> )}
+            {perguntas.map((_, index) => 
+              <CardPergunta 
+                key={index}
+                perguntas={perguntas}
+                setPerguntas={setPerguntas}
+                index={index}
+                removerPergunta={removerPergunta}
+                edit={true}/> )}
           </ListaPerguntas>
 
           <AdicionarPergunta onClick={() => adicionarPergunta()}>
