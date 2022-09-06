@@ -13,21 +13,19 @@ import {
 export default function ResUser(props) {
 
     function postRespostas(Respostas) {
-        const respostas = async () => {
-            try {
-                api.post('/resposta', {
-                    fk_usuario: localStorage.getItem('id').substring(1, (localStorage.getItem('id')).length - 1),
-                    Respostas
-                })
-                window.location.href = '/homeU'
-            } catch (error) {
-                console.log(error);
-                if (error.response.status === 401) {
-                    window.location.href = '/'
-                }
+        try {
+            api.post('/resposta', {
+                fk_usuario: localStorage.getItem('id').substring(1, (localStorage.getItem('id')).length - 1),
+                Respostas
+            })
+            window.location.href = '/homeU'
+        } catch (error) {
+            console.log(error);
+            if (error.response.status === 401) {
+                window.location.href = '/'
             }
-        };
-        respostas();
+        }
+
     }
 
 
