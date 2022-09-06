@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const HeaderHome = styled.div`
     background: rgba(52, 122, 226, 0.7);
     display: block;
-    width: 100%;
+    width: 104rem;
     height: 28vh;
     
 `;
@@ -13,6 +13,7 @@ export const CardHome = styled.div`
     height: 10rem;
     margin-top: 7%;
     margin-left: 1.2%;
+   
     
 `;
 export const CardPercentual = styled.div`
