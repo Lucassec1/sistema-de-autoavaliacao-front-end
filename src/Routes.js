@@ -28,7 +28,7 @@ const PrivateRoute = ({ Item }) => {
 export default function Rotas(){
     return(
     <BrowserRouter>
-        {localStorage.getItem('token') ? localStorage.getItem("tipo") !== '3' ? <SideBar /> : null : null}
+        {window.location.pathname !== '/' ? localStorage.getItem("tipo") !== '3' ? <SideBar /> : null : null}
         <Routes>
             <Route exact path='/' element={<Login />} />
             <Route exact path="/home" element={<PrivateRoute Item={Home} />} />
