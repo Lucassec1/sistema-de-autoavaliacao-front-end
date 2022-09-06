@@ -65,7 +65,7 @@ export default function ResUser(props) {
                 <AllCards>
                     {Perguntas?.length > 0 ? (
                         Perguntas?.map((p, index) => (
-                            <CardPergunta key={p.id} edit={false} pergunta={p} setResposta={setRespostas} index={index} respostas={Respostas} />
+                            <CardPergunta perguntas={Perguntas} key={p.id} edit={false} pergunta={p} setResposta={setRespostas} index={index} respostas={Respostas} />
                         ))
                     ) : (
                         <div>
