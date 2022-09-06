@@ -13,23 +13,15 @@ import {
 export default function ResUser(props) {
 
     function postRespostas(Respostas) {
-        const respostas = async () => {
-            api.post('/resposta', {
+        const updateStatus = async () => {
+            const response = await api.post('/resposta', {
                 fk_usuario: localStorage.getItem('id').substring(1, (localStorage.getItem('id')).length - 1),
                 Respostas
-            })
-            try {
-                window.location.href = '/homeU'
-            } catch (error) {
-                console.log(error);
-                if (error.response.status === 401) {
-                    window.location.href = '/'
-                }
-            }
-        };
-        respostas();
+            }, [])
+            window.location.href = '/homeU'
+          }
+          updateStatus()
     }
-
 
     const [Pesquisa, setPesquisa] = useState('');
     const [Perguntas, setPerguntas] = useState('');
