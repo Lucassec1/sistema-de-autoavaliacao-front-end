@@ -36,13 +36,8 @@ export default function NavBarHome(props) {
           })
     })
     
-
     count.reverse();
     daysLastWeek.reverse();
-
-    console.log(dates)
-    console.log(daysLastWeek)
-    console.log(count)
 
     const sum = count.reduce((accumulator, value) => {
         return accumulator + value;
