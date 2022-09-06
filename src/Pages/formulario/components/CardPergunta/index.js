@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
+import api from '../../../../api';
 import { Container, Titulo, NotaButtons, Nota, CloseButton } from './styles';
 
-function CardPergunta({ pergunta, index, perguntas, setPerguntas, edit, setResposta, respostas }) {
-    const [titulo, setTitulo] = useState(pergunta.enunciado)
+function CardPergunta({ index, perguntas, setPerguntas, edit, setResposta, respostas, removerPergunta }) {
+    const [titulo, setTitulo] = useState(perguntas[index].enunciado)
 
     const [notaEscolhida, setNotaEscolhida] = useState()
     const [nota, setNota] = useState(-1)  // State da nota que o mouse está em cima
@@ -35,14 +36,9 @@ function CardPergunta({ pergunta, index, perguntas, setPerguntas, edit, setRespo
     console.log(respostasAtualizadas)
   }
 
-  const removePergunta = () => {
-    let atualizado = perguntas.filter((pe, ind) => ind != index)
-    setPerguntas(atualizado)
-  }
-
   return (
     <Container>
-        {/* { edit && <CloseButton onClick={() => removePergunta()}>x</CloseButton>} */}
+        {/* { edit && <CloseButton onClick={() => removerPergunta(index)}>x</CloseButton>} */}
         <Titulo
           tipe="text"
           value={titulo}
