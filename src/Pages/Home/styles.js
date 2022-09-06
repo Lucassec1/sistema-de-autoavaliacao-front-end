@@ -34,7 +34,7 @@ export const NomeUsuario = styled.div`
     line-height: 22px;
     color: #06152B;
     margin-left: 2%;
-    width: 2rem;
+    width: 17rem;
 `;
 
 export const HeaderRenderUsusarios = styled.div` 

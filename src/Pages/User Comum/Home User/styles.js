@@ -4,7 +4,7 @@ export const Container = styled.div`
     display: flex;
     flex-direction:  column;
 
-    background-color: white;
+    background-color: WHITE;
     width: 100%;
 
     align-items: center;
@@ -15,7 +15,7 @@ export const AllCards = styled.div`
     flex-direction: column;
     align-items: center;
 
-    width: 90%;
+    width: 100%;
     height: 600px;
 
     margin-top: 30px;
@@ -39,7 +39,7 @@ export const AllCards = styled.div`
 
 export const Card = styled.div`
     height: 30%;
-    width: 60%; 
+    width: 40%; 
 
     background: rgba(217, 217, 217, 0.3);
     border-radius: 20px;

@@ -29,7 +29,6 @@ export default function Home() {
         receber.push(usuarios[user])
     }
 
-    console.log(receber)
 
     const nome = receber.map((nameuser) => nameuser?.nome);
     return (
@@ -49,12 +48,10 @@ export default function Home() {
                                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                     <BsFillPersonFill style={{ background: 'rgba(33, 126, 253, 0.298039)', borderRadius: '6px', width: '30px', height: '25px', color: '#217EFD' }}/>
                                     <NomeUsuario>
-
                                         {nome}
-
                                     </NomeUsuario>
                                     </div>
-                                    <FiArrowUpRight style={{ background: 'rgba(26, 213, 152, 0.2)', color: '#1AD598', width: '3.2%', height: '24px', borderRadius: '10rem', marginLeft: '31rem' }} />
+                                    <FiArrowUpRight style={{ background: 'rgba(26, 213, 152, 0.2)', color: '#1AD598', width: '3.2%', height: '24px', borderRadius: '10rem', marginLeft: '16rem' }} />
                                     <p style={{ color: '#1AD598' }}>+ 7,44%</p>
                                     </div>
                                 </li>
