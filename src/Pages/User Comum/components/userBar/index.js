@@ -46,12 +46,16 @@ export default function UserHeader() {
 
     return (
         <Container>
-            <Logo></Logo>
-            <Info>Informações sobre a Instituição</Info>
-
-            <Dropdown.Button overlay={menu} placement="bottom" icon={<UserOutlined />} >
-                {localStorage.getItem('user')}
-            </Dropdown.Button>
+            <div style={{width: '20%'}}>
+                <Logo></Logo>
+            </div>
+            <div style={{width: '60%'}}>
+                <Info>SENAI</Info>
+            </div>
+            <div style={{width: '20%'}}>
+                <Dropdown.Button overlay={menu} placement="bottom" icon={<UserOutlined />} >
+                </Dropdown.Button>
+            </div>
         </Container>
     )
 }
