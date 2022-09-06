@@ -12,6 +12,8 @@ export const Top = styled.div`
   background-color: #70A1EA;
   height: 120px;
   padding: 20px;
+  display: flex;
+  align-items: center;
 
   h1 {
     color: white;
@@ -33,3 +35,25 @@ export const ContTipos = styled.div`
   }
 `;
 
+export const Body = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  padding: 50px;
+  font-weight: bolder;
+`;
+
+export const ContSearch = styled.div`
+  display: flex;
+  width: 700px;
+  
+  h2 {
+    width: 400px;
+    margin-right: 30px;
+  }
+`;
+
+export const ContPesquisas = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+`;

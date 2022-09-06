@@ -1,47 +1,61 @@
-import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';    
 import api from '../../../api'
+import { Input } from 'antd';
 import CardCriarPesquisa from './CardCriarPesquisa';
-import { Container, Top, ContTipos } from './styles';
+import { Container, Top, ContTipos, Body, ContSearch, ContPesquisas } from './styles';
 import { BsArrowLeftShort } from "react-icons/bs";
+const { Search } = Input;
 
 function CriarpesquisaMenu() {
-    const navigate = useNavigate();
-
+    // Buscando os tipo de pesquisa na API
     const [tiposPesquisa, setTiposPesquisa] = useState()
     const getTiposPesquisa = () => {
         api.get(`/tipoPesquisa`)
             .then(res => { setTiposPesquisa(res.data) })
             .catch(err => { alert(err) })
     }
-    
     if (!tiposPesquisa) getTiposPesquisa()
-    
-    function Setavoltar(){
-        function voltar(){
-            window.history.back();
-        }
-        return(
-            <>
-                <BsArrowLeftShort onClick={voltar} style={{fontSize: '20px'}}/>
-            </>
-        )
+
+    // Buscando as pesquisas
+    const [pesquisas, setPesquisas] = useState()
+    const [pesquisasFiltradas, setPesquisasFiltradas] = useState()
+    const getPesquisas = () => {
+        api
+            .get("/pesquisa")
+            .then((res) => { setPesquisas(res.data); setPesquisasFiltradas(res.data) })
+            .catch((err) => { console.error(err) })
     }
-    return (
-        tiposPesquisa &&
+    if (!pesquisas) getPesquisas()
+
+    const onSearch = (e) => {
         
+    };
+    
+    function voltar() { window.history.back() }
+
+    return (
+        tiposPesquisa && pesquisas &&
         <Container>
             <Top>
-                <Setavoltar/>
+                <BsArrowLeftShort onClick={voltar} style={{fontSize: '20px'}}/>
                 <h1>Criando uma nova pesquisa</h1>
             </Top>
             
             <ContTipos>
-                {tiposPesquisa.map(pesq => 
-                    <CardCriarPesquisa key={pesq.id} values={pesq} tipoPesquisa={pesq.id}/>
-                )}
-                
+                {tiposPesquisa.map(pesq => <CardCriarPesquisa key={pesq.id} values={pesq} tipoPesquisa={pesq.id}/> )}
             </ContTipos>
+
+            <Body>
+                <ContSearch>
+                    <h2>TODAS AS PESQUISAS</h2>
+                    <Search placeholder="Buscar por uma pesquisa" onChange={onSearch} enterButton />
+                </ContSearch>
+                <ContPesquisas>
+                    {pesquisasFiltradas.map((pesq, index) =>
+                        <p key={index}>{pesq.titulo}</p>
+                    )}
+                </ContPesquisas>
+            </Body>
         </Container>
     );
 }
