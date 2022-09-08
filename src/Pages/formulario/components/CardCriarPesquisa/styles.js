@@ -7,6 +7,7 @@ export const Container = styled.button`
     border: 0;
     background-color: transparent;
     text-decoration: none;
+    cursor: pointer;
 
     h2 {
         font-size: 20px;

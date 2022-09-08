@@ -1,9 +1,10 @@
 import React, { useState } from 'react';    
 import api from '../../../api'
 import { Input } from 'antd';
-import CardCriarPesquisa from './CardCriarPesquisa';
+import CardCriarPesquisa from '../components/CardCriarPesquisa';
 import { Container, Top, ContTipos, Body, ContSearch, ContPesquisas } from './styles';
 import { BsArrowLeftShort } from "react-icons/bs";
+import CardPesquisa from '../components/CardPesquisa'; 
 const { Search } = Input;
 
 function CriarpesquisaMenu() {
@@ -28,7 +29,9 @@ function CriarpesquisaMenu() {
     if (!pesquisas) getPesquisas()
 
     const onSearch = (e) => {
-        
+        if (e.target.value === "") { setPesquisasFiltradas(pesquisas); return }
+        let results = pesquisas.filter((pesq) => pesq.titulo && pesq.titulo.toLowerCase().includes(e.target.value.toLowerCase())) 
+        setPesquisasFiltradas(results)
     };
     
     function voltar() { window.history.back() }
@@ -52,7 +55,7 @@ function CriarpesquisaMenu() {
                 </ContSearch>
                 <ContPesquisas>
                     {pesquisasFiltradas.map((pesq, index) =>
-                        <p key={index}>{pesq.titulo}</p>
+                        <CardPesquisa key={index} pesquisa={pesq}/>
                     )}
                 </ContPesquisas>
             </Body>
