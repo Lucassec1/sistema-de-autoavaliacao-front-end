@@ -4,6 +4,7 @@ import { Input } from 'antd';
 import CardCriarPesquisa from '../components/CardCriarPesquisa';
 import { Container, Top, ContTipos, Body, ContSearch, ContPesquisas } from './styles';
 import { BsArrowLeftShort } from "react-icons/bs";
+import CardPesquisa from '../components/CardPesquisa'; 
 const { Search } = Input;
 
 function CriarpesquisaMenu() {
@@ -54,7 +55,7 @@ function CriarpesquisaMenu() {
                 </ContSearch>
                 <ContPesquisas>
                     {pesquisasFiltradas.map((pesq, index) =>
-                        <p key={index}>{pesq.titulo}</p>
+                        <CardPesquisa key={index} pesquisa={pesq}/>
                     )}
                 </ContPesquisas>
             </Body>
