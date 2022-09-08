@@ -108,9 +108,19 @@ const NumericInput = (props) => {
         style={{
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
-          gap: '10px',
+          alignItems: 'center'
           }}>
+
+      <Form.Item 
+        label="CPF"
+        name="cpf"
+        validateStatus={status}
+        help={helpMessage}
+        rules={[
+          {
+            required: true,
+            message: "O CPF é obrigatório!",
+          },]}>
         <Controller
           name="reactMaskInput"
           control={control}
@@ -140,18 +150,8 @@ const NumericInput = (props) => {
             </InputMask>
           )}
         />
+      </Form.Item>
         
-
-      {/* <form onSubmit={handleSubmit()}>
-        <Controller
-          as={InputMask}
-          control={control}
-          mask="999.999.999-99"
-          name="cpf"
-          // defaultValue={user.cpf}
-        />
-      </form> */}
-
       {/* <Form
         name="basic"
         layout="vertical"
@@ -195,7 +195,7 @@ const NumericInput = (props) => {
         <Form.Item
           style={{ display: visible }}
           minLength={8}
-          //label="Senha"
+          label="Senha"
           validateStatus={status}
           help={wrongPasswordMessage}
           name="senha"
