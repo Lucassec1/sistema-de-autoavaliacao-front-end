@@ -8,6 +8,8 @@ function CardCriarPesquisa(props) {
     const [visible, setVisible] = useState(false);
     const [titulo, setTitulo] = useState()
     const [grupo, setGrupo] = useState(0)
+    const [dataInicio, setDataInicio] = useState()
+    const [dataFim, setDataFim] = useState()
 
     const showModal = () => {
         setVisible(true);
@@ -15,11 +17,13 @@ function CardCriarPesquisa(props) {
 
     const handleOk = () => {
         api.post('/pesquisa', {
-            "titulo": titulo,
-            "descricao": "Descrição em Branco",
-            "fk_grupo": grupo,
-            "fk_tipo_pesquisa": props.tipoPesquisa,
-            "fk_usuario": 3
+            titulo: titulo,
+            descricao: "Descrição em Branco",
+            fk_grupo: grupo,
+            fk_tipo_pesquisa: props.tipoPesquisa,
+            fk_usuario: 3,
+            data_inicio: dataInicio,
+            data_fim: dataFim
         })
         .then((res) => {
             setTimeout(() => { setVisible(false)}, 0);
@@ -48,7 +52,7 @@ function CardCriarPesquisa(props) {
 
             <Modal
                 visible={visible}
-                title="Title"
+                title="Criar Nova Pesquisa"
                 onOk={handleOk}
                 onCancel={handleCancel}
                 footer={[
@@ -57,12 +61,16 @@ function CardCriarPesquisa(props) {
                     </Button>
                 ]}
             >
-                <FormPesquisa grupos={grupos} setTit={setTitulo} setGrup={setGrupo}/>
+                <FormPesquisa
+                    grupos={grupos}
+                    setTit={setTitulo}
+                    setGrup={setGrupo}
+                    setDataInicio={setDataInicio}
+                    setDataFim={setDataFim}
+                />
             </Modal>
         </Container>
     );
 }
 
 export default CardCriarPesquisa;
-
-// href={props.href}>
