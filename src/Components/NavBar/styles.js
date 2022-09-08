@@ -37,7 +37,7 @@ export const HeaderCardHome = styled.div`
     align-items: center;
 `;
 export const NumericEstatistica = styled.div`
-    background: rgba(221, 253, 239, 0.8);
+    background: ${props => props.color === "growth" ? "#DDFDEF" : "#FDDDE1"};
     border-radius: 4px;
     font-family: 'Mulish';
     font-style: normal;
@@ -47,8 +47,9 @@ export const NumericEstatistica = styled.div`
     display: flex;
     align-items: center;
     text-align: center;
-    color: #00DC7D;
-    width: 40px;
+    color: ${props => props.color === "growth" ? "#00DC7D" : "#FF324B"};
+    width: fit-content;
+    padding: 1%;
     height: 25px;
 `;
 
