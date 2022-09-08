@@ -1,11 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import "antd/dist/antd.css";
-import { InputNumber } from 'antd';
-import { Input, Tooltip, Form, Button } from "antd";
+import { Input, Form, Button } from "antd";
 import api from "../../../../api";
 import { ButtonContainer, LoginButton } from "./styles.js";
-import { createContext } from "react";
-import UserContext from "../../../../UserContext";
+import { useForm, Controller } from "react-hook-form";
+import InputMask from "react-input-mask";
 
 //export const CpfContext = createContext([]);
 
@@ -29,23 +28,24 @@ const NumericInput = (props) => {
     if (value.charAt(value.length - 1) === "." || value === "-") {
       valueTemp = value.slice(0, -1);
     }
-
+    
     onChange(valueTemp.replace(/0*(\d+)/, "$1"));
   };
-
+  
   const title = value ? (
     <span className="numeric-input-title">
       {value !== "-" ? formatNumber(Number(value)) : "-"}
     </span>
   ) : (
     "Digite seu CPF"
-  );
+    );
+  
+  const { handleSubmit, control } = useForm();
 
   const [visible, setVisible] = useState("none");
   const [cpf, setCpf] = useState("");
   const [senha, setSenha] = useState();
   const [loading, setLoading] = useState(false);
-  //const [context, setContext] = useContext(UserContext);
 
   async function PostCpf(e) {
     e.preventDefault();
@@ -96,10 +96,63 @@ const NumericInput = (props) => {
     status = "error";
   }
 
+  function FormatarCpf(value) {
+    const CPF = value.split(".")
+    const UltimosDigitos = CPF[CPF.length - 1].split("-")
+    setCpf(CPF[0]+CPF[1]+UltimosDigitos[0]+UltimosDigitos[1]);
+  }
+
   return (
     <>
-      <Form
-        overlayClassName="numeric-input"
+      <Form 
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '10px',
+          }}>
+        <Controller
+          name="reactMaskInput"
+          control={control}
+          render={({ field: { onChange } }) => (
+            <InputMask 
+              style={{
+                width: '220px', 
+                height: '32px', 
+                padding: '4px 11px'
+              }}
+
+              mask="999.999.999-99" 
+              placeholder='Digite seu CPF' 
+              onChange={(e) => {
+                handleChange(e);
+                FormatarCpf(e.target.value);
+                setNotFound(false);
+            }}>
+              {(inputProps) => (
+                <input
+                  {...inputProps}
+                  type="tel"
+                  className="input"
+                  disableUnderline
+                />
+              )}
+            </InputMask>
+          )}
+        />
+        
+
+      {/* <form onSubmit={handleSubmit()}>
+        <Controller
+          as={InputMask}
+          control={control}
+          mask="999.999.999-99"
+          name="cpf"
+          // defaultValue={user.cpf}
+        />
+      </form> */}
+
+      {/* <Form
         name="basic"
         layout="vertical"
         size="large"
@@ -125,7 +178,7 @@ const NumericInput = (props) => {
               message: "O CPF é obrigatório!",
             }, 
             {
-              pattern: /^(?:\d*)$/,
+              // pattern: /^(?:\d*)$/,
               message: "O CPF deve conter apenas números!",
             },
           ]}
@@ -137,12 +190,12 @@ const NumericInput = (props) => {
           }}
         >
           <Input maxLength={11} minLength={11} placeholder='Digite seu CPF' style={{width: '235px'}}/>
-        </Form.Item>
+        </Form.Item> */}
 
         <Form.Item
           style={{ display: visible }}
           minLength={8}
-          label="Senha"
+          //label="Senha"
           validateStatus={status}
           help={wrongPasswordMessage}
           name="senha"
@@ -159,7 +212,7 @@ const NumericInput = (props) => {
           }}
         >
           <Input.Password placeholder="Digite sua senha" type="password" />
-        </Form.Item>
+        </Form.Item> 
 
         <ButtonContainer>
           <LoginButton
@@ -173,6 +226,7 @@ const NumericInput = (props) => {
           </LoginButton>
         </ButtonContainer>
       </Form>
+      
     </>
   );
 };
