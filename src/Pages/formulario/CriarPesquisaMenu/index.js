@@ -1,7 +1,7 @@
 import React, { useState } from 'react';    
 import api from '../../../api'
 import { Input } from 'antd';
-import CardCriarPesquisa from './CardCriarPesquisa';
+import CardCriarPesquisa from '../components/CardCriarPesquisa';
 import { Container, Top, ContTipos, Body, ContSearch, ContPesquisas } from './styles';
 import { BsArrowLeftShort } from "react-icons/bs";
 const { Search } = Input;
