@@ -22,7 +22,7 @@ function CardPergunta({ index, perguntas, setPerguntas, edit, setResposta, respo
 
   const handleChange = (e) => {
     let atualizado = perguntas
-    atualizado[index] = {titulo: e.target.value}
+    atualizado[index] = {enunciado: e.target.value}
     setTitulo(e.target.value)
     
     edit ? setPerguntas(atualizado) :

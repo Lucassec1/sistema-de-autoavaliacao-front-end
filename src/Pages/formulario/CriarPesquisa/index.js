@@ -10,6 +10,7 @@ function Criarpesquisa() {
   const id = window.location.pathname.substring(15,)
   const [perguntas, setPerguntas] = useState([{enunciado: "Primeira Pergunta"}])
   const [dadosRecebidos, setDadosRecebidos] = useState(false)
+  const [edit, setEdit] = useState(true)
   const [titulo, setTitulo] = useState({ 
     titulo: "",
     descricao: "Descrição"
@@ -35,6 +36,10 @@ function Criarpesquisa() {
       .get(`/pesquisa/${id}`)
       .then((res) => {
         setTitulo({titulo: res.data.titulo, descricao: res.data.descricao})
+        if (res.data.perguntas.length > 0) {
+          setPerguntas(res.data.perguntas)
+          setEdit(false)
+        }
         setDadosRecebidos(true)
       })
   }
@@ -50,20 +55,20 @@ function Criarpesquisa() {
       .then((res) => console.log(res))
   }
 
-  function Setavoltar(){
-    function voltar(){  window.history.back(); }
-    return <BsArrowLeftShort onClick={voltar} style={{fontSize: '20px'}}/>
-  } 
+  function voltar() { window.history.back(); }
   
   return (
     dadosRecebidos &&
     <Container>
       <FixedBar>
         <div style={{display: "flex", alignItems: "center"}}>
-          <Setavoltar/>
+          <BsArrowLeftShort onClick={voltar}/>
           <span>Criando Nova Pesquisa</span>
         </div>
-        <BtnConcluir onClick={(e) => { PostPerguntas(e) }}>Concluir Criação da Pesquisa</BtnConcluir>
+        {edit
+        ? <BtnConcluir onClick={(e) => { PostPerguntas(e) }}>Concluir Criação da Pesquisa</BtnConcluir>
+        : <BtnConcluir>Compartilhar</BtnConcluir>
+      }
       </FixedBar>
 
       <Pagina>
@@ -78,12 +83,15 @@ function Criarpesquisa() {
                 setPerguntas={setPerguntas}
                 index={index}
                 removerPergunta={removerPergunta}
-                edit={true}/> )}
+                edit={edit}
+                /> )}
           </ListaPerguntas>
 
+          {edit &&
           <AdicionarPergunta onClick={() => adicionarPergunta()}>
             <AiOutlinePlus/>
           </AdicionarPergunta>
+          }
 
         </BodyPesquisa>
       </Pagina>
