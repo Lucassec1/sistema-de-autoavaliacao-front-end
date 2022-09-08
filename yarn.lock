@@ -9264,6 +9264,11 @@
     "char-regex" "^2.0.0"
     "strip-ansi" "^7.0.1"
 
+"string-mask@^0.3.0":
+  "integrity" "sha512-YR93J2lCJyA9GYDHoPk2Yzykw6zc/A2KkcRchSMuLo9tTKDfawqrU/sGf2kxGelPyYTAgQ4j5MLWob/7tJ68bg=="
+  "resolved" "https://registry.npmjs.org/string-mask/-/string-mask-0.3.0.tgz"
+  "version" "0.3.0"
+
 "string-natural-compare@^3.0.1":
   "integrity" "sha512-n3sPwynL1nwKi3WJ6AIsClwBMa0zTi54fn2oLU6ndfTSIO05xaznjSf15PcBZU6FNWbmN5Q6cxT4V5hGvB4taw=="
   "resolved" "https://registry.npmjs.org/string-natural-compare/-/string-natural-compare-3.0.1.tgz"

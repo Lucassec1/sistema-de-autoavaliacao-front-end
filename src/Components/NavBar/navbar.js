@@ -94,7 +94,7 @@ export default function NavBarHome(props) {
                             <Card bordered={false} style={{ background: '#fafafa', border: '1px solid #EBEBEB', boxShadow: '0px 1px 5px rgba(32, 90, 177, 0.1)', borderRadius: '4px' }}>
                                 <HeaderCardHome>
                                     Pesquisas Adicionadas
-                                    <NumericEstatistica>+7%</NumericEstatistica>
+                                    <NumericEstatistica>+{aumentoPesquisas.toFixed(1)}%</NumericEstatistica>
                                 </HeaderCardHome>
                                 <Contador>{pesquisas.length}</Contador>
                                 <Textp>Período de 7 dias</Textp>

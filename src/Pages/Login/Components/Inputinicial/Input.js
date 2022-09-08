@@ -1,12 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import "antd/dist/antd.css";
-import { InputNumber } from 'antd';
-import { Input, Tooltip, Form, Button } from "antd";
+import { Input, Form, Button } from "antd";
 import api from "../../../../api";
 import { ButtonContainer, LoginButton } from "./styles.js";
-import { createContext } from "react";
-import UserContext from "../../../../UserContext";
-
+import StringMask from "string-mask";
 //export const CpfContext = createContext([]);
 
 const formatNumber = (value) => new Intl.NumberFormat().format(value);
@@ -116,6 +113,7 @@ const NumericInput = (props) => {
       >
         <Form.Item
           label="CPF"
+          oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
           name="cpf"
           validateStatus={status}
           help={helpMessage}
@@ -125,7 +123,7 @@ const NumericInput = (props) => {
               message: "O CPF é obrigatório!",
             }, 
             {
-              pattern: /^(?:\d*)$/,
+              // pattern: /^(?:\d*)$/,
               message: "O CPF deve conter apenas números!",
             },
           ]}
