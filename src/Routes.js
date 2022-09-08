@@ -25,21 +25,21 @@ const PrivateRoute = ({ Item }) => {
   return token ? userType !== '3' ?  <Item /> : <HomeUser/> : <Login />;
 };
 
-export default function Rotas(){
-    return(
+export default function Rotas() {
+  return(
     <BrowserRouter>
-        {window.location.pathname !== '/' ? localStorage.getItem("tipo") !== '3' ? <SideBar /> : null : null}
-        <Routes>
-            <Route exact path='/' element={<Login />} />
-            <Route exact path="/home" element={<PrivateRoute Item={Home} />} />
-            <Route exact path="/cadastros" element={<PrivateRoute Item={Cadastros} />} />
-            {/* <Route exact path="/pesquisas" element={<PrivateRoute Item={Formula} />} /> */}
-            {/* <Route exact path="/minhapesquisa" element={<PrivateRoute Item={Minhapesquisa} />} /> */}
-            <Route exact path="/homeU" element={<PrivateRoute Item={HomeUser} />} />
-            <Route exact path="/pesquisas" element={<PrivateRoute Item={Criarpesquisamenu} />} />
-            <Route exact path="/criarpesquisa/:tipo" element={<PrivateRoute Item={Criarpesquisa} />} />
-            <Route exact path="/pesquisa/:id" element={<PrivateRoute Item={ResUser} />} />
-        </Routes>
+      {window.location.pathname !== '/' ? localStorage.getItem("tipo") !== '3' ? <SideBar /> : null : null}
+      <Routes>
+          <Route exact path='/' element={<Login />} />
+          <Route exact path="/home" element={<PrivateRoute Item={Home} />} />
+          <Route exact path="/cadastros" element={<PrivateRoute Item={Cadastros} />} />
+          {/* <Route exact path="/pesquisas" element={<PrivateRoute Item={Formula} />} /> */}
+          {/* <Route exact path="/minhapesquisa" element={<PrivateRoute Item={Minhapesquisa} />} /> */}
+          <Route exact path="/homeU" element={<PrivateRoute Item={HomeUser} />} />
+          <Route exact path="/pesquisas" element={<PrivateRoute Item={Criarpesquisamenu} />} />
+          <Route exact path="/criarpesquisa/:tipo" element={<PrivateRoute Item={Criarpesquisa} />} />
+          <Route exact path="/pesquisa/:id" element={<PrivateRoute Item={ResUser} />} />
+      </Routes>
     </BrowserRouter>
-    )
+  )
 }

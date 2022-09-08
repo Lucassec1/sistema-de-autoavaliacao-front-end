@@ -1,7 +1,8 @@
 #lista{
     overflow: auto;
-    height: 25rem;
-    width: 49rem;
+    height: 20rem;
+    width: 50rem;
+    margin-top: -7%;
 }
 
 #lista::-webkit-scrollbar{
@@ -15,3 +16,4 @@
     border-radius: 20px;
 
 }
+

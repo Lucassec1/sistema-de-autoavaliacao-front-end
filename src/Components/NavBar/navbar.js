@@ -16,7 +16,6 @@ export default function NavBarHome(props) {
     const today = new Date();
     users.map(d => {
         dates.push(new Date(d.created_at).toISOString().split('T')[0])
-
     })
 
     for(let i = 0; i < 6; i++) {
@@ -27,13 +26,13 @@ export default function NavBarHome(props) {
     const count = [0, 0, 0, 0, 0, 0, 0];
 
     dates.map(t => {
-          let i = -1;
-          daysLastWeek?.map(u => {
+        let i = -1;
+        daysLastWeek?.map(u => {
             i++;
             if (t === u) {
                 count[i]++;
             }
-          })
+        })
     })
     
     count.reverse();
@@ -45,6 +44,45 @@ export default function NavBarHome(props) {
     console.log(sum)
 
     const aumento = (sum/users.length) * 100;
+
+
+    // pesquisas adicionadas 
+    const pesquisas = props.pesquisas;
+
+    const datesPesquisas = [];
+    const daysLastWeekPesquisas = [new Date().toISOString().split('T')[0],];
+    const todayPesquisas = new Date();
+    pesquisas.map(d => {
+        datesPesquisas.push(new Date(d.created_at).toISOString().split('T')[0])
+    })
+
+    for(let i = 0; i < 6; i++) {
+        const date = new Date(todayPesquisas.setDate(todayPesquisas.getDate() - 1))
+        daysLastWeekPesquisas.push(date.toISOString().split('T')[0])
+    }
+
+    const countPesquisas = [0, 0, 0, 0, 0, 0, 0];
+
+    datesPesquisas.map(t => {
+        let i = -1;
+        daysLastWeekPesquisas?.map(u => {
+            i++;
+            if (t === u) {
+                countPesquisas[i]++;
+            }
+        })
+    })
+    
+    countPesquisas.reverse();
+    daysLastWeekPesquisas.reverse();
+
+    const sumPesquisas = countPesquisas.reduce((accumulator, value) => {
+        return accumulator + value;
+      }, 0);
+    console.log(sumPesquisas)
+
+    const aumentoPesquisas = (sumPesquisas/pesquisas.length) * 100;
+
 
     return (
         <>
@@ -58,10 +96,10 @@ export default function NavBarHome(props) {
                                     Pesquisas Adicionadas
                                     <NumericEstatistica>+7%</NumericEstatistica>
                                 </HeaderCardHome>
-                                <Contador>3514</Contador>
+                                <Contador>{pesquisas.length}</Contador>
                                 <Textp>Período de 7 dias</Textp>
                                 <div style={{height: "70px", width: "75%"}}>
-                                    <LineChart  />
+                                    <LineChart data={countPesquisas} days={daysLastWeekPesquisas}/>
                                 </div>
                                 
                             </Card>
