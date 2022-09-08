@@ -43,7 +43,7 @@ export default function Home() {
                         {
                             nome.map((nome, key) => {
                                 return(
-                                <li style={{ listStyle: 'none', display: 'flex', marginLeft: '-2%', width: '43rem', padding: '3%', borderBottom: ' 1px solid rgba(37, 38, 40, 0.2)'}}>
+                                <li style={{ listStyle: 'none', display: 'flex', marginLeft: '-1%', width: '48rem', padding: '3%', borderBottom: ' 1px solid rgba(37, 38, 40, 0.2)'}}>
                                   <div style={{ display: 'flex', justifyContent: 'space-around' }}>
                                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                     <BsFillPersonFill style={{ background: 'rgba(33, 126, 253, 0.298039)', borderRadius: '6px', width: '30px', height: '25px', color: '#217EFD' }}/>
@@ -51,7 +51,7 @@ export default function Home() {
                                         {nome}
                                     </NomeUsuario>
                                     </div>
-                                    <FiArrowUpRight style={{ background: 'rgba(26, 213, 152, 0.2)', color: '#1AD598', width: '3.2%', height: '24px', borderRadius: '10rem', marginLeft: '16rem' }} />
+                                    <FiArrowUpRight style={{ background: 'rgba(26, 213, 152, 0.2)', color: '#1AD598', width: '3.2%', height: '24px', borderRadius: '10rem', marginLeft: '21rem' }} />
                                     <p style={{ color: '#1AD598' }}>+ 7,44%</p>
                                     </div>
                                 </li>
