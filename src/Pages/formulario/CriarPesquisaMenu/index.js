@@ -28,7 +28,9 @@ function CriarpesquisaMenu() {
     if (!pesquisas) getPesquisas()
 
     const onSearch = (e) => {
-        
+        if (e.target.value === "") { setPesquisasFiltradas(pesquisas); return }
+        let results = pesquisas.filter((pesq) => pesq.titulo && pesq.titulo.toLowerCase().includes(e.target.value.toLowerCase())) 
+        setPesquisasFiltradas(results)
     };
     
     function voltar() { window.history.back() }
