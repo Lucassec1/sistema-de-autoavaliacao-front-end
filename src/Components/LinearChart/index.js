@@ -47,21 +47,20 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 // ];
 
 export default function LinearChart(props) {
-    const data = [];
+  const data = [];
 
-    for (let i = 0; i < props.days?.length; i++) {
-      data.push({
-        name: props.days[i],
-        count: props.data[i]
-      })
-    }
+  for (let i = 0; i < props.days?.length; i++) {
+    data.push({
+      name: props.days[i],
+      count: props.data[i]
+    })
+  }
 
-    return (
-      <ResponsiveContainer width="100%" height="110%">
-        <LineChart width={400} height={200} style={{ marginLeft: '35%', marginTop: '-12%' }} data={data}>
-          <Line type="monotone" dataKey="count" stroke="#205AB1" strokeWidth={2}  dot={false} />
-        </LineChart>
-      </ResponsiveContainer>
-    );
-  
+  return (
+    <ResponsiveContainer width="100%" height="110%">
+      <LineChart width={400} height={200} style={{ marginLeft: '35%', marginTop: '-12%' }} data={data}>
+        <Line type="monotone" dataKey="count" stroke="#205AB1" strokeWidth={2}  dot={false} />
+      </LineChart>
+    </ResponsiveContainer>
+  );
 }

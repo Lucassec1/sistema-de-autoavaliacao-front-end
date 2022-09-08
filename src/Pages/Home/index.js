@@ -9,6 +9,8 @@ import React, { useState, useEffect } from "react";
 
 export default function Home() {
     const [ usuarios, setUsusarios ] = useState([])
+    const [pesquisas, setPesquisas ] = useState([])
+
 
     useEffect(() => {
         api.get('/usuarios')
@@ -23,6 +25,17 @@ export default function Home() {
     }, []
     )
 
+    useEffect(() => {
+        api.get('/pesquisa')
+            .then((response) => {
+                setPesquisas(response.data)
+            })
+            .catch((e) => {
+                console.log(e.response.data)
+            });
+    }, []
+    )
+    console.log(pesquisas)
 
     var receber = [];
     for (var user = 0; user < 8; user++) {
@@ -33,7 +46,7 @@ export default function Home() {
     const nome = receber.map((nameuser) => nameuser?.nome);
     return (
         <>
-            <NavBarHome usuarios={usuarios} />
+            <NavBarHome usuarios={usuarios} pesquisas={pesquisas} />
             <CardUsuarios class="row justify-content-around">
                 <div class="col-6">
                     <HeaderRenderUsusarios>Analise de usuarios</HeaderRenderUsusarios>
