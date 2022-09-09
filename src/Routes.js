@@ -36,7 +36,7 @@ export default function Rotas() {
           <Route exact path="/pesquisas" element={<PrivateRoute Item={Formula} />} /> 
           <Route exact path="/minhapesquisa" element={<PrivateRoute Item={Minhapesquisa} />} />
           <Route exact path="/homeU" element={<PrivateRoute Item={HomeUser} />} />
-          <Route exact path="/criarpesquisa" element={<PrivateRoute Item={Criarpesquisamenu} />} />
+          <Route exact path="/menupesquisa" element={<PrivateRoute Item={Criarpesquisamenu} />} />
           <Route exact path="/criarpesquisa/:tipo" element={<PrivateRoute Item={Criarpesquisa} />} />
           <Route exact path="/pesquisa/:id" element={<PrivateRoute Item={ResUser} />} />
       </Routes>

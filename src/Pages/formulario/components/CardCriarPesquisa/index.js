@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Container, Preview } from "./styles";
 import { Button, Modal, Form, Select, Input } from 'antd';
 import api from "../../../../api";
-import FormPesquisa from "./form";
+//import FormPesquisa from "./form";
 
 function CardCriarPesquisa(props) {
     const [visible, setVisible] = useState(false);
@@ -44,13 +44,16 @@ function CardCriarPesquisa(props) {
 
     if (!grupos) getGrupos()
 
+    
     return (
+        //<Container onClick={showModal}>
         grupos &&
-        <Container onClick={showModal}>
-            <Preview src="" alt="Aqui vai ter uma foto" />
-            <h2>{props.values.nome}</h2>
-
-            <Modal
+       
+            <Container>
+                <Preview src="" alt="Aqui vai ter uma foto" />
+                <h2>{props.values.nome}</h2>
+            </Container>
+            /*<Modal
                 visible={visible}
                 title="Criar Nova Pesquisa"
                 onOk={handleOk}
@@ -69,7 +72,7 @@ function CardCriarPesquisa(props) {
                     setDataFim={setDataFim}
                 />
             </Modal>
-        </Container>
+        </Container>*/
     );
 }
 
