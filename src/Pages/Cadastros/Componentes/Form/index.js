@@ -37,11 +37,11 @@ export default function CadastroPessoa() {
       tipo: tipo
     })
       .then(res => {
-        console.log('Deu Certo!')
+        
 
       })
       .catch(err => {
-        console.log('Bugou oh!')
+        
       })
   }
   return (

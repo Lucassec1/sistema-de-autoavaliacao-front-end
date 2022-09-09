@@ -70,10 +70,10 @@ function Cadastro (props) {
         .then(res => {
             props.getCadastros()
             setVisible(false)
-            console.log('Deu Certo!')
+           
         })
         .catch(err => {
-            console.log('Bugou oh!')
+           
         })
     }
 

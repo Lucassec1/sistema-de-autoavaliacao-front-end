@@ -70,14 +70,14 @@ export default function EditarCadastro(props) {
         })      
         .then(res => {
             setLoading(false)
-            console.log('Deu Certo!')
+            
             setVisible(false)
             props.update()
 
         })
         .catch(err => {
             setLoading(false)
-            console.log('Bugou oh!')
+            
         })
         }
 
@@ -85,12 +85,6 @@ export default function EditarCadastro(props) {
         setVisible(false);
     };
 
-    console.log(editarNome)
-    console.log(editarEmail)
-    console.log(editarSenha)
-    console.log(editarCpf)
-    console.log(editarFoto)
-    console.log(editarTipo)
 
     return (
         <>

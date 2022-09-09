@@ -2,7 +2,7 @@ import NavBarHome from "../../Components/NavBar/navbar"
 import { Grafico, NomeUsuario, CardUsuarios, HeaderRenderUsusarios } from "./styles"
 import Graficouse from './components/graficouse';
 import { BsFillPersonFill } from "react-icons/bs";
-import { FiArrowUpRight, FiArrowDownLeft } from "react-icons/fi";
+import { FiArrowUpRight } from "react-icons/fi";
 import api from "../../api";
 import './home.css'
 import React, { useState, useEffect } from "react";
@@ -15,11 +15,10 @@ export default function Home() {
         api.get('/usuarios')
             .then((response) => {
                 setUsusarios(response.data)
-                console.log("foi")
-
+               
             })
             .catch(() => {
-                console.log('n foi')
+               
             });
     }, []
     )
