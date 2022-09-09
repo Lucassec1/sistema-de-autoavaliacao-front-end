@@ -19,7 +19,7 @@ function navbargeral() {
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="me-auto">
                                 <Nav.Link > <BsArrowLeftShort onClick={voltar} /></Nav.Link>
-                                <Nav.Link href="/criarpesquisa"> Criar Pesquisa</Nav.Link>
+                                <Nav.Link href="/menupesquisa"> Criar Pesquisa</Nav.Link>
                                 <Nav.Link href="/minhapesquisa">Minhas Pesquisa</Nav.Link>
                             </Nav>
                         </Navbar.Collapse>

@@ -17,7 +17,7 @@ function CriarpesquisaMenu() {
     }
     if (!tiposPesquisa) getTiposPesquisa()
 
-    // Buscando as pesquisas
+   /* // Buscando as pesquisas
     const [pesquisas, setPesquisas] = useState()
     const [pesquisasFiltradas, setPesquisasFiltradas] = useState()
     const getPesquisas = () => {
@@ -32,12 +32,12 @@ function CriarpesquisaMenu() {
         if (e.target.value === "") { setPesquisasFiltradas(pesquisas); return }
         let results = pesquisas.filter((pesq) => pesq.titulo && pesq.titulo.toLowerCase().includes(e.target.value.toLowerCase())) 
         setPesquisasFiltradas(results)
-    };
+    };*/
     
     function voltar() { window.history.back() }
-
+//tiposPesquisa && pesquisas &&
     return (
-        tiposPesquisa && pesquisas &&
+        tiposPesquisa && 
         <Container>
             <Top>
                 <BsArrowLeftShort onClick={voltar} style={{fontSize: '20px'}}/>
@@ -48,7 +48,7 @@ function CriarpesquisaMenu() {
                 {tiposPesquisa.map(pesq => <CardCriarPesquisa key={pesq.id} values={pesq} tipoPesquisa={pesq.id}/> )}
             </ContTipos>
 
-            <Body>
+            {/*<Body>
                 <ContSearch>
                     <h2>TODAS AS PESQUISAS</h2>
                     <Search placeholder="Buscar por uma pesquisa" onChange={onSearch} enterButton />
@@ -58,7 +58,7 @@ function CriarpesquisaMenu() {
                         <CardPesquisa key={index} pesquisa={pesq}/>
                     )}
                 </ContPesquisas>
-            </Body>
+            </Body>*/}
         </Container>
     );
 }

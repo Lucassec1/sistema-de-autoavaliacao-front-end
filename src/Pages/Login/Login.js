@@ -17,7 +17,7 @@ import { Button } from 'antd';
 function Login() {
     //const {authenticated} = useContext(Context);
 
-    //console.log(authenticated);
+   
     return (
         <>
             <Container>
