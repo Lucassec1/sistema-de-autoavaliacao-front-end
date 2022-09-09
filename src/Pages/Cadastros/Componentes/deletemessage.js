@@ -10,7 +10,7 @@ export default function Dialog(props) {
         api
           .delete(`/usuarios/${props.record.key}`)
           .then(() => {
-            console.log("deletado")
+            
             props.update()
           })
           .catch(err => {

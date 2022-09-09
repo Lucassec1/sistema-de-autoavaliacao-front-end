@@ -27,7 +27,7 @@ export default function HomeUser(){
           })
       }, [])
 
-        //   console.log(pesquisa)
+        
 
     return(
         <Container>

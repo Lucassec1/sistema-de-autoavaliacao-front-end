@@ -33,7 +33,7 @@ function CardPergunta({ index, perguntas, setPerguntas, edit, setResposta, respo
     let respostasAtualizadas = respostas
     respostasAtualizadas[index].nota = nota
     setResposta(respostasAtualizadas)
-    console.log(respostasAtualizadas)
+    
   }
 
   return (

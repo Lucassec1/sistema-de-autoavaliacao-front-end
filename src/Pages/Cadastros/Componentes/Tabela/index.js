@@ -12,7 +12,7 @@ function Tabela({ usuario, getCadastros }) {
   const data = []
   const [cols, setCols] = useState()
 
-  // console.log(usuario)
+  
   function StringType(tipo) {
     if (tipo === 3) {
       return "Usuário comum"
@@ -33,8 +33,7 @@ function Tabela({ usuario, getCadastros }) {
     })
   });
 
-  console.log(usuario)
-  console.log(data);
+ 
 
   cols?.map(c => (
     c.title = c.title.charAt(0).toUpperCase() + c.title.slice(1)
