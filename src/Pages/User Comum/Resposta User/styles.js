@@ -16,7 +16,7 @@ export const AllCards = styled.div`
     align-items: center;
 
     width: 90%;
-    height: 600px;
+    height: 800px;
 
     margin-top: 30px;
 

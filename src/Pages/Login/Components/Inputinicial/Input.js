@@ -5,6 +5,7 @@ import api from "../../../../api";
 import { ButtonContainer, LoginButton } from "./styles.js";
 import { useForm, Controller } from "react-hook-form";
 import InputMask from "react-input-mask";
+import { red } from "@mui/material/colors";
 //export const CpfContext = createContext([]);
 
 const formatNumber = (value) => new Intl.NumberFormat().format(value);
@@ -131,6 +132,7 @@ const NumericInput = (props) => {
                 height: '32px', 
                 padding: '4px 11px',
                 border: '1px solid #d9d9d9',
+               
                 
               }}
 

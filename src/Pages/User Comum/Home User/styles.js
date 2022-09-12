@@ -3,10 +3,8 @@ import styled from "styled-components";
 export const Container = styled.div`
     display: flex;
     flex-direction:  column;
-
     background-color: WHITE;
     width: 100%;
-
     align-items: center;
 `;
 
@@ -14,12 +12,9 @@ export const AllCards = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-
     width: 100%;
-    height: 600px;
-
+    height: 800px;
     margin-top: 30px;
-
     overflow-y: scroll;
 
     scrollbar: 
