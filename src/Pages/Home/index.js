@@ -49,7 +49,7 @@ export default function Home() {
                 <HeaderHome className="row" usuarios={usuarios} pesquisas={pesquisas} />
                 <Row className="row gap-5">
                     <UsersContainer className="col-lg-6">
-                        <HeaderRenderUsusarios>Usuários recém adicionados</HeaderRenderUsusarios>
+                        <HeaderRenderUsusarios>Usuários mais recentes</HeaderRenderUsusarios>
                         <UsersContent id='lista'>
                             {
                                 newestUsers?.map(u => {

@@ -35,7 +35,7 @@ function Formulario() {
         let results = pesquisas.filter((pesq) => pesq.titulo && pesq.titulo.toLowerCase().includes(e.target.value.toLowerCase())) 
         setPesquisasFiltradas(results)
     };
-
+    console.log(pesquisas)
     return (
         pesquisas &&
         <>

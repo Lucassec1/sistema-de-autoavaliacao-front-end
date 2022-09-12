@@ -94,7 +94,9 @@ export default function NavBarHome(props) {
                             <Card bordered={false} style={{ background: '#fafafa', border: '1px solid #EBEBEB', boxShadow: '0px 1px 5px rgba(32, 90, 177, 0.1)', borderRadius: '4px' }}>
                                 <HeaderCardHome>
                                     Pesquisas Adicionadas
-                                    <NumericEstatistica color={aumentoPesquisas > 0 ? "growth" : ""} background={aumentoPesquisas > 0 ? "growth" : ""}>{aumentoPesquisas >= 0 ? "+" : "-"}{aumentoPesquisas.toFixed(1)}%</NumericEstatistica>
+                                    <NumericEstatistica color={aumentoPesquisas > 0 ? "growth" : ""} background={aumentoPesquisas > 0 ? "growth" : ""}>
+                                        {aumentoPesquisas >= 0 ? "+" : "-"}{aumentoPesquisas ?aumentoPesquisas.toFixed(1) : 0}%
+                                    </NumericEstatistica>
                                 </HeaderCardHome>
                                 <Contador>{pesquisas.length}</Contador>
                                 <Textp>Período de 7 dias</Textp>
@@ -121,7 +123,10 @@ export default function NavBarHome(props) {
                             <Card bordered={false} style={{ background: '#fafafa', border: '1px solid #EBEBEB', boxShadow: '0px 1px 5px rgba(32, 90, 177, 0.1)', borderRadius: '4px' }}>
                                 <HeaderCardHome>
                                     Pessoas Adicionadas
-                                    <NumericEstatistica color={aumento > 0 ? "growth" : ""} background={aumento > 0 ? "growth" : ""}>{aumento >= 0 ? "+" : "-"}{aumento.toFixed(1)}%</NumericEstatistica>
+                                    <NumericEstatistica color={aumento > 0 ? "growth" : ""} background={aumento > 0 ? "growth" : ""}>
+                                        {aumento >= 0 ? "+" : "-"}
+                                        {aumento ? aumento.toFixed(1) : 0}%
+                                    </NumericEstatistica>
                                 </HeaderCardHome>
                                 <Contador>{users.length}</Contador>
                                 <Textp>Período de 7 dias</Textp>
