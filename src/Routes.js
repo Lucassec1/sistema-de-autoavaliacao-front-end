@@ -16,29 +16,37 @@ import ResUser from "./Pages/User Comum/Resposta User/index";
 import Minhapesquisa from './Pages/formulario/pesquisa/pesquisa'
 import Criarpesquisamenu from './Pages/formulario/CriarPesquisaMenu'
 import Criarpesquisa from './Pages/formulario/CriarPesquisa/index'
-const PrivateRoute = ({ Item }) => {
-  const token = localStorage.getItem("token");
-  const userType = localStorage.getItem("tipo");
+import { useJwt } from "react-jwt";
 
-  if(Item === ResUser) return token ? <Item /> : <Login />;
-  
-  return token ? userType !== '3' ?  <Item /> : <HomeUser/> : <Login />;
+const PrivateRoute = ({ Item }) => {
+  const token = localStorage.getItem('token');
+  const { decodedToken, isExpired, reEvaluateToken } = useJwt(token);
+  const userType = decodedToken?.tipo
+
+  const updateToken = () => {
+    const newToken = "A new JWT";
+    reEvaluateToken(newToken); // decodedToken and isExpired will be updated
+  } 
+
+  if (Item === ResUser) return token ? <Item /> : <Login />;
+
+  return token ? userType !== 3 ? <Item /> : <HomeUser /> : <Login />;
 };
 
 export default function Rotas() {
-  return(
+  return (
     <BrowserRouter>
       {window.location.pathname !== '/' ? localStorage.getItem("tipo") !== '3' ? <SideBar /> : null : null}
       <Routes>
-          <Route exact path='/' element={<Login />} />
-          <Route exact path="/home" element={<PrivateRoute Item={Home} />} />
-          <Route exact path="/cadastros" element={<PrivateRoute Item={Cadastros} />} />
-          <Route exact path="/pesquisas" element={<PrivateRoute Item={Formula} />} /> 
-          <Route exact path="/minhapesquisa" element={<PrivateRoute Item={Minhapesquisa} />} />
-          <Route exact path="/homeU" element={<PrivateRoute Item={HomeUser} />} />
-          <Route exact path="/menupesquisa" element={<PrivateRoute Item={Criarpesquisamenu} />} />
-          <Route exact path="/criarpesquisa/:tipo" element={<PrivateRoute Item={Criarpesquisa} />} />
-          <Route exact path="/pesquisa/:id" element={<PrivateRoute Item={ResUser} />} />
+        <Route exact path='/' element={<Login />} />
+        <Route exact path="/home" element={<PrivateRoute Item={Home} />} />
+        <Route exact path="/cadastros" element={<PrivateRoute Item={Cadastros} />} />
+        <Route exact path="/pesquisas" element={<PrivateRoute Item={Formula} />} />
+        <Route exact path="/minhapesquisa" element={<PrivateRoute Item={Minhapesquisa} />} />
+        <Route exact path="/homeU" element={<PrivateRoute Item={HomeUser} />} />
+        <Route exact path="/menupesquisa" element={<PrivateRoute Item={Criarpesquisamenu} />} />
+        <Route exact path="/criarpesquisa/:tipo" element={<PrivateRoute Item={Criarpesquisa} />} />
+        <Route exact path="/pesquisa/:id" element={<PrivateRoute Item={ResUser} />} />
       </Routes>
     </BrowserRouter>
   )
