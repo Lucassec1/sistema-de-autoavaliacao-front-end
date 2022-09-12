@@ -108,8 +108,7 @@ const NumericInput = (props) => {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          border: '1px solid red',
-          }}>
+        }}>
 
       <Form.Item 
         label="CPF"
