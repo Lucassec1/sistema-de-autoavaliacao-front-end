@@ -9,8 +9,10 @@ export const Sidebar = styled.div`
     width: 25vw;
     height: 100vh;
     border-right: 1px solid #EBEBEB;
-
     background-color: #F5F5F5;
+    position: sticky;
+    top: 0;
+    left: 0;
 `;
 
 export const MenuContainer = styled.div`

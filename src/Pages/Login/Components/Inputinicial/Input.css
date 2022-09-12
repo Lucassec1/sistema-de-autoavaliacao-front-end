@@ -6,3 +6,11 @@
 .numeric-input .numeric-input-title {
   font-size: 14px;
 }
+
+.InputMask1:hover {
+  border: 1px solid #40a9ff!important;
+}
+
+.input:focus {
+  border: 1px solid red!important;
+}

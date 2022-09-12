@@ -65,8 +65,9 @@ export default function ResUser(props) {
                         </div>
                     )}
 
-                    <Button onClick={() => postRespostas(Respostas)} >Enviar</Button>
+                    
                 </AllCards>
+                <Button onClick={() => postRespostas(Respostas)} >Enviar</Button>
             </Container>
         </>
     )

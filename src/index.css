@@ -30,3 +30,7 @@
   padding: 0;
   --Mulish: 'Mulish', sans-serif;
 }
+
+.InputMask:focus {
+  border: 5px solid red!important;
+}

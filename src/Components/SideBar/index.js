@@ -73,13 +73,13 @@ export default function SideBar(props) {
             <MenuContainer
             >
                 <CustomMenu
-                  onMouseEnter={toggleCollapsed}
-                  onMouseLeave={toggleCollapsed}
+                  // onMouseEnter={toggleCollapsed}
+                  // onMouseLeave={toggleCollapsed}
                   defaultSelectedKeys={['1']}
                   //defaultOpenKeys={['sub1']}
                   mode="inline"
                   theme="light"
-                  inlineCollapsed={collapsed}
+                  inlineCollapsed={false}
                   items={items}
                 />
               

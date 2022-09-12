@@ -5,16 +5,14 @@ export const HeaderHome = styled.div`
     display: block;
     width: 104rem;
     height: 28vh;
-    
+    padding: 1%;
+    margin-bottom: 6%;
 `;
 
 export const CardHome = styled.div`
     width: 100rem;
     height: 10rem;
     margin-top: 7%;
-    margin-left: 1.2%;
-   
-    
 `;
 export const CardPercentual = styled.div`
     background: red;
