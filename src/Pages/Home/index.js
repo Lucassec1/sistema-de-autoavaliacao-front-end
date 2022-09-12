@@ -15,6 +15,7 @@ export default function Home() {
         api.get('/usuarios')
             .then((response) => {
                 setUsusarios(response.data)
+                // console.log(response.status)
 
             })
             .catch(() => {

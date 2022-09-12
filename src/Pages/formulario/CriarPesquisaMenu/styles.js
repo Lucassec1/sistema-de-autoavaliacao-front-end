@@ -45,11 +45,12 @@ export const Body = styled.div`
 
 export const ContSearch = styled.div`
   display: flex;
-  width: 700px;
+  justify-content: space-between;
+  width: 81.2vw;
+  margin-left: 14.5px;
   
   h2 {
     width: 400px;
-    margin-right: 30px;
   }
 `;
 

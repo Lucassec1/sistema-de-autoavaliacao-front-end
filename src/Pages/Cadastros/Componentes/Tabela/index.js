@@ -29,7 +29,8 @@ function Tabela({ usuario, getCadastros }) {
       nome: u.nome,
       email: u.email,
       tipo: StringType(u.tipo),
-      cpf: u.cpf
+      cpf: u.cpf,
+      foto: u.foto,
     })
   });
 
@@ -193,6 +194,18 @@ function Tabela({ usuario, getCadastros }) {
         <EditarCadastro record={record} update={getCadastros}/>
         <Dialog record={record} update={getCadastros}/>
       </>
+    },
+    {
+      title: 'Foto',
+      dataIndex: 'foto',
+      key: 'foto',
+      width: '5vw',
+      align: 'center',
+      render: (_, record) => 
+        // {
+        //   record.foto 
+        // }
+        <img style={{width: "40px"}} src={record.foto}/>        
     },
   ]
   return (

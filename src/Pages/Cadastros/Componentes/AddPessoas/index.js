@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import api from '../../../../api';
 
-import { Button, Modal, Form, Input } from 'antd';
+import { Button, Modal, Form, Input, Upload } from 'antd';
 import { AiOutlineUserAdd } from "react-icons/ai";
+import { PlusOutlined } from '@ant-design/icons';
 import { Select } from 'antd';
 import { AddButton } from './style';
 import { PrimaryButton } from "../../../../Components/PrimaryButton/style.js";
@@ -10,6 +11,16 @@ import { SecondaryButton } from "../../../../Components/SecondaryButton/style.js
 import { propTypes } from 'react-bootstrap/esm/Image';
 
 const { Option } = Select;
+const getBase64 = (file) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.onload = () => resolve(reader.result);
+
+    reader.onerror = (error) => reject(error);
+});
+
 function Cadastro (props) {
     const [loading, setLoading] = useState(false);
     const [visible, setVisible] = useState(false);
@@ -43,37 +54,96 @@ function Cadastro (props) {
             setDisableSenha(false)
         }
     };
+
+    const [previewOpen, setPreviewOpen] = useState(false);
+    const [previewImage, setPreviewImage] = useState('');
+    const [previewTitle, setPreviewTitle] = useState('');
+    // const [fileList, setFileList] = useState([]);
+    const [foto, setFoto] = useState([]);
+
+    const handleCancelUpload = () => setPreviewOpen(false);
+
+    const handlePreview = async (file) => {
+        if (!file.url && !file.preview) {
+        file.preview = await getBase64(file.originFileObj);
+        }
+
+        setPreviewImage(file.url || file.preview);
+        setPreviewOpen(true);
+        setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
+    };
+
+    const handleChangeUpload = ({ fileList: newFileList }) => setFoto(newFileList);
+
+    const normFile = (e) => {
+        console.log('Upload event:', e);
+      
+        if (Array.isArray(e)) {
+          return e;
+        }
+      
+        return e?.fileList;
+      };
+
+    const uploadButton = (
+        <div>
+        <PlusOutlined />
+        <div
+            style={{
+            marginTop: 8,
+            }}
+        >
+            Upload
+        </div>
+        </div>
+    );
     
     const [nome, setNome] = useState()
     const [email, setEmail] = useState()
     const [cpf, setCpf] = useState()
-    const [foto, setFoto] = useState()
-    const [senha, setSenha] = useState('')
+    const [senha, setSenha] = useState('dgasdghj55')
     const [tipo, setTipo] = useState(3)
     const [disableSenha, setDisableSenha] = useState(true)
-    
+
     const handleCancel = () => {
         setVisible(false);
+        setNome('')
+        setEmail('')
+        setCpf('')
+        setSenha('')
+        setTipo()
+        setSenha('')
     };
+
+    const config = {
+        'Content-Type': 'multipart/form-data',
+    }
     
     function Cadastrar(e) {
         e.preventDefault()
         setLoading(true)
-        api.post('/auth/cadastrar', {
-            nome: nome,
-            email: email,
-            senha: senha,
-            tipo: tipo,
-            cpf: cpf,
-            foto: foto,
-        })
+        const Form = new FormData();
+        Form.append('nome', nome)
+        Form.append('email', email)
+        Form.append('cpf', cpf)
+        Form.append('foto', foto.length === 0 ? "" : foto[0].originFileObj)
+        Form.append('senha', senha)
+        Form.append('tipo', tipo)
+    
+        api.post('/auth/cadastrar', Form, config) 
         .then(res => {
+            console.log('Deu certo')
             props.getCadastros()
             setVisible(false)
-           
+            setNome('')
+            setEmail('')
+            setCpf('')
+            setSenha('')
+            setTipo()
+            setSenha('')
         })
         .catch(err => {
-           
+            console.log(err)
         })
     }
 
@@ -197,11 +267,26 @@ function Cadastro (props) {
 
                     <Form.Item
                         label="Foto"
-                        name="Foto"
-                        value={foto}
-                        onChange={e => setFoto(e.target.value)}
+                        valuePropName="fileList"
+                        getValueFromEvent={normFile}
                     >
-                        <Input type='text' />
+                        <Upload
+                            listType="picture-card"
+                            fileList={foto}
+                            onPreview={handlePreview}
+                            onChange={handleChangeUpload}
+                        >
+                            {foto.length >= 1 ? null : uploadButton}
+                        </Upload>
+                        <Modal open={previewOpen} title={previewTitle} footer={null} onCancel={handleCancelUpload}>
+                            <img
+                            alt="example"
+                            style={{
+                                width: '100%',
+                            }}
+                            src={previewImage}
+                            />
+                        </Modal>
                     </Form.Item>
 
 

@@ -25,25 +25,30 @@ export default function CadastroPessoa() {
   const [foto, setFoto] = useState()
   const [senha, setSenha] = useState('')
   const [tipo, setTipo] = useState(3)
+  
+  const config = {
+    'Content-Type': 'multipart/form-data',
+  }
 
   function Cadastrar(e) {
     e.preventDefault()
-    api.post('/auth/cadastrar', {
-      nome: nome,
-      email: email,
-      senha: senha,
-      cpf: cpf,
-      foto: foto,
-      tipo: tipo
-    })
-      .then(res => {
-        
+    const Form = new FormData();
+    Form.append('nome', nome)
+    Form.append('email', email)
+    Form.append('cpf', cpf)
+    Form.append('foto', foto)
+    Form.append('senha', senha)
+    Form.append('tipo', tipo)
 
+    api.post('/auth/cadastrar', Form, config) 
+      .then(res => {
+        console.log('Deu certo')
       })
       .catch(err => {
-        
+        console.log(err)
       })
   }
+
   return (
     <>
       <Form
@@ -131,16 +136,10 @@ export default function CadastroPessoa() {
         <Form.Item
           label="Foto"
           name="Foto"
-          rules={[
-            {
-              required: true,
-              message: 'A foto é obrigatória!',
-            },
-          ]}
           value={foto}
-          onChange={e => setFoto(e.target.value)}
+          onChange={e => setFoto(e.target.files[0])}
         >
-          <Input type='text' />
+          <Input type='file' />
         </Form.Item>
 
         <Form.Item
@@ -173,4 +172,3 @@ export default function CadastroPessoa() {
     </>
   );
 };
-

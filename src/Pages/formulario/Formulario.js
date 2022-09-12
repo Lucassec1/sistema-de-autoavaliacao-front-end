@@ -44,20 +44,21 @@ function Formulario() {
                     <Navbargeral/>
                 </div>
                 <div className='seletor'>
-                <Body>
-                <ContSearch>
-                    <h2>TODAS AS PESQUISAS</h2>
-                    <Search placeholder="Buscar por uma pesquisa" onChange={onSearch} enterButton />
-                </ContSearch>
-                <ContPesquisas>
-                    {pesquisasFiltradas.map((pesq, index) =>
-                        <CardPesquisa key={index} pesquisa={pesq}/>
-                    )}
-                </ContPesquisas>
-            </Body>
-                    </div>
+                    <Body>
+                        <ContSearch>
+                            <h2>TODAS AS PESQUISAS</h2>
+                            <Search 
+                                style={{width: '370px'}}
+                                placeholder="Buscar por uma pesquisa" onChange={onSearch} enterButton />
+                        </ContSearch>
+                        <ContPesquisas>
+                            {pesquisasFiltradas.map((pesq, index) =>
+                                <CardPesquisa key={index} pesquisa={pesq}/>
+                            )}
+                        </ContPesquisas>
+                    </Body>
                 </div>
-                
+            </div>
         </>
     );
 }

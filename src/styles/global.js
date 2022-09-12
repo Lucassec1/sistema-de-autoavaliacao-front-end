@@ -20,7 +20,6 @@ const GlobalStyle = createGlobalStyle`
         --Mulish: 'Mulish', sans-serif;
     }
 
-
     * {
         margin: 0;
         padding: 0;
@@ -29,6 +28,10 @@ const GlobalStyle = createGlobalStyle`
 
     #root {
         font-family: var(--Mulish);
+    }
+
+    body {
+        overflow-x: hidden;
     }
 `;
 

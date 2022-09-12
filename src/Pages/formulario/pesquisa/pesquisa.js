@@ -42,7 +42,7 @@ function resp(){
                     <div className="beta">
                         <h4>pesquisas</h4>
                         <div>
-                            <Card style={{ width: '30rem', borderRadius: '23px' }}>
+                            <Card style={{ width: '30rem', borderRadius: '23px'}}>
                                 <Card.Body class="alinhar">
                                     <div>
                                         <Card.Title >Pergunta da uc tal</Card.Title>
