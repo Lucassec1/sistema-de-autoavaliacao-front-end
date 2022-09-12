@@ -77,7 +77,7 @@ const NumericInput = (props) => {
           setWrongPassword(true);
         }
       });
-    //setContext(cpf);
+   
   }
 
   const [notFound, setNotFound] = useState(false);
@@ -108,8 +108,7 @@ const NumericInput = (props) => {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          border: '1px solid red',
-          }}>
+        }}>
 
       <Form.Item 
         label="CPF"
@@ -128,7 +127,7 @@ const NumericInput = (props) => {
             <InputMask 
               className="InputMask"
               style={{
-                width: '220px', 
+                width: '210px', 
                 height: '32px', 
                 padding: '4px 11px',
                 border: '1px solid #d9d9d9',
@@ -155,46 +154,7 @@ const NumericInput = (props) => {
         />
       </Form.Item>
         
-      {/* <Form
-        name="basic"
-        layout="vertical"
-        size="large"
-        labelCol={{
-          span: 0,
-        }}
-        wrapperCol={{
-          span: 0,
-        }}
-        initialValues={{
-          remember: true,
-        }}
-        autoComplete="off"
-      >
-        <Form.Item
-          label="CPF"
-          name="cpf"
-          validateStatus={status}
-          help={helpMessage}
-          rules={[
-            {
-              required: true,
-              message: "O CPF é obrigatório!",
-            }, 
-            {
-              // pattern: /^(?:\d*)$/,
-              message: "O CPF deve conter apenas números!",
-            },
-          ]}
-          value={cpf}
-          onChange={(e) => {
-            handleChange(e);
-            setCpf(e.target.value);
-            setNotFound(false);
-          }}
-        >
-          <Input maxLength={11} minLength={11} placeholder='Digite seu CPF' style={{width: '235px'}}/>
-        </Form.Item> */}
-
+      
         <Form.Item
           style={{ display: visible, marginLeft: '-14px' }}
           minLength={8}
