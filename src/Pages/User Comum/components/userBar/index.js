@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { DownOutlined, UserOutlined } from '@ant-design/icons';
-import { 
-    Button, 
+import {  
     Dropdown, 
     Menu, 
     message, 
-    Space,
-    Tooltip,
  } from 'antd';
 import { Container, 
     Foto, 
