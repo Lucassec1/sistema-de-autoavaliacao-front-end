@@ -16,7 +16,7 @@ export const AllCards = styled.div`
     align-items: center;
 
     width: 90%;
-    height: 800px;
+    height: 700px;
 
     margin-top: 30px;
 
@@ -37,7 +37,7 @@ export const AllCards = styled.div`
 
 export const Button = styled.button`
     width: 134px;
-    height: 51px;
+    height: 55px;
     
     background: #205AB1;
     color: white;
