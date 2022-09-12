@@ -1,7 +1,6 @@
 #teste{
     display:flex;
     width: 45cm;
-    padding: 2rem;
     justify-content: center;
     background-color:#347AE2;
     margin-bottom: 2rem;
@@ -44,5 +43,8 @@
     width: 400px;
     height: 50px;
     border-radius: 9px;
-    
+}
+.barraderolagem{
+    overflow:auto;
+    height: 500px;
 }

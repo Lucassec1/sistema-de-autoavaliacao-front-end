@@ -35,7 +35,7 @@ function Formulario() {
         let results = pesquisas.filter((pesq) => pesq.titulo && pesq.titulo.toLowerCase().includes(e.target.value.toLowerCase())) 
         setPesquisasFiltradas(results)
     };
-
+    console.log(pesquisas)
     return (
         pesquisas &&
         <>
@@ -49,12 +49,14 @@ function Formulario() {
                     <h2>TODAS AS PESQUISAS</h2>
                     <Search placeholder="Buscar por uma pesquisa" onChange={onSearch} enterButton />
                 </ContSearch>
-                <ContPesquisas>
-                    {pesquisasFiltradas.map((pesq, index) =>
-                        <CardPesquisa key={index} pesquisa={pesq}/>
-                    )}
-                </ContPesquisas>
-            </Body>
+                <div className="barraderolagem">
+                    <ContPesquisas>
+                        {pesquisasFiltradas.map((pesq, index) =>
+                            <CardPesquisa key={index} pesquisa={pesq}/>
+                        )}
+                    </ContPesquisas>
+                </div>
+                </Body>
                     </div>
                 </div>
                 

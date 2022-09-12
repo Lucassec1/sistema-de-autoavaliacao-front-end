@@ -43,7 +43,7 @@ function CardCriarPesquisa(props) {
     }
 
     if (!grupos) getGrupos()
-
+    console.log(grupos);
     return (
         grupos &&
         <Container onClick={showModal}>
