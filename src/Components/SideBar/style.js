@@ -30,18 +30,24 @@ export const CustomMenu = styled(Menu)`
 
 export const ProfileContainer = styled.div`
     display: flex;
+    flex-direction: column;
     justify-content: center;
     gap: 10px;
 `;
 
 export const ProfileContent = styled.div`
-    max-width: 140px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
 `;
 
 export const Name = styled.h3`
     margin: 0;
-    line-height: 1.2;
+    
 `;
 
 export const UserType = styled.span`
+    font-size: 20px;
+    padding-left: 10px;
 `;
