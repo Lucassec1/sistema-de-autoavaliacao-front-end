@@ -7,17 +7,9 @@ import api from '../../api'
 import CardPesquisa from '../formulario/components/CardPesquisa'; 
 import { Container, Top, ContTipos, Body, ContSearch, ContPesquisas } from '../formulario/CriarPesquisaMenu/styles';
 
-function teste() {
-    alert('trabalhando nisso')
-}
 const { Search } = Input;
 
 function Formulario() {
-    const [age, setAge] = useState('');
-
-    const handleChange = (event) => {
-        setAge(event.target.value);
-    };
 
     // Buscando as pesquisas
     const [pesquisas, setPesquisas] = useState()
