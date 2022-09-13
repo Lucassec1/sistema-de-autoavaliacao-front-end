@@ -87,14 +87,14 @@ function Cadastro (props) {
 
     const uploadButton = (
         <div>
-        <PlusOutlined />
-        <div
-            style={{
-            marginTop: 8,
-            }}
-        >
-            Upload
-        </div>
+            <PlusOutlined />
+            <div
+                style={{
+                marginTop: 8,
+                }}
+            >
+                Upload
+            </div>
         </div>
     );
     

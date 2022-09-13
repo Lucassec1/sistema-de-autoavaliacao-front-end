@@ -60,15 +60,22 @@ export default function SideBar(props) {
         <>
           <Sidebar>
             <ProfileContainer>
-              <Avatar style={{display: "flex", alignItems: "center", justifyContent: "center"}} size={64} icon={<UserOutlined />} />
               <ProfileContent>
+                <Avatar 
+                  style={{
+                    display: "flex", 
+                    alignItems: "center", 
+                    justifyContent: "center",
+                    marginTop: '10px'
+                  }} 
+                  size={64} icon={<UserOutlined />} />
                 <Name>
                   {localStorage.getItem('user')}
                 </Name>
+              </ProfileContent>
                 <UserType>
                   {localStorage.getItem('tipo') === '1' ? 'ROOT' : localStorage.getItem('tipo') === '2' ? 'ADMIN' : localStorage.getItem('tipo') === '3' ? 'USUÁRIO' :    'quem é você? -policial disfarçado'}
                 </UserType>
-              </ProfileContent>
             </ProfileContainer>
             <MenuContainer
             >

@@ -1,12 +1,14 @@
 import React, { useRef, useState } from 'react';
 import api from '../../../../api'
-
+import { UserOutlined } from '@ant-design/icons';
+import { Avatar, Image } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { Button, Input, Space, Table } from 'antd';
-
+import { BsFillImageFill } from "react-icons/bs";
 import Highlighter from 'react-highlight-words';
 import EditarCadastro from '../edit';
 import Dialog from '../deletemessage';
+import { withStyles } from '@mui/material';
 
 function Tabela({ usuario, getCadastros }) {
   const data = []
@@ -142,6 +144,18 @@ function Tabela({ usuario, getCadastros }) {
       ),
   });
 
+  function RenderFoto(url) {
+    if (url.charAt(url.length - 4) === '.') {
+      return (
+        <Avatar src={<Image src={url} style={{width: 42, display: 'flex', alignItems: 'center' }} />} size={42} />
+      )
+    } else {
+      return (
+        <Avatar size={42} icon={<BsFillImageFill size={16}/>} />
+      )
+    }
+  }
+
   const colunas = [
     {
       title: 'ID',
@@ -150,6 +164,15 @@ function Tabela({ usuario, getCadastros }) {
       width: '5vw',
       align: 'center',
       ...getColumnSearchProps('id'),
+    },
+    {
+      title: 'Foto',
+      dataIndex: 'foto',
+      key: 'foto',
+      width: '5vw',
+      align: 'center',
+      render: (_, record) => 
+      RenderFoto(record.foto)       
     },
     {
       title: 'Nome',
@@ -194,18 +217,6 @@ function Tabela({ usuario, getCadastros }) {
         <EditarCadastro record={record} update={getCadastros}/>
         <Dialog record={record} update={getCadastros}/>
       </>
-    },
-    {
-      title: 'Foto',
-      dataIndex: 'foto',
-      key: 'foto',
-      width: '5vw',
-      align: 'center',
-      render: (_, record) => 
-        // {
-        //   record.foto 
-        // }
-        <img style={{width: "40px"}} src={record.foto}/>        
     },
   ]
   return (
