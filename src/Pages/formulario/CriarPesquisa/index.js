@@ -53,7 +53,7 @@ function Criarpesquisa() {
     api
       .post(`/perguntas/pesquisa/${id}`, { perguntas: perguntas })
       .then((res) => console.log(res))
-      window.location.href = `/criarpesquisa`
+      window.location.href = `/menupesquisa`
   }
 
   function voltar() { window.history.back(); }

@@ -90,7 +90,7 @@ function Cadastro (props) {
             <PlusOutlined />
             <div
                 style={{
-                marginTop: 8,
+                    marginTop: 8,
                 }}
             >
                 Upload
