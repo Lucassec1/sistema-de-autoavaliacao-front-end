@@ -142,15 +142,15 @@ function Tabela({ usuario, getCadastros }) {
   });
 
   function RenderFoto(url) {
-    if (url.charAt(url.length - 4) === '.') {
+    // if (url.charAt(url.length - 4) === '.') {
       return (
         <Avatar src={<Image src={url} style={{width: 42, display: 'flex', alignItems: 'center' }} />} size={42} />
       )
-    } else {
-      return (
-        <Avatar size={42} icon={<BsFillImageFill size={16}/>} />
-      )
-    }
+    // } else {
+    //   return (
+    //     <Avatar size={42} icon={<BsFillImageFill size={16}/>} />
+    //   )
+    // }
   }
 
   const colunas = [

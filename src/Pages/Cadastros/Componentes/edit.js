@@ -10,6 +10,7 @@ import { Select } from 'antd';
 export default function EditarCadastro(props) {
     const [loading, setLoading] = useState(false);
     const [visible, setVisible] = useState(false);
+    const [form] = Form.useForm();
 
     function StringType(tipo) {
         if (tipo === "Usuário comum") {
@@ -25,7 +26,6 @@ export default function EditarCadastro(props) {
     const [editarEmail, setEditarEmail] = useState(props.record.email)
     const [editarCpf, setEditarCpf] = useState(props.record.cpf)
     const [editarFoto, setEditarFoto] = useState(props.record.foto)
-    const [editarSenha, setEditarSenha] = useState(props.record.senha)
     const [editarTipo, setEditarTipo] = useState(StringType(props.record.tipo))
     //const [disableSenha, setDisableSenha] = useState(true)
     
@@ -55,29 +55,33 @@ export default function EditarCadastro(props) {
         
         setEditarTipo(value);
     };
-        
+
+    const config = {
+        'Content-Type': 'multipart/form-data',
+    }
+    
     function Update(e)  {
+        console.log(editarFoto)
         e.preventDefault()
         setLoading(true)
         console.log(props.record.key)
-        api.put(`/usuarios/${props.record.key}`, {
-            nome: editarNome,
-            email: editarEmail,
-            senha: editarSenha,
-            tipo: editarTipo,
-            cpf: editarCpf,
-            foto: editarFoto,
-        })      
+        const Form = new FormData();
+        Form.append('nome', editarNome)
+        Form.append('email', editarEmail)
+        Form.append('cpf', editarCpf)
+        editarFoto && Form.append('foto', editarFoto)
+
+        api.put(`/usuarios/${props.record.key}`, Form, config)       
         .then(res => {
             setLoading(false)
             
             setVisible(false)
             props.update()
-            console.log(editarFoto)
+            console.log('Deu certo!')
         })
         .catch(err => {
             setLoading(false)
-            console.log(editarFoto)
+            console.log('Bugou')
         })
         }
 
@@ -212,22 +216,6 @@ export default function EditarCadastro(props) {
                         onChange={e => setEditarEmail(e.target.value)}
                     >
                         <Input type='email' />
-                    </Form.Item>
-
-                    <Form.Item
-                        minLength={8}
-                        label="Senha"
-                        name="senha"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'A senha é obrigatória!',
-                            },
-                        ]}
-                        initialValue={editarSenha}
-                        onChange={e => setEditarSenha(e.target.value)}
-                    >
-                        <Input.Password type='password' disabled />
                     </Form.Item>
 
                     <Form.Item

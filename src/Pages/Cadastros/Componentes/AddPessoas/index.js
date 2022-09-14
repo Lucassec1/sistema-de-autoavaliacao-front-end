@@ -21,6 +21,7 @@ const getBase64 = (file) =>
 });
 
 function Cadastro (props) {
+    const [form] = Form.useForm();
     const [loading, setLoading] = useState(false);
     const [visible, setVisible] = useState(false);
     
@@ -64,7 +65,7 @@ function Cadastro (props) {
 
     const handlePreview = async (file) => {
         if (!file.url && !file.preview) {
-        file.preview = await getBase64(file.originFileObj);
+            file.preview = await getBase64(file.originFileObj);
         }
 
         setPreviewImage(file.url || file.preview);
@@ -106,12 +107,7 @@ function Cadastro (props) {
 
     const handleCancel = () => {
         setVisible(false);
-        setNome('')
-        setEmail('')
-        setCpf('')
-        setSenha('')
-        setTipo()
-        setSenha('')
+        form.resetFields();
     };
 
     const config = {
@@ -134,12 +130,7 @@ function Cadastro (props) {
             console.log('Deu certo')
             props.getCadastros()
             setVisible(false)
-            setNome('')
-            setEmail('')
-            setCpf('')
-            setSenha('')
-            setTipo()
-            setSenha('')
+            form.resetFields();
         })
         .catch(err => {
             console.log(err)
@@ -166,6 +157,7 @@ function Cadastro (props) {
                 ]}
             >
                 <Form
+                    form={form}
                     layout='vertical'
                     name="basic"
                     labelCol={{
@@ -206,6 +198,7 @@ function Cadastro (props) {
                                 message: 'O nome é obrigatório!',
                             },
                         ]}
+                       
                         value={nome}
                         onChange={e => setNome(e.target.value)}
                     >
