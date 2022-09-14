@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import api from '../../../api';
-
+import { PlusOutlined, UploadOutlined } from '@ant-design/icons';
 import { PrimaryButton } from '../../../Components/PrimaryButton/style';
 import { SecondaryButton } from "../../../Components/SecondaryButton/style.js";
 import { MdOutlineEdit } from "react-icons/md";
-import { Button, Modal, Form, Input } from 'antd';
+import { Button, Modal, Form, Input, Upload } from 'antd';
 import { Select } from 'antd';
 
 export default function EditarCadastro(props) {
@@ -73,11 +73,11 @@ export default function EditarCadastro(props) {
             
             setVisible(false)
             props.update()
-
+            console.log(editarFoto)
         })
         .catch(err => {
             setLoading(false)
-            
+            console.log(editarFoto)
         })
         }
 
@@ -85,6 +85,51 @@ export default function EditarCadastro(props) {
         setVisible(false);
     };
 
+    const getBase64 = (file) =>
+        new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+
+            reader.onload = () => resolve(reader.result);
+
+            reader.onerror = (error) => reject(error);
+    });
+
+    const [previewOpen, setPreviewOpen] = useState(false);
+    const [previewImage, setPreviewImage] = useState('');
+    const [previewTitle, setPreviewTitle] = useState('');
+
+    const handleCancelUpload = () => setPreviewOpen(false);
+
+    const handlePreview = async (file) => {
+        if (!file.url && !file.preview) {
+        file.preview = await getBase64(file.originFileObj);
+        }
+
+        setPreviewImage(file.url || file.preview);
+        setPreviewOpen(true);
+        setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
+    };
+
+    const handleChangeUpload = ({ fileList: newFileList }) => setEditarFoto(newFileList);
+
+    const normFile = (e) => {
+        setEditarFoto(e.file.originFileObj);
+        console.log(e)
+    };
+
+    const uploadButton = (
+        <div>
+            <PlusOutlined />
+            <div
+                style={{
+                marginTop: 8,
+                }}
+            >
+                Upload
+            </div>
+        </div>
+    );
 
     return (
         <>
@@ -207,12 +252,14 @@ export default function EditarCadastro(props) {
                     </Form.Item>
 
                     <Form.Item
+                        name="foto"
                         label="Foto"
-                        name="Foto"
-                        initialValue={editarFoto}
-                        onChange={e => setEditarFoto(e.target.value)}
+                        valuePropName="fileList"
+                        getValueFromEvent={normFile}
                     >
-                        <Input type='text' />
+                        <Upload name="foto" action="/upload.do" listType="picture" maxCount={1}>
+                        <Button icon={<UploadOutlined />}>Click to upload</Button>
+                        </Upload>
                     </Form.Item>
 
                     <Form.Item

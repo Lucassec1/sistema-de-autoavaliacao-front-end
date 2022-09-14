@@ -13,7 +13,6 @@ import { withStyles } from '@mui/material';
 function Tabela({ usuario, getCadastros }) {
   const data = []
   const [cols, setCols] = useState()
-
   
   function StringType(tipo) {
     if (tipo === 3) {
@@ -35,8 +34,6 @@ function Tabela({ usuario, getCadastros }) {
       foto: u.foto,
     })
   });
-
- 
 
   cols?.map(c => (
     c.title = c.title.charAt(0).toUpperCase() + c.title.slice(1)

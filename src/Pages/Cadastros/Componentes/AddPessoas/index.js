@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import api from '../../../../api';
-
 import { Button, Modal, Form, Input, Upload } from 'antd';
 import { AiOutlineUserAdd } from "react-icons/ai";
 import { PlusOutlined } from '@ant-design/icons';
@@ -65,7 +64,7 @@ function Cadastro (props) {
 
     const handlePreview = async (file) => {
         if (!file.url && !file.preview) {
-        file.preview = await getBase64(file.originFileObj);
+            file.preview = await getBase64(file.originFileObj);
         }
 
         setPreviewImage(file.url || file.preview);
@@ -90,7 +89,7 @@ function Cadastro (props) {
             <PlusOutlined />
             <div
                 style={{
-                marginTop: 8,
+                    marginTop: 8,
                 }}
             >
                 Upload
@@ -107,12 +106,7 @@ function Cadastro (props) {
 
     const handleCancel = () => {
         setVisible(false);
-        setNome('')
-        setEmail('')
-        setCpf('')
-        setSenha('')
-        setTipo()
-        setSenha('')
+        setNome();
     };
 
     const config = {
@@ -135,12 +129,6 @@ function Cadastro (props) {
             console.log('Deu certo')
             props.getCadastros()
             setVisible(false)
-            setNome('')
-            setEmail('')
-            setCpf('')
-            setSenha('')
-            setTipo()
-            setSenha('')
         })
         .catch(err => {
             console.log(err)
