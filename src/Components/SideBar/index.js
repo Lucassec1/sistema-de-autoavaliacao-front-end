@@ -3,7 +3,7 @@ import { Button } from 'antd';
 import React, { useContext, useState } from 'react';
 import { UserOutlined } from '@ant-design/icons';
 import { Avatar } from 'antd';
-import { MenuContainer, CustomMenu, Sidebar, ProfileContainer, ProfileContent, Name, UserType } from './style';
+import { CustomAvatar, MenuContainer, CustomMenu, Sidebar, ProfileContainer, ProfileContent, Name, UserInfo, UserType } from './style';
 import { IoHomeOutline } from "react-icons/io5";
 import { BsFileEarmarkPerson } from "react-icons/bs";
 import { AiOutlineForm } from "react-icons/ai";
@@ -22,85 +22,81 @@ export default function SideBar(props) {
     };
   }
 
-    const [collapsed, setCollapsed] = useState(true);
+  const [collapsed, setCollapsed] = useState(true);
 
-    const toggleCollapsed = () => {
-        setCollapsed(!collapsed);
-    };
+  const toggleCollapsed = () => {
+    setCollapsed(!collapsed);
+  };
 
-    const items = [
-      getItem('Home', '1', 
+  const items = [
+    getItem('Home', '1',
       <Link to="/home">
-        <IoHomeOutline  />
-      </Link>
-      ),
-      getItem('Cadastros', '2', 
-        <Link to="/cadastros">
-          <BsFileEarmarkPerson />
-        </Link>
-      ),
-      getItem('Pesquisas', '3', 
-        <Link to="/pesquisas">
-          <AiOutlineForm />
-        </Link>
-      ),
-      getItem('Grupos', '4', 
-      <Link to="/Grupos">
-        <FiUsers />
+        <IoHomeOutline />
       </Link>
     ),
-    ];
+    getItem('Cadastros', '2',
+      <Link to="/cadastros">
+        <BsFileEarmarkPerson />
+      </Link>
+    ),
+    getItem('Pesquisas', '3',
+      <Link to="/pesquisas">
+        <AiOutlineForm />
+      </Link>
+    ),
+    getItem('Grupos', '4', 
+    <Link to="/Grupos">
+      <FiUsers />
+    </Link>
+  ),
+  ];
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const signout = () =>{
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-      localStorage.removeItem("tipo");
-      localStorage.removeItem('id');
-      window.location.pathname = "/";
-    }
+  const signout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    localStorage.removeItem("tipo");
+    localStorage.removeItem('id');
+    window.location.pathname = "/";
+  }
 
-    const UserCpf = useContext(UserContext);
-    return (
-        <>
-          <Sidebar>
-            <ProfileContainer>
-              <ProfileContent>
-                <Avatar 
-                  style={{
-                    display: "flex", 
-                    alignItems: "center", 
-                    justifyContent: "center",
-                    marginTop: '10px'
-                  }} 
-                  size={64} icon={<UserOutlined />} />
-                <Name>
-                  {localStorage.getItem('user')}
-                </Name>
-              </ProfileContent>
-                <UserType>
-                  {localStorage.getItem('tipo') === '1' ? 'ROOT' : localStorage.getItem('tipo') === '2' ? 'ADMIN' : localStorage.getItem('tipo') === '3' ? 'USUÁRIO' :    'quem é você? -policial disfarçado'}
-                </UserType>
-            </ProfileContainer>
-            <MenuContainer
-            >
-                <CustomMenu
-                  // onMouseEnter={toggleCollapsed}
-                  // onMouseLeave={toggleCollapsed}
-                  defaultSelectedKeys={['1']}
-                  //defaultOpenKeys={['sub1']}
-                  mode="inline"
-                  theme="light"
-                  inlineCollapsed={false}
-                  items={items}
-                />
-              
-            </MenuContainer>
-            <Button icon={<IoIosLogOut />} onClick={signout}>
-              Sair
-            </Button>
-          </Sidebar>
-        </>
-      );
+  console.log(localStorage)
+
+  const UserCpf = useContext(UserContext);
+  return (
+    <>
+      <Sidebar>
+        <ProfileContainer>
+          <CustomAvatar
+            size={64} icon={<UserOutlined />} />
+          <ProfileContent>
+            <Name>
+              {localStorage.getItem('user')}
+            </Name>
+            <UserType>
+              {localStorage.getItem('tipo') === '1' ? 'Root' : localStorage.getItem('tipo') === '2' ? 'Administrador' : localStorage.getItem('tipo') === '3' ? 'Usuário Comum' : 'quem é você? -policial disfarçado'}
+            </UserType>
+          </ProfileContent>
+        </ProfileContainer>
+        <MenuContainer
+        >
+          <CustomMenu
+            // onMouseEnter={toggleCollapsed}
+            // onMouseLeave={toggleCollapsed}
+            defaultSelectedKeys={['1']}
+            //defaultOpenKeys={['sub1']}
+            mode="inline"
+            theme="light"
+            inlineCollapsed={false}
+            items={items}
+          />
+
+        </MenuContainer>
+        <Button icon={<IoIosLogOut />} onClick={signout}>
+          Sair
+        </Button>
+      </Sidebar>
+    </>
+  );
 }
