@@ -1,9 +1,11 @@
 import React from "react";
-
+import Card from './components/card'
 function Grupo(){
 
     return(
-        <div>ola</div>
+        <>
+        <Card></Card>
+        </>
     )
 }
 export default Grupo;
