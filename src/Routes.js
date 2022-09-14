@@ -16,6 +16,7 @@ import ResUser from "./Pages/User Comum/Resposta User/index";
 import Minhapesquisa from './Pages/formulario/pesquisa/pesquisa'
 import Criarpesquisamenu from './Pages/formulario/CriarPesquisaMenu'
 import Criarpesquisa from './Pages/formulario/CriarPesquisa/index'
+import Grupos from './Pages/Grupos/grupos'
 import { useJwt } from "react-jwt";
 
 const PrivateRoute = ({ Item }) => {
@@ -47,6 +48,7 @@ export default function Rotas() {
         <Route exact path="/menupesquisa" element={<PrivateRoute Item={Criarpesquisamenu} />} />
         <Route exact path="/criarpesquisa/:tipo" element={<PrivateRoute Item={Criarpesquisa} />} />
         <Route exact path="/pesquisa/:id" element={<PrivateRoute Item={ResUser} />} />
+        <Route exact path="/Grupos" element={<PrivateRoute Item={Grupos} />} />
       </Routes>
     </BrowserRouter>
   )

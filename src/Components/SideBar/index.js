@@ -9,6 +9,7 @@ import { BsFileEarmarkPerson } from "react-icons/bs";
 import { AiOutlineForm } from "react-icons/ai";
 import { IoIosLogOut } from "react-icons/io";
 import UserContext from "../../UserContext";
+import { FiUsers } from "react-icons/fi";
 
 export default function SideBar(props) {
   function getItem(label, key, icon, children, type) {
@@ -43,6 +44,11 @@ export default function SideBar(props) {
         <AiOutlineForm />
       </Link>
     ),
+    getItem('Grupos', '4', 
+    <Link to="/Grupos">
+      <FiUsers />
+    </Link>
+  ),
   ];
 
   const navigate = useNavigate();
