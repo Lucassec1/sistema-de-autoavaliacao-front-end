@@ -20,8 +20,8 @@ function CardCriarPesquisa(props) {
             grupos: grupo,
             fk_tipo_pesquisa: props.tipoPesquisa,
             fk_usuario: 3,
-            datas_inicio: [dataInicio],
-            datas_fim: [dataFim]
+            datas_inicio: dataInicio,
+            datas_fim: dataFim
         })
         .then((res) => {
             setTimeout(() => { setVisible(false)}, 0);
