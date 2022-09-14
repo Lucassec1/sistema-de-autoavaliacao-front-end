@@ -1,18 +1,17 @@
 import React from "react";
+import { CardG, NomeGrupo, OrgCard} from "./styles";
+import Avatar from '@mui/material/Avatar';
 
 function Card() {
 
     return (
         <>
-        <Card
-            style={{
-                width: 300,
-            }}
-        >
-            <p>Card content</p>
-            <p>Card content</p>
-            <p>Card content</p>
-        </Card>
+            <CardG>
+                <OrgCard>
+                    <Avatar style={{ width: '5rem', height: '5rem' }}/>
+                    <NomeGrupo>Nome Grupo</NomeGrupo>
+                </OrgCard>
+            </CardG>
         </>
     )
 }
