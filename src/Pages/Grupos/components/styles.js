@@ -11,8 +11,9 @@ export const CardG = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-right: 3%;
     :hover {
-        transform: scale(1.1);
+        transform: scale(1);
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
     }
 `;
@@ -32,7 +33,13 @@ export const OrgCard = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 8rem;
+    width: 7rem;
     flex-wrap: wrap;
-    height: 7rem;
+    
+`;
+
+export const Formatapag = styled.div`
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
 `;
