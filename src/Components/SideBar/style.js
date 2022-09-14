@@ -1,10 +1,11 @@
 import styled from "styled-components";
-import { Menu } from 'antd';
+import { Menu, Avatar } from 'antd';
 
 export const Sidebar = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-around;
     max-width: 250px;
     width: 25vw;
     height: 100vh;
@@ -28,26 +29,39 @@ export const CustomMenu = styled(Menu)`
     background-color: transparent;
 `;
 
+export const CustomAvatar = styled(Avatar)`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
 export const ProfileContainer = styled.div`
     display: flex;
-    flex-direction: column;
+    align-items : center;
     justify-content: center;
-    gap: 10px;
+    gap: 3%;
+    //border: 1px solid red;
 `;
 
 export const ProfileContent = styled.div`
     display: flex;
-    align-items: center;
-    gap: 10px;
-    
+    flex-direction: column;
+    //gap: 10px;
+    //border: 1px solid red;
+    text-align: start;
 `;
 
 export const Name = styled.h3`
-    margin: 0;
-    
+    color: var(--Text);
+    font-weight: 700;
+    font-size: 1.4rem;
 `;
 
 export const UserType = styled.span`
-    font-size: 20px;
-    padding-left: 10px;
+    background-color: var(--Primary);
+    width: fit-content;
+    padding: 1.5% 3%;
+    border-radius: 4px;
+    color: var(--Background);
+    font-size: 0.9rem;
 `;
