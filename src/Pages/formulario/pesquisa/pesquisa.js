@@ -54,8 +54,8 @@ function OffcanvasExample() {
         setvalueid(event.target.value);
     };
     var lh = String(valueid)
-    const ng = pesquisas?.filter((get) => get.fk_grupo === lh)
-
+    const ng = pesquisas?.map((get) => get.grupos)
+    const teste = ng?.map((get) => get.titulo)
     function Seletor() {
         return (
             <>
@@ -82,18 +82,25 @@ function OffcanvasExample() {
     }
     function Getid(id){
         if(id != 0){
-            console.log("pegou id")
+            console.log("pegou id"+ id)
         }
     }
+    console.log(ng)
+    console.log(teste    )
+    
     function Renderisacad() {
         if (lh === '') {
             return <p>Selecione um grupo</p>
         } else {
             return (
                 <>
-                    {ng?.map((get) => {
-                        return <p onClick={Getid(get.id)}>{get.titulo}</p>
-                    })}
+                    {
+
+                    ng?.map((get) => {
+                        return <p>{get.titulo}</p>
+                    })
+
+                    }
                 </>
             )
         }
@@ -117,7 +124,7 @@ function OffcanvasExample() {
                     </div>
                 </div>
                 <div className="li">
-                    <div className="beta">
+                    <div className="betas">
                         <h4>pesquisas</h4>
                         <div>
                             <Renderisacad/>
