@@ -16,6 +16,8 @@ export const CardG = styled.div`
         transform: scale(1);
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
     }
+    margin-bottom: 2%;
+    
 `;
 
 export const NomeGrupo = styled.div`
@@ -42,4 +44,7 @@ export const Formatapag = styled.div`
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    padding: 1rem;
+    margin-top: 1%;
+
 `;
