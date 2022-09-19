@@ -28,6 +28,16 @@ export default function EditarCadastro(props) {
     const [editarFoto, setEditarFoto] = useState(props.record.foto)
     const [editarTipo, setEditarTipo] = useState(StringType(props.record.tipo))
     //const [disableSenha, setDisableSenha] = useState(true)
+    console.log(editarFoto)
+    const fileList = [
+        {
+          uid: '-1',
+          name: 'foto.png',
+          status: 'done',
+          url: editarFoto,
+          thumbUrl: editarFoto,
+        },
+      ];
     
     const { Option } = Select;
     const showModal = () => {
@@ -245,7 +255,7 @@ export default function EditarCadastro(props) {
                         valuePropName="fileList"
                         getValueFromEvent={normFile}
                     >
-                        <Upload name="foto" action="/upload.do" listType="picture" maxCount={1}>
+                        <Upload name="foto" action="/upload.do" listType="picture" defaultFileList={[...fileList]} maxCount={1}>
                         <Button icon={<UploadOutlined />}>Click to upload</Button>
                         </Upload>
                     </Form.Item>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import api from '../../../../api';
 import { Button, Modal, Form, Input, Upload } from 'antd';
+import ImgCrop from 'antd-img-crop';
 import { AiOutlineUserAdd } from "react-icons/ai";
 import { PlusOutlined } from '@ant-design/icons';
 import { Select } from 'antd';
@@ -11,24 +12,24 @@ import { propTypes } from 'react-bootstrap/esm/Image';
 
 const { Option } = Select;
 const getBase64 = (file) =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
+    new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
 
-    reader.onload = () => resolve(reader.result);
+        reader.onload = () => resolve(reader.result);
 
-    reader.onerror = (error) => reject(error);
-});
+        reader.onerror = (error) => reject(error);
+    });
 
-function Cadastro (props) {
+function Cadastro(props) {
     const [form] = Form.useForm();
     const [loading, setLoading] = useState(false);
     const [visible, setVisible] = useState(false);
-    
+
     const showModal = () => {
         setVisible(true);
     };
-    
+
     const handleOk = () => {
         setLoading(true);
         setTimeout(() => {
@@ -77,13 +78,13 @@ function Cadastro (props) {
 
     const normFile = (e) => {
         console.log('Upload event:', e);
-      
+
         if (Array.isArray(e)) {
-          return e;
+            return e;
         }
-      
+
         return e?.fileList;
-      };
+    };
 
     const uploadButton = (
         <div>
@@ -93,11 +94,11 @@ function Cadastro (props) {
                     marginTop: 8,
                 }}
             >
-                Upload
+                Adicionar
             </div>
         </div>
     );
-    
+
     const [nome, setNome] = useState()
     const [email, setEmail] = useState()
     const [cpf, setCpf] = useState()
@@ -113,7 +114,7 @@ function Cadastro (props) {
     const config = {
         'Content-Type': 'multipart/form-data',
     }
-    
+
     function Cadastrar(e) {
         e.preventDefault()
         setLoading(true)
@@ -124,18 +125,36 @@ function Cadastro (props) {
         Form.append('foto', foto.length === 0 ? "" : foto[0].originFileObj)
         Form.append('senha', senha)
         Form.append('tipo', tipo)
-    
-        api.post('/auth/cadastrar', Form, config) 
-        .then(res => {
-            console.log('Deu certo')
-            props.getCadastros()
-            setVisible(false)
-            form.resetFields();
-        })
-        .catch(err => {
-            console.log(err)
-        })
+
+        api.post('/auth/cadastrar', Form, config)
+            .then(res => {
+                console.log('Deu certo')
+                props.getCadastros()
+                setVisible(false)
+                form.resetFields();
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
+
+    const onPreview = async (file) => {
+        let src = file.url;
+    
+        if (!src) {
+          src = await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file.originFileObj);
+    
+            reader.onload = () => resolve(reader.result);
+          });
+        }
+    
+        const image = new Image();
+        image.src = src;
+        const imgWindow = window.open(src);
+        imgWindow?.document.write(image.outerHTML);
+      };
 
     return (
         <>
@@ -198,7 +217,7 @@ function Cadastro (props) {
                                 message: 'O nome é obrigatório!',
                             },
                         ]}
-                       
+
                         value={nome}
                         onChange={e => setNome(e.target.value)}
                     >
@@ -262,23 +281,27 @@ function Cadastro (props) {
                         valuePropName="fileList"
                         getValueFromEvent={normFile}
                     >
-                        <Upload
-                            listType="picture-card"
-                            fileList={foto}
-                            onPreview={handlePreview}
-                            onChange={handleChangeUpload}
-                        >
-                            {foto.length >= 1 ? null : uploadButton}
-                        </Upload>
-                        <Modal open={previewOpen} title={previewTitle} footer={null} onCancel={handleCancelUpload}>
+                        <ImgCrop grid rotate shape="round" modalTitle="Editar Imagem" modalCancel="Cancelar">
+                            <Upload
+                                listType="picture-card"
+                                fileList={foto}
+                                onPreview={onPreview}
+                                onChange={handleChangeUpload}
+                                // beforeUpload={() => false}
+                                maxCount={1}
+                            >
+                                {foto.length < 1 && '+ Upload'}
+                            </Upload>
+                        </ImgCrop>
+                        {/* <Modal open={previewOpen} title={previewTitle} footer={null} onCancel={handleCancelUpload}>
                             <img
-                            alt="example"
-                            style={{
-                                width: '100%',
-                            }}
-                            src={previewImage}
+                                alt="example"
+                                style={{
+                                    width: '100%',
+                                }}
+                                src={previewImage}
                             />
-                        </Modal>
+                        </Modal> */}
                     </Form.Item>
 
 
