@@ -25,3 +25,15 @@
     display: flex;
     justify-content: center;
 }
+.sec-div-geral{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 60%;
+    margin-bottom: 2rem;
+}
+#input-pesquisa{
+    width: 400px;
+    height: 50px;
+    border-radius:10px;
+}

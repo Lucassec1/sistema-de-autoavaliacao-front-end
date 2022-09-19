@@ -141,18 +141,6 @@ function Tabela({ usuario, getCadastros }) {
       ),
   });
 
-  function RenderFoto(url) {
-    // if (url.charAt(url.length - 4) === '.') {
-      return (
-        <Avatar src={<Image src={url} style={{width: 42, display: 'flex', alignItems: 'center' }} />} size={42} />
-      )
-    // } else {
-    //   return (
-    //     <Avatar size={42} icon={<BsFillImageFill size={16}/>} />
-    //   )
-    // }
-  }
-
   const colunas = [
     {
       title: 'ID',
@@ -169,7 +157,7 @@ function Tabela({ usuario, getCadastros }) {
       width: '5vw',
       align: 'center',
       render: (_, record) => 
-      RenderFoto(record.foto)       
+      <Avatar src={<Image fallback="./assets/default-image.png" src={record.foto} style={{width: 42, display: 'flex', alignItems: 'center' }} />} size={42} />
     },
     {
       title: 'Nome',
