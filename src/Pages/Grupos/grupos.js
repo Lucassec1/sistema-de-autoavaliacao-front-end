@@ -33,6 +33,12 @@ function Grupo() {
     // console.log(getnome);
     // const filteredOptions = getnome.filter((o) => !selectedItems.includes(o));
 
+    const [filtro, setFiltro] = useState()
+
+    pessoas.forEach(p => objFilter[p.nome])
+    setFiltro(objFilter)
+    
+    const filteredOptions = teste.filter((o) => !selectedItems.includes(o));
 
 
     const showModal = () => {
@@ -91,7 +97,21 @@ function Grupo() {
                         </PrimaryButton>
                     ]}
                 >
-                     
+                     <Select
+                        mode="multiple"
+                        placeholder="Inserted are removed"
+                        value={selectedItems}
+                        onChange={setSelectedItems}
+                        style={{
+                            width: '100%',
+                        }}
+                        >
+                        {filteredOptions.map((item) => (
+                            <Select.Option key={item} value={item}>
+                            {item}
+                            </Select.Option>
+                        ))}
+                    </Select>
                 </Modal>
                 <Card></Card>
             </div>
