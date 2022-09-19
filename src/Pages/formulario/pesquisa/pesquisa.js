@@ -8,6 +8,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import { get } from 'react-hook-form';
+import Grafico from './grafico'
 const style = {
     position: 'absolute',
     top: '50%',
@@ -34,8 +35,6 @@ function OffcanvasExample() {
             });
     }, []);
 
-    console.log(grupos)
-
     const [pesquisas, setPesquisas] = useState()
     useEffect(() => {
         api.get("/pesquisa")
@@ -54,8 +53,9 @@ function OffcanvasExample() {
         setvalueid(event.target.value);
     };
     var lh = String(valueid)
-    const ng = pesquisas?.map((get) => get.grupos)
-    const teste = ng?.map((get) => get.titulo)
+    //var lh = '3'
+    //console.log(pesquisas)
+    console.log(lh)
     function Seletor() {
         return (
             <>
@@ -80,27 +80,37 @@ function OffcanvasExample() {
             </>
         )
     }
-    function Getid(id){
-        if(id != 0){
-            console.log("pegou id"+ id)
+    function Getid(id) {
+        if (id != 0) {
+            console.log("pegou id" + id)
         }
     }
-    console.log(ng)
-    console.log(teste    )
-    
+   const l = pesquisas?.filter((get) => get.fk_usuario === '3')
+   
+    console.log(pesquisas)
     function Renderisacad() {
         if (lh === '') {
-            return <p>Selecione um grupo</p>
+            return (
+                <>
+                    <p><h4>Pesquisas lançadas por Você</h4></p>
+                    <div>
+                        {
+                            l?.map(get => { 
+                                return (
+                                    <>
+                                        <p>{get.titulo}</p>
+                                    </>
+                                )
+                            })
+                        }
+                    </div>
+                </>
+            )
+           
         } else {
             return (
                 <>
-                    {
-
-                    ng?.map((get) => {
-                        return <p>{get.titulo}</p>
-                    })
-
-                    }
+                    <p>nenhuma pesquisa lançada</p>
                 </>
             )
         }
@@ -113,33 +123,33 @@ function OffcanvasExample() {
                     <Navbargeral />
                 </div>
                 <div className='geral-div-header'>
-                    <div>
-                        <h4> grupos disponiveis</h4>
+                    <div className='sec-div-geral'>
                         <div>
-                            <Seletor />
+                            <h4> grupos disponiveis</h4>
+                            <div>
+                                <Seletor />
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <input type="text" placeholder="digite aqui"></input>
+                        <div>
+                            <input type="text" placeholder="digite aqui" id='input-pesquisa'></input>
+                        </div>
                     </div>
                 </div>
-                <div className="li">
-                    <div className="betas">
-                        <h4>pesquisas</h4>
-                        <div>
-                            <Renderisacad/>
+                <div style={{border: '1px solid red',maxWidth: '100%',display: 'flex', justifyContent: 'space-around'}}>
+                    <div style={{maxWidth:'45%',border: '1px solid blue',height:'500px', overflow: 'auto'}}>
+                        <div><h2>Pesquisas</h2></div>
+                        <div style={{marginTop: '1rem'}}>
+                        <Renderisacad/>
                         </div>
                     </div>
-                    <div className="betas">
-                        <h4>dashbord gerado com a pesquisa </h4>
-                        <div>
 
-                        </div>
+                    <div style={{maxWidth:'45%',border: '1px solid red'}}>
+                        <div><h2>Dashboard</h2></div>
+                        <Grafico/>
                     </div>
                 </div>
             </div>
         </>
     );
 }
-
 export default OffcanvasExample;

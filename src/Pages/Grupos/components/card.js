@@ -5,25 +5,10 @@ import api from "../../../api";
 import { PrimaryButton } from "../../../Components/PrimaryButton/style";
 import { AiOutlineUserAdd } from "react-icons/ai";
 
-function Card() {
-    const [grupo, setGrupo] = useState([])
-
-    useEffect(() => {
-        api
-            .get("/grupos")
-            .then((response) => {
-                setGrupo(response.data);
-                console.log("foi");
-            })
-            .catch((err) => {
-
-            });
-    }, []);
-
-
+function Card({grupo}) {
     return (
-        <>
-        
+        grupo &&
+        <>     
             <Formatapag>
                 {
                     grupo.map((g, key) => {
