@@ -5,6 +5,7 @@ import { PrimaryButton } from '../../../Components/PrimaryButton/style';
 import { SecondaryButton } from "../../../Components/SecondaryButton/style.js";
 import { MdOutlineEdit } from "react-icons/md";
 import { Button, Modal, Form, Input, Upload } from 'antd';
+import ImgCrop from 'antd-img-crop';
 import { Select } from 'antd';
 
 export default function EditarCadastro(props) {
@@ -255,9 +256,11 @@ export default function EditarCadastro(props) {
                         valuePropName="fileList"
                         getValueFromEvent={normFile}
                     >
-                        <Upload name="foto" action="/upload.do" listType="picture" defaultFileList={[...fileList]} maxCount={1}>
-                        <Button icon={<UploadOutlined />}>Click to upload</Button>
-                        </Upload>
+                        <ImgCrop grid rotate shape="round" modalTitle="Editar Imagem" modalCancel="Cancelar">
+                            <Upload name="foto" listType="picture" defaultFileList={[...fileList]} maxCount={1}>
+                            <Button icon={<UploadOutlined />}>Click to upload</Button>
+                            </Upload>
+                        </ImgCrop>
                     </Form.Item>
 
                     <Form.Item
