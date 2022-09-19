@@ -20,11 +20,15 @@ function Grupo() {
     
     useEffect(() => {
         api.get("/usuarios")
-        .then((resp) => {
-            setPessoas(resp.data)
-            
+        .then(resp => {
+            setPessoas(resp.data) 
+        })
+        .catch(err => {
+            console.log(err)
         })
     }, []);
+
+    console.log(pessoas)
     // const { nome } = useParams()
     
     // const peganome = parseInt(nome);
@@ -35,15 +39,19 @@ function Grupo() {
 
     const [filtro, setFiltro] = useState()
 
-    pessoas.forEach(p => objFilter[p.nome])
-    setFiltro(objFilter)
+    // pessoas.forEach(p => objFilter[p.nome])
+    // setFiltro(objFilter)
     
-    const filteredOptions = teste.filter((o) => !selectedItems.includes(o));
-
-
+    const { nome } = useParams()
+    const peganom = String(nome);
+    const testeidp = pessoas.map((peganom) => peganom.nome)
     const showModal = () => {
         setVisible(true);
     };
+    const filteredOptions = testeidp.filter((o) => !selectedItems.includes(o));
+
+
+    console.log(testeidp)
 
     const handleCancel = () => {
         setVisible(false);
@@ -75,8 +83,6 @@ function Grupo() {
             })
     }
 
-    
-
     return (
         <>
             <div>
@@ -99,7 +105,7 @@ function Grupo() {
                 >
                      <Select
                         mode="multiple"
-                        placeholder="Inserted are removed"
+                        placeholder="Pessoas"
                         value={selectedItems}
                         onChange={setSelectedItems}
                         style={{
