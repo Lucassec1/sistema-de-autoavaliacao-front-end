@@ -1,7 +1,5 @@
 import React, { useRef, useState } from 'react';
-import api from '../../../../api'
-import { UserOutlined } from '@ant-design/icons';
-import { Avatar, Image } from 'antd';
+import { Avatar, Image, Tag } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { Button, Input, Space, Table } from 'antd';
 import { BsFillImageFill } from "react-icons/bs";
@@ -9,6 +7,7 @@ import Highlighter from 'react-highlight-words';
 import EditarCadastro from '../edit';
 import Dialog from '../deletemessage';
 import { withStyles } from '@mui/material';
+import { TypeTag } from './styles';
 
 function Tabela({ usuario, getCadastros }) {
   const data = []
@@ -63,7 +62,7 @@ function Tabela({ usuario, getCadastros }) {
       >
         <Input
           ref={searchInput}
-          placeholder={`Search ${dataIndex}`}
+          placeholder={`Pesquisar por ${dataIndex}`}
           value={selectedKeys[0]}
           onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
           onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
@@ -79,18 +78,18 @@ function Tabela({ usuario, getCadastros }) {
             icon={<SearchOutlined />}
             size="small"
             style={{
-              width: 90,
+              width: 100,
               display: 'flex',
               alignItems: 'center'
             }}
           >
-            Search
+            Pesquisar
           </Button>
           <Button
             onClick={() => clearFilters && handleReset(clearFilters)}
             size="small"
             style={{
-              width: 90,
+              width: 80,
             }}
           >
             Resetar
@@ -141,6 +140,34 @@ function Tabela({ usuario, getCadastros }) {
       ),
   });
 
+  function formataCPF(cpf){
+    cpf = cpf.replace(/[^\d]/g, "");
+
+    return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+  }
+
+  function typeOfUserTag(tipo) {
+    if (tipo === 'Administrador') {
+      return (
+        <TypeTag color={'green'} key={2}>
+          {'Admin'}
+        </TypeTag>
+      )
+    } else if (tipo === 'Usuário comum') {
+      return (
+        <TypeTag color={'geekblue'} key={1}>
+        {'Comum'}
+        </TypeTag>
+      )
+    } else {
+      return (
+        <TypeTag color={'pink'} key={1}>
+          {tipo}
+        </TypeTag>
+      )
+    }
+  }
+
   const colunas = [
     {
       title: 'ID',
@@ -163,7 +190,7 @@ function Tabela({ usuario, getCadastros }) {
       title: 'Nome',
       dataIndex: 'nome',
       key: 'nome',
-      width: '20vw',
+      width: '25vw',
       align: 'center',
       ...getColumnSearchProps('nome'),
     },
@@ -171,7 +198,7 @@ function Tabela({ usuario, getCadastros }) {
       title: 'Email',
       dataIndex: 'email',
       key: 'email',
-      width: '30vw',
+      width: '20vw',
       align: 'center',
       ...getColumnSearchProps('email'),
     },
@@ -182,14 +209,18 @@ function Tabela({ usuario, getCadastros }) {
       width: '8vw',
       align: 'center',
       ...getColumnSearchProps('tipo'),
+      render: (_, record) => 
+      typeOfUserTag(record.tipo)
     },
     {
       title: 'CPF',
       dataIndex: 'cpf',
       key: 'cpf',
-      width: '12vw',
+      width: '10vw',
       align: 'center',
       ...getColumnSearchProps('cpf'),
+      render: (_, record) => 
+      formataCPF(record.cpf)
     },
     {
       title: 'Ações',
@@ -204,6 +235,7 @@ function Tabela({ usuario, getCadastros }) {
       </>
     },
   ]
+  
   return (
     <>
       <Table columns={colunas}

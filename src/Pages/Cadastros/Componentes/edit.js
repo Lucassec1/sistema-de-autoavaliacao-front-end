@@ -1,16 +1,23 @@
 import React, { useState } from 'react';
 import api from '../../../api';
-import { PlusOutlined, UploadOutlined } from '@ant-design/icons';
+
 import { PrimaryButton } from '../../../Components/PrimaryButton/style';
 import { SecondaryButton } from "../../../Components/SecondaryButton/style.js";
 import { MdOutlineEdit } from "react-icons/md";
-import { Button, Modal, Form, Input, Upload } from 'antd';
-import { Select } from 'antd';
+import ImgCrop from 'antd-img-crop';
+
+import { 
+    Button, 
+    Modal, 
+    Form, 
+    Input, 
+    Upload, 
+    Select 
+} from 'antd';
 
 export default function EditarCadastro(props) {
     const [loading, setLoading] = useState(false);
     const [visible, setVisible] = useState(false);
-    const [form] = Form.useForm();
 
     function StringType(tipo) {
         if (tipo === "Usuário comum") {
@@ -20,14 +27,21 @@ export default function EditarCadastro(props) {
         } else if (tipo == "Root") {
           return "1";
         }
-      }
+    }
     
     const [editarNome, setEditarNome] = useState(props.record.nome)
     const [editarEmail, setEditarEmail] = useState(props.record.email)
     const [editarCpf, setEditarCpf] = useState(props.record.cpf)
-    const [editarFoto, setEditarFoto] = useState(props.record.foto)
+    const [editarFoto, setEditarFoto] = useState([
+        {
+          uid: '1',
+          name: 'foto.png',
+          status: 'done',
+          url: props.record.foto,
+          thumbUrl: props.record.foto,
+        },
+      ])
     const [editarTipo, setEditarTipo] = useState(StringType(props.record.tipo))
-    //const [disableSenha, setDisableSenha] = useState(true)
     
     const { Option } = Select;
     const showModal = () => {
@@ -60,30 +74,29 @@ export default function EditarCadastro(props) {
         'Content-Type': 'multipart/form-data',
     }
     
-    function Update(e)  {
-        console.log(editarFoto)
+    function Update(e) {
         e.preventDefault()
         setLoading(true)
-        console.log(props.record.key)
         const Form = new FormData();
         Form.append('nome', editarNome)
         Form.append('email', editarEmail)
         Form.append('cpf', editarCpf)
-        editarFoto && Form.append('foto', editarFoto)
+        editarFoto &&  Form.append('foto', editarFoto[0]?.originFileObj)
 
-        api.put(`/usuarios/${props.record.key}`, Form, config)       
-        .then(res => {
-            setLoading(false)
-            
-            setVisible(false)
-            props.update()
-            console.log('Deu certo!')
-        })
-        .catch(err => {
-            setLoading(false)
-            console.log('Bugou')
-        })
-        }
+        api
+            .put(`/usuarios/${props.record.key}`, Form, config)       
+            .then(res => {
+                setLoading(false)
+                
+                setVisible(false)
+                props.update()
+                console.log('Deu certo!')
+            })
+            .catch(err => {
+                setLoading(false)
+                console.log('Bugou')
+            })
+    }
 
     const handleCancel = () => {
         setVisible(false);
@@ -115,25 +128,32 @@ export default function EditarCadastro(props) {
         setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
     };
 
-    const handleChangeUpload = ({ fileList: newFileList }) => setEditarFoto(newFileList);
+    const handleChangeUpload = ({ fileList: newFileList }) => { 
+        setEditarFoto(newFileList) 
+    };
 
     const normFile = (e) => {
         setEditarFoto(e.file.originFileObj);
         console.log(e)
     };
 
-    const uploadButton = (
-        <div>
-            <PlusOutlined />
-            <div
-                style={{
-                marginTop: 8,
-                }}
-            >
-                Upload
-            </div>
-        </div>
-    );
+    const onPreview = async (file) => {
+        let src = file.url;
+    
+        if (!src) {
+          src = await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file.originFileObj);
+    
+            reader.onload = () => resolve(reader.result);
+          });
+        }
+    
+        const image = new Image();
+        image.src = src;
+        const imgWindow = window.open(src);
+        imgWindow?.document.write(image.outerHTML);
+      };
 
     return (
         <>
@@ -168,13 +188,14 @@ export default function EditarCadastro(props) {
                     onFinishFailed={onFinishFailed}
                     autoComplete="off"
                 >
-                    <Form.Item label="Tipo"
+                    <Form.Item 
+                        label="Tipo"
                         name="Tipo"
                         initialValue={editarTipo}
                         rules={[
                             {
                                 required: true,
-                                message: 'O tipo é obrigatório!',
+                                message: 'O Tipo é obrigatório!',
                             },
                         ]}>
 
@@ -194,7 +215,7 @@ export default function EditarCadastro(props) {
                         rules={[
                             {
                                 required: true,
-                                message: 'O nome é obrigatório!',
+                                message: 'O Nome é obrigatório!',
                             },
                         ]}
                         initialValue={editarNome}
@@ -245,9 +266,15 @@ export default function EditarCadastro(props) {
                         valuePropName="fileList"
                         getValueFromEvent={normFile}
                     >
-                        <Upload name="foto" action="/upload.do" listType="picture" maxCount={1}>
-                        <Button icon={<UploadOutlined />}>Click to upload</Button>
-                        </Upload>
+                        <ImgCrop grid rotate shape="round" modalTitle="Editar Imagem" modalCancel="Cancelar">
+                            <Upload name="fotoEditar" listType="picture-card" 
+                            fileList={editarFoto}
+                            onPreview={onPreview}
+                            onChange={handleChangeUpload}
+                            /*defaultFileList={[...fileList]} */maxCount={1}>
+                                {editarFoto.length < 1 && '+ Upload'}
+                            </Upload>
+                        </ImgCrop>
                     </Form.Item>
 
                     <Form.Item
