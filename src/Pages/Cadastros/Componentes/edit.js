@@ -26,19 +26,19 @@ export default function EditarCadastro(props) {
     const [editarNome, setEditarNome] = useState(props.record.nome)
     const [editarEmail, setEditarEmail] = useState(props.record.email)
     const [editarCpf, setEditarCpf] = useState(props.record.cpf)
-    const [editarFoto, setEditarFoto] = useState(props.record.foto)
-    const [editarTipo, setEditarTipo] = useState(StringType(props.record.tipo))
-    //const [disableSenha, setDisableSenha] = useState(true)
-    console.log(editarFoto)
-    const fileList = [
+    const [editarFoto, setEditarFoto] = useState([
         {
-          uid: '-1',
+          uid: '1',
           name: 'foto.png',
           status: 'done',
-          url: editarFoto,
-          thumbUrl: editarFoto,
+          url: props.record.foto,
+          thumbUrl: props.record.foto,
         },
-      ];
+      ])
+    const [editarTipo, setEditarTipo] = useState(StringType(props.record.tipo))
+    //const [disableSenha, setDisableSenha] = useState(true)
+    //console.log(editarFoto[0]?.originFileObj)
+
     
     const { Option } = Select;
     const showModal = () => {
@@ -80,7 +80,7 @@ export default function EditarCadastro(props) {
         Form.append('nome', editarNome)
         Form.append('email', editarEmail)
         Form.append('cpf', editarCpf)
-        editarFoto && Form.append('foto', editarFoto)
+        editarFoto &&  Form.append('foto', editarFoto[0]?.originFileObj)
 
         api.put(`/usuarios/${props.record.key}`, Form, config)       
         .then(res => {
@@ -126,25 +126,32 @@ export default function EditarCadastro(props) {
         setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
     };
 
-    const handleChangeUpload = ({ fileList: newFileList }) => setEditarFoto(newFileList);
+    const handleChangeUpload = ({ fileList: newFileList }) => { 
+        setEditarFoto(newFileList) 
+    };
 
     const normFile = (e) => {
         setEditarFoto(e.file.originFileObj);
         console.log(e)
     };
 
-    const uploadButton = (
-        <div>
-            <PlusOutlined />
-            <div
-                style={{
-                marginTop: 8,
-                }}
-            >
-                Upload
-            </div>
-        </div>
-    );
+    const onPreview = async (file) => {
+        let src = file.url;
+    
+        if (!src) {
+          src = await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file.originFileObj);
+    
+            reader.onload = () => resolve(reader.result);
+          });
+        }
+    
+        const image = new Image();
+        image.src = src;
+        const imgWindow = window.open(src);
+        imgWindow?.document.write(image.outerHTML);
+      };
 
     return (
         <>
@@ -257,8 +264,12 @@ export default function EditarCadastro(props) {
                         getValueFromEvent={normFile}
                     >
                         <ImgCrop grid rotate shape="round" modalTitle="Editar Imagem" modalCancel="Cancelar">
-                            <Upload name="foto" listType="picture" defaultFileList={[...fileList]} maxCount={1}>
-                            <Button icon={<UploadOutlined />}>Click to upload</Button>
+                            <Upload name="fotoEditar" listType="picture-card" 
+                            fileList={editarFoto}
+                            onPreview={onPreview}
+                            onChange={handleChangeUpload}
+                            /*defaultFileList={[...fileList]} */maxCount={1}>
+                                {editarFoto.length < 1 && '+ Upload'}
                             </Upload>
                         </ImgCrop>
                     </Form.Item>
