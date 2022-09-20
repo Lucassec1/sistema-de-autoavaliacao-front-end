@@ -6,21 +6,6 @@
     background-color:#347AE2;
     margin-bottom: 2rem;
 }
-.li{
-    display:flex;
-    justify-content: space-around;
-    align-items: center;
-    border: 1px solid  red;
-}
-.betas{
-    border: 1px solid red;
-    max-width: 50%;
-    flex-wrap: wrap;
-}
-.beta h4{
-    display: flex;
-    justify-content: center;
-}
 .geral-div-header{
     display: flex;
     justify-content: center;
@@ -36,4 +21,42 @@
     width: 400px;
     height: 50px;
     border-radius:10px;
+}
+#te{
+    width: 300px;
+    margin-top:1rem;
+    margin-left: 1rem;
+}
+#lh{
+    display: flex;
+    max-width:84%;
+    flex-wrap: wrap;
+    height: 510px;
+    overflow-y: auto;
+}
+.div-geral-cardpesq{
+    border: 1px solid blue;
+}
+.fonte{
+    font-size:12px
+}
+#cor-azul{
+    background-color:blue;
+    width: 10px;
+    height: 10px;
+}
+#cor-yellow{
+    background-color:yellow;
+    width: 10px;
+    height: 10px;
+}
+#cor-laganja{
+    background-color:orange;
+    width: 10px;
+    height: 10px;
+}
+#cor-verde{
+    background-color:greenyellow;
+    width: 10px;
+    height: 10px;
 }
