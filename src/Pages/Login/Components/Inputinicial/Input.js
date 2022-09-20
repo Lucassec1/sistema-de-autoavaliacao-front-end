@@ -132,8 +132,6 @@ const NumericInput = (props) => {
                 height: '32px', 
                 padding: '4px 11px',
                 border: '1px solid #d9d9d9',
-               
-                
               }}
 
               mask="999.999.999-99" 
@@ -155,29 +153,28 @@ const NumericInput = (props) => {
           )}
         />
       </Form.Item>
-        
-      
-        <Form.Item
-          style={{ display: visible, marginLeft: '-14px' }}
-          minLength={8}
-          label="Senha"
-          validateStatus={status}
-          help={wrongPasswordMessage}
-          name="senha"
-          rules={[
-            {
-              required: true,
-              message: "A senha é obrigatória!",
-            },
-          ]}
-          value={senha}
-          onChange={(e) => {
-            setSenha(e.target.value);
-            setWrongPassword(false);
-          }}
-        >
-          <Input.Password placeholder="Digite sua senha" type="password" />
-        </Form.Item> 
+         
+      <Form.Item
+        style={{ display: visible, marginLeft: '-14px' }}
+        minLength={8}
+        label="Senha"
+        validateStatus={status}
+        help={wrongPasswordMessage}
+        name="senha"
+        rules={[
+          {
+            required: true,
+            message: "A senha é obrigatória!",
+          },
+        ]}
+        value={senha}
+        onChange={(e) => {
+          setSenha(e.target.value);
+          setWrongPassword(false);
+        }}
+      >
+        <Input.Password placeholder="Digite sua senha" type="password" />
+      </Form.Item> 
 
         <ButtonContainer>
           <LoginButton

@@ -12,7 +12,8 @@ import {
   Form, 
   Input, 
   Upload, 
-  Select
+  Select,
+  message
 } from "antd";
 
 const { Option } = Select;
@@ -123,13 +124,21 @@ function Cadastro(props) {
     form.resetFields();
     setFoto([]);
   };
-
+  
   const config = {
     "Content-Type": "multipart/form-data",
   };
+  
+  const success = () => {
+    message.success('Usuário Cadastrado com Sucesso!', 3);
+  };
 
-  function Cadastrar(e) {
-    e.preventDefault();
+  const error = () => {
+    message.error('Falha ao Realizar o Cadastro', 3);
+  };
+  
+  function Cadastrar() {
+    // e.preventDefault();
     setLoading(true);
     const Form = new FormData();
     Form.append("nome", nome);
@@ -147,10 +156,12 @@ function Cadastro(props) {
         setVisible(false);
         form.resetFields();
         setLoading(false);
+        success()
       })
       .catch((err) => {
         console.log(err);
         setLoading(false);
+        error()
       });
   }
 
@@ -174,7 +185,7 @@ function Cadastro(props) {
 
   return (
     <>
-      <PrimaryButton type="primary" onClick={showModal}>
+      <PrimaryButton flex type="primary" onClick={showModal}>
         <AiOutlineUserAdd size={18} />
         <span>Adicionar Nova Pessoa</span>
       </PrimaryButton>
@@ -191,7 +202,7 @@ function Cadastro(props) {
             key="submit"
             type="primary"
             loading={loading}
-            onClick={(e) => Cadastrar(e)}
+            onClick={() => Cadastrar()}
           >
             Enviar
           </PrimaryButton>,
@@ -315,7 +326,6 @@ function Cadastro(props) {
                 fileList={foto}
                 onPreview={handlePreview}
                 onChange={handleChangeUpload}
-                // beforeUpload={() => false}
                 maxCount={1}
               >
                 {foto.length < 1 && "+ Upload"}
