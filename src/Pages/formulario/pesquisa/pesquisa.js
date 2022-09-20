@@ -7,19 +7,11 @@ import api from '../../../api'
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import { get } from 'react-hook-form';
 import Grafico from './grafico'
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-};
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import { PieChart, Pie, Cell } from "recharts";
 
 function OffcanvasExample() {
 
@@ -85,28 +77,45 @@ function OffcanvasExample() {
             console.log("pegou id" + id)
         }
     }
-   const l = pesquisas?.filter((get) => get.fk_usuario === '3')
-   
-    console.log(pesquisas)
+    const l = pesquisas?.filter((get) => get.fk_usuario === '3')
+
     function Renderisacad() {
         if (lh === '') {
             return (
                 <>
-                    <p><h4>Pesquisas lançadas por Você</h4></p>
                     <div>
-                        {
-                            l?.map(get => { 
-                                return (
-                                    <>
-                                        <p>{get.titulo}</p>
-                                    </>
-                                )
-                            })
-                        }
+                        <div>
+                            <h4 style={{ align: 'center', display: 'flex', marginLeft:'3rem' }}>Pesquisas lançadas por Você.</h4>
+                        </div>
+                        <div id="lh">
+                            {
+                                l?.map(get => {
+                                    return (
+                                        <>
+                                            <div>
+                                                <Card id='te'>
+                                                    <CardContent>
+                                                        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                                                            <h4>{get.titulo}</h4>
+                                                        </Typography>
+                                                        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                                                            <p>{get.descricao}</p>
+                                                        </Typography>
+                                                    </CardContent>
+                                                    {/*<CardActions>
+                                                        <Button size="small">Learn More</Button>
+                                                    </CardActions>*/}
+                                                </Card>
+                                            </div>
+                                        </>
+                                    )
+                                })
+                            }
+                        </div>
                     </div>
                 </>
             )
-           
+
         } else {
             return (
                 <>
@@ -115,7 +124,62 @@ function OffcanvasExample() {
             )
         }
     }
-
+    function Grafico(){
+        const data = [
+            { name: "Group A", value: 700 },
+            { name: "Group B", value: 300 },
+            { name: "Group C", value: 300 },
+            { name: "Group D", value: 200 }
+          ];
+          
+          const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+          
+          const RADIAN = Math.PI / 180;
+          const renderCustomizedLabel = ({
+            cx,
+            cy,
+            midAngle,
+            innerRadius,
+            outerRadius,
+            percent,
+            index
+          }: any) => {
+            const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+            const x = cx + radius * Math.cos(-midAngle * RADIAN);
+            const y = cy + radius * Math.sin(-midAngle * RADIAN);
+          
+            return (
+              <text
+                x={x}
+                y={y}
+                fill="white"
+                textAnchor={x > cx ? "start" : "end"}
+                dominantBaseline="central"
+              >
+                {`${(percent * 100).toFixed(0)}%`}
+              </text>
+            );
+          };
+          return (
+            <PieChart width={400} height={400}>
+              <Pie
+                data={data}
+                cx={200}
+                cy={200}
+                labelLine={false}
+                label={renderCustomizedLabel}
+                outerRadius={80}
+                fill="#8884d8"
+                dataKey="value"
+              >
+                {data.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
+            </PieChart>
+          );
+          
+    }
     return (
         <>
             <div>
@@ -135,19 +199,24 @@ function OffcanvasExample() {
                         </div>
                     </div>
                 </div>
-                <div style={{border: '1px solid red',maxWidth: '100%',display: 'flex', justifyContent: 'space-around'}}>
-                    <div style={{maxWidth:'45%',border: '1px solid blue',height:'500px', overflow: 'auto'}}>
-                        <div><h2>Pesquisas</h2></div>
-                        <div style={{marginTop: '1rem'}}>
-                        <Renderisacad/>
+                <div style={{display:'flex'}}>
+                    <div>
+                        <Renderisacad />
+                    </div>
+                    <div style={{border:'1px solid blue', marginRight:'70px'}}>
+                        <div><Grafico/></div>
+                        <div>
+                            <h6>Legenda</h6>
+                            <p className='fonte'><button id='cor-azul'></button>Pesquisas concluidas</p>
+                            <p className='fonte'><button id='cor-yellow'></button>Pesquisas Em Andamento</p>
+                            <p className='fonte'><button id='cor-laganja'></button>media de notas <br/>
+                            acima de 7</p>
+                            <p className='fonte'><button id='cor-verde'></button>media de notas <br/>
+                            abaixo de 7</p>
                         </div>
                     </div>
-
-                    <div style={{maxWidth:'45%',border: '1px solid red'}}>
-                        <div><h2>Dashboard</h2></div>
-                        <Grafico/>
-                    </div>
                 </div>
+
             </div>
         </>
     );

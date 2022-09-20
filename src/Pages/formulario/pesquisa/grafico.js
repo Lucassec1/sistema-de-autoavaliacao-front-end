@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+/*import React, { useCallback, useState } from "react";
 import { PieChart, Pie, Cell } from "recharts";
 
 const data = [
@@ -56,3 +56,4 @@ export default function App() {
     </PieChart>
   );
 }
+*/
