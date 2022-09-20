@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import api from "../../../../api";
-import { Button, Modal, Form, Input, Upload } from "antd";
-import ImgCrop from "antd-img-crop";
-import { AiOutlineUserAdd } from "react-icons/ai";
-import { PlusOutlined } from "@ant-design/icons";
-import { Select } from "antd";
-import { AddButton } from "./style";
+
 import { PrimaryButton } from "../../../../Components/PrimaryButton/style.js";
 import { SecondaryButton } from "../../../../Components/SecondaryButton/style.js";
+import { PlusOutlined } from "@ant-design/icons";
+import { AiOutlineUserAdd } from "react-icons/ai";
+import ImgCrop from "antd-img-crop";
+
+import { 
+  Modal, 
+  Form, 
+  Input, 
+  Upload, 
+  Select
+} from "antd";
 
 const { Option } = Select;
 
@@ -49,9 +55,7 @@ function Cadastro(props) {
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [previewTitle, setPreviewTitle] = useState("");
-  // const [fileList, setFileList] = useState([]);
   const [foto, setFoto] = useState([]);
-  //console.log(foto);
 
   const handleCancelUpload = () => {
     setPreviewOpen(false);

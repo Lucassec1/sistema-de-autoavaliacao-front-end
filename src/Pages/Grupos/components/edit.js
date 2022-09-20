@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import api from '../../api';
+import api from '../../../api';
 
-import { PrimaryButton } from "../../Components/PrimaryButton/style";
-import { SecondaryButton } from '../../Components/SecondaryButton/style';
-import { AiOutlineUserAdd } from "react-icons/ai";
+import { PrimaryButton } from '../../../Components/PrimaryButton/style';
+import { SecondaryButton } from "../../../Components/SecondaryButton/style.js";
+import { MdOutlineEdit } from "react-icons/md";
 
 import { 
     Modal,
@@ -12,37 +12,21 @@ import {
     Select
 } from 'antd';
 
-import Card from './components/card'
-
-function Grupo() {
-    const [form] = Form.useForm();
+function EditarGrupo (props) {
     const [loading, setLoading] = useState(false);
     const [visible, setVisible] = useState(false);
-    const [selectedItems, setSelectedItems] = useState([]);
+    const [editSelectedItems, setEditSelectedItems] = useState([]);
     const [pessoas, setPessoas] = useState([]);
-    const [status, setStatus] = useState([]);
-    const [nome, setNome] = useState()
+    const [editStatus, setEditStatus] = useState(props.dados.status);
+    const [editNome, setEditNome] = useState(props.dados.nome)
     const { Option } = Select;
-    const [grupos, setGrupos] = useState()
+    const [filteredOptions, setFilteredOptions] = useState(pessoas);
 
-    const getGrupos = () => {
-        api
-            .get("/grupos")
-            .then((response) => {
-                setGrupos(response.data);
-                console.log("foi");
-            })
-            .catch((err) => {
-                console.log(err)
-            });
-    };
-
-    if(!grupos) getGrupos()
-    
     useEffect(() => {
         api.get("/usuarios")
         .then(resp => {
             setPessoas(resp.data) 
+            setFilteredOptions(resp.data)
         })
         .catch(err => {
             console.log(err)
@@ -53,11 +37,17 @@ function Grupo() {
         setVisible(true);
     };
 
-    const filteredOptions = pessoas.filter((o) => !selectedItems.includes(o.nome));
+    const filter = (nome) => {
+        if (nome !== "") {
+            console.log(nome)
+            const results = pessoas.filter((o) => o.nome.toLowerCase().includes(nome.toLowerCase()))
+            setFilteredOptions(results)
+        }
+        else setFilteredOptions(pessoas) 
+    }
 
     const handleCancel = () => {
         setVisible(false);
-        form.resetFields();
     };
 
     const handleOk = () => {
@@ -68,20 +58,19 @@ function Grupo() {
         }, 3000);
     };
 
-    function Cadastrar(e) {
+    function Editar(e) {
         e.preventDefault()
         setLoading(true)
         api.
-            post('/grupos', {
-                nome: nome,
-                status: status,
-                pessoas: selectedItems.map(int => parseInt(int))
+            put(`/grupos/${props.dados.id}`, {
+                nome: editNome,
+                status: editStatus,
+                pessoas: editSelectedItems.map(int => parseInt(int))
         })
         .then(res => {
             console.log('Deu certo')
             setVisible(false)
-            form.resetFields()
-            getGrupos()
+            props.update()
         })
         .catch(err => {
             console.log(err)
@@ -92,32 +81,31 @@ function Grupo() {
         <>
             <div>
                 <PrimaryButton type="primary" onClick={showModal} style={{ marginTop: '5%', marginLeft: '1%', display: 'flex', justifyContent: 'center' }}>
-                    <AiOutlineUserAdd size={18} /><span>Adicionar Nova Pessoa</span>
+                    <MdOutlineEdit size={18} />
                 </PrimaryButton>
+
                 <Modal
                     visible={visible}
-                    title="Cadastrar Pessoa"
+                    title="Editar Pessoa"
                     onOk={handleOk}
                     onCancel={handleCancel}
                     footer={[
                         <SecondaryButton key="back" onClick={handleCancel}>
                             Cancelar
                         </SecondaryButton>,
-                        <PrimaryButton key="submit" type="primary" loading={loading} onClick={(e) => Cadastrar(e)} >
-                            Enviar
+                        <PrimaryButton key="submit" type="primary" loading={loading} onClick={(e) => Editar(e)} >
+                            Salvar
                         </PrimaryButton>
                     ]}
                 >
 
                     <Form
                         layout='vertical'
-                        form={form}
                     >
                         <Form.Item
                             label="Nome"
                             name="Nome"
-                            value={nome}
-                            onChange={e => setNome(e.target.value)}
+                            initialValue={editNome}
                             rules={[
                                 {
                                     required: true,
@@ -125,12 +113,13 @@ function Grupo() {
                                 },
                             ]}
                         >
-                            <Input type='text' placeholder="Digite um Nome"/>
+                            <Input type='text' placeholder="Digite um novo Nome"/>
                         </Form.Item>
                     
                         <Form.Item
                             label="Pessoas"
                             name="Pessoas"
+                            onChange={(e) => { setEditNome(e.target.value); filter(e.target.value)}}
                             rules={[
                                 {
                                     required: true,
@@ -138,26 +127,28 @@ function Grupo() {
                                 },
                             ]}
                         >
+                            {console.log(filteredOptions)}
                             <Select
                                 mode="multiple"
                                 placeholder="Pessoas"
-                                value={selectedItems}
-                                onChange={setSelectedItems}
+                                initialValue={editSelectedItems}
+                                onChange={setEditSelectedItems}
                                 style={{
                                     width: '100%',
                                 }}
                                 >
-                                {filteredOptions.map((item) => (
-                                    <Select.Option key={item.id} value={item.id}>
+                                {filteredOptions.map((item) => 
+                                    (<Select.Option key={item.id} value={item.id}>
                                     {item.nome}
-                                    </Select.Option>
-                                ))}
+                                    </Select.Option>)
+                                )}
                             </Select>
                         </Form.Item>
 
                         <Form.Item
                             label="Status"
                             name="Status"
+                            initialValue={`${editStatus}`}
                             rules={[
                                 {
                                     required: true,
@@ -166,11 +157,11 @@ function Grupo() {
                             ]}
                             >
                             <Select
-                                placeholder="Status"
+                                placeholder="Selecione o novo Status"
                                 style={{
                                     width: '100%',
                                 }}
-                                onChange={(e) => setStatus(e)}
+                                onChange={(e) => setEditStatus(e)}
                             >
                                 <Option value="1">Ativo</Option>
                                 <Option value="0">Inativo</Option>
@@ -178,10 +169,10 @@ function Grupo() {
                         </Form.Item>
                     </Form>
                 </Modal>
-                <Card grupo={grupos}/>
+                
             </div>
         </>
     )
 }
 
-export default Grupo;
+export default EditarGrupo;

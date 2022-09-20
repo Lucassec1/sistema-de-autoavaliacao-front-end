@@ -1,9 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { CardG, NomeGrupo, OrgCard, Formatapag } from "./styles";
+import React from "react";
+
 import Avatar from '@mui/material/Avatar';
-import api from "../../../api";
-import { PrimaryButton } from "../../../Components/PrimaryButton/style";
-import { AiOutlineUserAdd } from "react-icons/ai";
+
+import { 
+    CardG, 
+    NomeGrupo, 
+    OrgCard, 
+    Formatapag
+} from "./styles";
+import EditarGrupo from "./edit";
+
 
 function Card({grupo}) {
     return (
@@ -15,6 +21,7 @@ function Card({grupo}) {
                         return (
                             <>
                                 <CardG>
+                                    <EditarGrupo dados={g}/>
                                     <OrgCard>
                                         <Avatar style={{ width: '5rem', height: '5rem' }} />
                                         <NomeGrupo key={key}>{g?.nome}</NomeGrupo>
@@ -27,23 +34,6 @@ function Card({grupo}) {
             </Formatapag>
         </>
     );
-
-
-
 }
-export default Card;
-/**{
-            grupo.map((g, key) => {
-                return (
-                    <>
-                        <CardG>
-                            <OrgCard>
-                                <Avatar style={{ width: '5rem', height: '5rem' }} />
-                                <NomeGrupo>{g.nome}</NomeGrupo>
-                            </OrgCard>
-                        </CardG>
-                    </>
-                )
 
-            })
-        } */
+export default Card;

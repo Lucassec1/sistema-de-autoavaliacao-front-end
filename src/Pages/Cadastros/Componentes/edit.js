@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
 import api from '../../../api';
-import { PlusOutlined, UploadOutlined } from '@ant-design/icons';
+
 import { PrimaryButton } from '../../../Components/PrimaryButton/style';
 import { SecondaryButton } from "../../../Components/SecondaryButton/style.js";
 import { MdOutlineEdit } from "react-icons/md";
-import { Button, Modal, Form, Input, Upload } from 'antd';
 import ImgCrop from 'antd-img-crop';
-import { Select } from 'antd';
+
+import { 
+    Button, 
+    Modal, 
+    Form, 
+    Input, 
+    Upload, 
+    Select 
+} from 'antd';
 
 export default function EditarCadastro(props) {
     const [loading, setLoading] = useState(false);
     const [visible, setVisible] = useState(false);
-    const [form] = Form.useForm();
 
     function StringType(tipo) {
         if (tipo === "Usuário comum") {
@@ -21,7 +27,7 @@ export default function EditarCadastro(props) {
         } else if (tipo == "Root") {
           return "1";
         }
-      }
+    }
     
     const [editarNome, setEditarNome] = useState(props.record.nome)
     const [editarEmail, setEditarEmail] = useState(props.record.email)
@@ -36,9 +42,6 @@ export default function EditarCadastro(props) {
         },
       ])
     const [editarTipo, setEditarTipo] = useState(StringType(props.record.tipo))
-    //const [disableSenha, setDisableSenha] = useState(true)
-    //console.log(editarFoto[0]?.originFileObj)
-
     
     const { Option } = Select;
     const showModal = () => {
@@ -71,30 +74,29 @@ export default function EditarCadastro(props) {
         'Content-Type': 'multipart/form-data',
     }
     
-    function Update(e)  {
-        console.log(editarFoto)
+    function Update(e) {
         e.preventDefault()
         setLoading(true)
-        console.log(props.record.key)
         const Form = new FormData();
         Form.append('nome', editarNome)
         Form.append('email', editarEmail)
         Form.append('cpf', editarCpf)
         editarFoto &&  Form.append('foto', editarFoto[0]?.originFileObj)
 
-        api.put(`/usuarios/${props.record.key}`, Form, config)       
-        .then(res => {
-            setLoading(false)
-            
-            setVisible(false)
-            props.update()
-            console.log('Deu certo!')
-        })
-        .catch(err => {
-            setLoading(false)
-            console.log('Bugou')
-        })
-        }
+        api
+            .put(`/usuarios/${props.record.key}`, Form, config)       
+            .then(res => {
+                setLoading(false)
+                
+                setVisible(false)
+                props.update()
+                console.log('Deu certo!')
+            })
+            .catch(err => {
+                setLoading(false)
+                console.log('Bugou')
+            })
+    }
 
     const handleCancel = () => {
         setVisible(false);
@@ -186,13 +188,14 @@ export default function EditarCadastro(props) {
                     onFinishFailed={onFinishFailed}
                     autoComplete="off"
                 >
-                    <Form.Item label="Tipo"
+                    <Form.Item 
+                        label="Tipo"
                         name="Tipo"
                         initialValue={editarTipo}
                         rules={[
                             {
                                 required: true,
-                                message: 'O tipo é obrigatório!',
+                                message: 'O Tipo é obrigatório!',
                             },
                         ]}>
 
@@ -212,7 +215,7 @@ export default function EditarCadastro(props) {
                         rules={[
                             {
                                 required: true,
-                                message: 'O nome é obrigatório!',
+                                message: 'O Nome é obrigatório!',
                             },
                         ]}
                         initialValue={editarNome}
