@@ -92,11 +92,11 @@ function Grupo() {
         <>
             <div>
                 <PrimaryButton type="primary" onClick={showModal} style={{ marginTop: '5%', marginLeft: '1%', display: 'flex', justifyContent: 'center' }}>
-                    <AiOutlineUserAdd size={18} /><span>Adicionar Nova Pessoa</span>
+                    <AiOutlineUserAdd size={18} /><span>Adicionar Novo Grupo</span>
                 </PrimaryButton>
                 <Modal
                     visible={visible}
-                    title="Cadastrar Pessoa"
+                    title="Cadastrar Grupo"
                     onOk={handleOk}
                     onCancel={handleCancel}
                     footer={[

@@ -2,7 +2,6 @@ import React, { useRef, useState } from 'react';
 import { Avatar, Image, Tag } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { Button, Input, Space, Table } from 'antd';
-import { BsFillImageFill } from "react-icons/bs";
 import Highlighter from 'react-highlight-words';
 import EditarCadastro from '../edit';
 import Dialog from '../deletemessage';
@@ -231,7 +230,11 @@ function Tabela({ usuario, getCadastros }) {
       render: (_, record) => 
       <>
         <EditarCadastro record={record} update={getCadastros}/>
-        <Dialog record={record} update={getCadastros}/>
+        <Dialog record={record} update={getCadastros} 
+          router={`/usuarios/${record.key}`}
+          mensagem="Usuário apagado com sucesso!"
+          title="Deseja apagar esse usuário?"
+        />
       </>
     },
   ]

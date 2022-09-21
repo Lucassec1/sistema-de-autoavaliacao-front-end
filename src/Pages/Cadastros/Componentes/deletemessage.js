@@ -5,37 +5,41 @@ import { message, Popconfirm, Button } from 'antd';
 import { MdDeleteOutline } from "react-icons/md";
 
 export default function Dialog(props) {
-    const deleteUser = (user) => {
+    const deleteUser = () => {
         api
-          .delete(`/usuarios/${props.record.key}`)
-          .then(() => {
-            
-            props.update()
-          })
-          .catch(err => {
-            console.log(err)
-          })
-      }
+            .delete(props.router)
+            .then(() => {
+                props.update()
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
 
-    const Confirmar = (e) => {
-        console.log(e);
-        message.success('Usuário deletado com sucesso', 1.5);
-        deleteUser(props.record)
-    };
+    if (props.option === 1) {
+        console.log(props.router)
+        return deleteUser(props.router);
+    } else {
+        const Confirmar = (e) => {
+            console.log(e);
+            message.success(props.mensagem, 1.5);
+            deleteUser(props.record)
+        };
     
-    const Cancelar = (e) => {
-        console.log(e);
-    };
-
-    return (
-        <Popconfirm
-            title="Você deseja mesmo apagar esse usuário?"
-            onConfirm={Confirmar}
-            onCancel={Cancelar}
-            okText="Sim"
-            cancelText="Não"
-        >
-            <Button icon={<MdDeleteOutline/>} style={{border: 'none'}}/>
-        </Popconfirm>
-    )
+        const Cancelar = (e) => {
+            console.log(e);
+        };
+    
+        return (
+            <Popconfirm
+                title={props.title}
+                onConfirm={Confirmar}
+                onCancel={Cancelar}
+                okText="Sim"
+                cancelText="Não"
+            >
+                <Button icon={<MdDeleteOutline />} style={{ border: 'none' }} />
+            </Popconfirm>
+        )
+    }
 }

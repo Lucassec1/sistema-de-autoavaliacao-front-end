@@ -9,12 +9,16 @@ export const CardG = styled.div`
     border-radius: 7px;
     border-left: 5px solid #205AB1;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     margin-right: 3%;
+    padding: 1%;
+    gap: 5%;
+    transition: 0.3s;
     :hover {
         transform: scale(1);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
     margin-bottom: 2%;
     
@@ -47,4 +51,12 @@ export const Formatapag = styled.div`
     padding: 1rem;
     margin-top: 1%;
 
+`;
+
+export const ButtonEditar = styled.div`
+    width: 12rem;
+    display: flex;
+    justify-content: flex-end;
+    //align-items: flex-start;
+    margin-bottom: 20%;
 `;

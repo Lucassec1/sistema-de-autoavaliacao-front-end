@@ -1,16 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../../api';
-
+import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { PrimaryButton } from '../../../Components/PrimaryButton/style';
 import { SecondaryButton } from "../../../Components/SecondaryButton/style.js";
+import { FiMoreVertical } from "react-icons/fi";
 import { MdOutlineEdit } from "react-icons/md";
+import { MdDeleteOutline } from "react-icons/md";
+import { ButtonEditar } from './styles'
 
 import { 
     Modal,
     Form,
     Input,
-    Select
+    Select,
+    Button,
+    Dropdown,
+    Menu
 } from 'antd';
+
+import Dialog from '../../Cadastros/Componentes/deletemessage';
 
 function EditarGrupo (props) {
     const [loading, setLoading] = useState(false);
@@ -39,7 +47,6 @@ function EditarGrupo (props) {
 
     const filter = (nome) => {
         if (nome !== "") {
-            console.log(nome)
             const results = pessoas.filter((o) => o.nome.toLowerCase().includes(nome.toLowerCase()))
             setFilteredOptions(results)
         }
@@ -76,13 +83,82 @@ function EditarGrupo (props) {
             console.log(err)
         })
     }
+
+    const { confirm } = Modal;
+
+    const deleteUser = () => {
+        api
+            .delete(`/grupos/${props.dados.id}`)
+            .then(() => {
+                props.update()
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
+    const showDeleteConfirm = () => {
+        confirm({
+          title: 'Tem certeza que deseja deletar esse grupo?',
+          icon: <ExclamationCircleOutlined />,
+          okText: 'Sim',
+          okType: 'danger',
+          cancelText: 'Não',
+      
+          onOk() {
+            //console.log('OK');
+            console.log(`/grupos/${props.dados.id}`);
+            deleteUser()
+          },
+      
+          onCancel() {
+            //console.log('Cancel');
+          },
+        });
+      };
+
+    const handleButtonClick = (e) => {
+        console.log('click left button', e);
+      };
+      
+    const handleMenuClick = (e) => {
+        
+        if (e.key === "1" ) {
+            setVisible(true);
+        } else if (e.key === "2") {
+            showDeleteConfirm()
+        }
+    };
+
+    const menu = (
+        <Menu
+          onClick={handleMenuClick}
+          items={[
+            {
+                label: 'Editar',
+                key: '1',
+                icon: <MdOutlineEdit size={18} />
+            },
+            {
+              label: 'Apagar',
+              key: '2',
+              icon: <MdDeleteOutline size={18}/>
+
+            },
+          ]}
+        />
+      );
     
     return (
         <>
             <div>
-                <PrimaryButton type="primary" onClick={showModal} style={{ marginTop: '5%', marginLeft: '1%', display: 'flex', justifyContent: 'center' }}>
-                    <MdOutlineEdit size={18} />
-                </PrimaryButton>
+                <ButtonEditar>
+                <Dropdown overlay={menu}>
+                    <Button>
+                        <FiMoreVertical />
+                    </Button>
+                </Dropdown>
+                </ButtonEditar>
 
                 <Modal
                     visible={visible}
@@ -127,7 +203,6 @@ function EditarGrupo (props) {
                                 },
                             ]}
                         >
-                            {console.log(filteredOptions)}
                             <Select
                                 mode="multiple"
                                 placeholder="Pessoas"

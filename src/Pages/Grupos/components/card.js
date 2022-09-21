@@ -8,8 +8,8 @@ import {
     OrgCard, 
     Formatapag
 } from "./styles";
-import EditarGrupo from "./edit";
 
+import EditarGrupo from "./edit";
 
 function Card({grupo}) {
     return (
