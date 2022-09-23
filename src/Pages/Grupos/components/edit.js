@@ -5,6 +5,7 @@ import { PrimaryButton } from '../../../Components/PrimaryButton/style';
 import { SecondaryButton } from "../../../Components/SecondaryButton/style.js";
 import { FiMoreVertical } from "react-icons/fi";
 import { MdOutlineEdit } from "react-icons/md";
+import { AiOutlineEye } from "react-icons/ai";
 import { MdDeleteOutline } from "react-icons/md";
 import { ButtonEditar } from './styles'
 
@@ -15,14 +16,15 @@ import {
     Select,
     Button,
     Dropdown,
-    Menu
+    Menu, 
+    Divider, 
+    List, 
 } from 'antd';
-
-import Dialog from '../../Cadastros/Componentes/deletemessage';
 
 function EditarGrupo (props) {
     const [loading, setLoading] = useState(false);
     const [visible, setVisible] = useState(false);
+    const [visibleInspect, setVisibleInspect] = useState(false);
     const [editSelectedItems, setEditSelectedItems] = useState([]);
     const [pessoas, setPessoas] = useState([]);
     const [editStatus, setEditStatus] = useState(props.dados.status);
@@ -45,6 +47,10 @@ function EditarGrupo (props) {
         setVisible(true);
     };
 
+    const showModalInspect = () => {
+        setVisibleInspect(true);
+    };
+
     const filter = (nome) => {
         if (nome !== "") {
             const results = pessoas.filter((o) => o.nome.toLowerCase().includes(nome.toLowerCase()))
@@ -57,12 +63,20 @@ function EditarGrupo (props) {
         setVisible(false);
     };
 
+    const handleCancelInspect = () => {
+        setVisibleInspect(false);
+    };
+
     const handleOk = () => {
         setLoading(true);
         setTimeout(() => {
             setLoading(false);
             setVisible(false);
         }, 3000);
+    };
+
+    const handleOkInspect = () => {
+        setVisibleInspect(false);   
     };
 
     function Editar(e) {
@@ -127,6 +141,8 @@ function EditarGrupo (props) {
             setVisible(true);
         } else if (e.key === "2") {
             showDeleteConfirm()
+        } else if(e.key === "3") {
+            setVisibleInspect(true);
         }
     };
 
@@ -145,20 +161,47 @@ function EditarGrupo (props) {
               icon: <MdDeleteOutline size={18}/>
 
             },
+            {
+                label: 'Inspecionar',
+                key: '3',
+                icon: <AiOutlineEye size={18}/>
+  
+              },
           ]}
         />
-      );
+    );
+
+    console.log(props.dados)
     
     return (
         <>
             <div>
                 <ButtonEditar>
-                <Dropdown overlay={menu}>
-                    <Button>
-                        <FiMoreVertical />
-                    </Button>
-                </Dropdown>
+                    <Dropdown overlay={menu}>
+                        <Button>
+                            <FiMoreVertical />
+                        </Button>
+                    </Dropdown>
                 </ButtonEditar>
+
+                <Modal
+                    visible={visibleInspect}
+                    title={props.dados.nome}
+                    onOk={handleOkInspect}
+                    onCancel={handleCancelInspect}
+                    footer={null}
+                >
+                    <Divider orientation="left">Membros do Grupo</Divider>
+                    <List
+                        size="large"
+                        bordered
+                        // Precisa passar as pessoas especificas do grupo, porém no 'props.dados', só mostra 'id, nome e status' do grupo
+                        dataSource={pessoas}
+                        renderItem={(item) => <List.Item>{item}</List.Item>}
+                    />
+
+                </Modal>
+
 
                 <Modal
                     visible={visible}
@@ -195,7 +238,7 @@ function EditarGrupo (props) {
                         <Form.Item
                             label="Pessoas"
                             name="Pessoas"
-                            onChange={(e) => { setEditNome(e.target.value); filter(e.target.value)}}
+                            onChange={(e) => { setEditNome(e.target.value); filter(e.target.value) }}
                             rules={[
                                 {
                                     required: true,
