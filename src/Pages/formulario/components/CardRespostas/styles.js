@@ -70,7 +70,7 @@ export const Nota = styled.div`
   width: 25px;
   border-radius: 4px;
   background-color: #0e4d87;
-  color: var(--Text);
+  color: var(--Background);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -112,10 +112,13 @@ export const ListaPessoas = styled.ul``;
 
 export const NomePessoa = styled.li``;
 
-export const CloseButton = styled.button`
-  position: absolute;
-  right: 20px;
-  top: 10px;
-  background-color: transparent;
-  border: 0;
+export const GraficoContainer = styled.div`
+  border: 1px solid red;
+  width: 100%;
+  height: 100%;
+  text-align: center;
 `;
+
+export const GráficoTitle = styled.h5``;
+
+export const GráficoSubtitle = styled.p``;
