@@ -7,11 +7,10 @@ import api from '../../../api'
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import Grafico from './grafico'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { PieChart, Pie, Cell } from "recharts";
+import Grafico from './grafico'
 
 function OffcanvasExample() {
 
@@ -39,15 +38,40 @@ function OffcanvasExample() {
             });
     }, []);
 
+   /* const [resposta, setresposta] = useState()
+    useEffect(() => {
+        api.get(`/resposta/${15}`)
+            .then((response) => {
+                setresposta(response.data);
+                console.log("lucas");
+            })
+            .catch((err) => {
+                alert(err.message);
+            });
+    }, []);*/
+    const [respostas, setrespostas] = useState()
+    useEffect(() => {
+        api.get(`/resposta`)
+            .then((response) => {
+                setrespostas(response.data);
+                console.log("lucas");
+            })
+            .catch((err) => {
+                alert(err.message);
+            });
+    }, []);
+    
     var [valueid, setvalueid] = React.useState('');
 
     const handleChange = (event) => {
         setvalueid(event.target.value);
     };
     var lh = String(valueid)
-    //var lh = '3'
-    //console.log(pesquisas)
-    console.log(lh)
+    //const lucas = pesquisas?.map((get) => get.grupos)
+    //const lio = lucas?.map((get) => get?.fk_grupo)
+    console.log(pesquisas)
+    console.log(respostas)
+    //console.log(resposta);
     function Seletor() {
         return (
             <>
@@ -72,9 +96,36 @@ function OffcanvasExample() {
             </>
         )
     }
-    function Getid(id) {
-        if (id != 0) {
-            console.log("pegou id" + id)
+    var [filt, setfilt] = useState()
+    const handleChangefilt = (e) => setfilt(e.target.event) 
+    function Seletorconcluido() {
+        return (
+            <>
+                <Box sx={{ minWidth: 120 }}>
+                    <FormControl fullWidth>
+                        <InputLabel id="demo-simple-select-label">pesquisa</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={filt}
+                            label="valueid"
+                            onChange={handleChangefilt}
+                        >
+                            <MenuItem value={'none'}>none</MenuItem>
+                            <MenuItem value={'Pesquisas concluidas'}>Pesquisas concluidas</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Box>
+            </>
+        )
+    }
+
+    function Tampao(){
+        if(filt === 'Pesquisas concluidas'){
+            return(
+                <>
+                </>
+            )
         }
     }
     const l = pesquisas?.filter((get) => get.fk_usuario === '3')
@@ -102,9 +153,7 @@ function OffcanvasExample() {
                                                             <p>{get.descricao}</p>
                                                         </Typography>
                                                     </CardContent>
-                                                    {/*<CardActions>
-                                                        <Button size="small">Learn More</Button>
-                                                    </CardActions>*/}
+                                                    
                                                 </Card>
                                             </div>
                                         </>
@@ -124,62 +173,7 @@ function OffcanvasExample() {
             )
         }
     }
-    function Grafico(){
-        const data = [
-            { name: "Group A", value: 700 },
-            { name: "Group B", value: 300 },
-            { name: "Group C", value: 300 },
-            { name: "Group D", value: 200 }
-          ];
-          
-          const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
-          
-          const RADIAN = Math.PI / 180;
-          const renderCustomizedLabel = ({
-            cx,
-            cy,
-            midAngle,
-            innerRadius,
-            outerRadius,
-            percent,
-            index
-          }: any) => {
-            const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-            const x = cx + radius * Math.cos(-midAngle * RADIAN);
-            const y = cy + radius * Math.sin(-midAngle * RADIAN);
-          
-            return (
-              <text
-                x={x}
-                y={y}
-                fill="white"
-                textAnchor={x > cx ? "start" : "end"}
-                dominantBaseline="central"
-              >
-                {`${(percent * 100).toFixed(0)}%`}
-              </text>
-            );
-          };
-          return (
-            <PieChart width={400} height={400}>
-              <Pie
-                data={data}
-                cx={200}
-                cy={200}
-                labelLine={false}
-                label={renderCustomizedLabel}
-                outerRadius={80}
-                fill="#8884d8"
-                dataKey="value"
-              >
-                {data.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                ))}
-              </Pie>
-            </PieChart>
-          );
-          
-    }
+
     return (
         <>
             <div>
@@ -195,6 +189,12 @@ function OffcanvasExample() {
                             </div>
                         </div>
                         <div>
+                        <h5>filtra pesquisa</h5>
+                            <div>
+                                <Seletorconcluido/>
+                            </div>
+                        </div>
+                        <div>
                             <input type="text" placeholder="digite aqui" id='input-pesquisa'></input>
                         </div>
                     </div>
@@ -203,8 +203,10 @@ function OffcanvasExample() {
                     <div>
                         <Renderisacad />
                     </div>
-                    <div style={{border:'1px solid blue', marginRight:'70px'}}>
-                        <div><Grafico/></div>
+                    <div style={{border:'1px solid blue', marginRight:'150px'}}>
+                        <div >
+                            <Grafico/>
+                        </div>
                         <div>
                             <h6>Legenda</h6>
                             <p className='fonte'><button id='cor-azul'></button>Pesquisas concluidas</p>

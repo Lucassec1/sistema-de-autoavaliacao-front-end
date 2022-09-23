@@ -10,10 +10,10 @@ import Home from "./Pages/Home";
 import Cadastros from "./Pages/Cadastros/index.js";
 import Login from './Pages/Login/Login';
 import SideBar from './Components/SideBar';
-import Formula from './Pages/formulario/Formulario'
+import Paghomepesquisa from './Pages/formulario/Paghomepesquisa'
 import HomeUser from './Pages/User Comum/Home User/index'
 import ResUser from "./Pages/User Comum/Resposta User/index";
-import Minhapesquisa from './Pages/formulario/pesquisa/pesquisa'
+import Minhapesquisa from './Pages/formulario/Minhapesquisa/MinhaPesquisa'
 import Criarpesquisamenu from './Pages/formulario/CriarPesquisaMenu'
 import Criarpesquisa from './Pages/formulario/CriarPesquisa/index'
 import Grupos from './Pages/Grupos/grupos'
@@ -42,7 +42,7 @@ export default function Rotas() {
         <Route exact path='/' element={<Login />} />
         <Route exact path="/home" element={<PrivateRoute Item={Home} />} />
         <Route exact path="/cadastros" element={<PrivateRoute Item={Cadastros} />} />
-        <Route exact path="/pesquisas" element={<PrivateRoute Item={Formula} />} />
+        <Route exact path="/pesquisas" element={<PrivateRoute Item={Paghomepesquisa} />} />
         <Route exact path="/minhapesquisa" element={<PrivateRoute Item={Minhapesquisa} />} />
         <Route exact path="/homeU" element={<PrivateRoute Item={HomeUser} />} />
         <Route exact path="/menupesquisa" element={<PrivateRoute Item={Criarpesquisamenu} />} />

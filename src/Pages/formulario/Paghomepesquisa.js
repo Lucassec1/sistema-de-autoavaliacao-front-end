@@ -4,8 +4,8 @@ import './styles.css';
 import Navbargeral from "./navbar"
 import { Input } from 'antd';
 import api from '../../api'
-import CardPesquisa from '../formulario/components/CardPesquisa'; 
-import { Container, Top, ContTipos, Body, ContSearch, ContPesquisas } from '../formulario/CriarPesquisaMenu/styles';
+import CardPesquisa from './components/CardPesquisa'; 
+import { Container, Top, ContTipos, Body, ContSearch, ContPesquisas } from './CriarPesquisaMenu/styles';
 
 const { Search } = Input;
 
