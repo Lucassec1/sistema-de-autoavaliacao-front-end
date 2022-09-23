@@ -1,12 +1,23 @@
 import React, { useRef, useState } from 'react';
-import { Avatar, Image, Tag } from 'antd';
+
 import { SearchOutlined } from '@ant-design/icons';
-import { Button, Input, Space, Table } from 'antd';
 import Highlighter from 'react-highlight-words';
+import { TypeTag } from './styles';
+
+import { 
+  Avatar, 
+  Image 
+} from 'antd';
+
+import { 
+  Button, 
+  Input, 
+  Space, 
+  Table 
+} from 'antd';
+
 import EditarCadastro from '../edit';
 import Dialog from '../deletemessage';
-import { withStyles } from '@mui/material';
-import { TypeTag } from './styles';
 
 function Tabela({ usuario, getCadastros }) {
   const data = []
@@ -242,11 +253,12 @@ function Tabela({ usuario, getCadastros }) {
   return (
     <>
       <Table columns={colunas}
+
         bordered
         dataSource={data}
         pagination={{
           pageSize: 10,
-        }} 
+        }}
         />
     </>
   )

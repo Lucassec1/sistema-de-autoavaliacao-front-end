@@ -26,22 +26,26 @@ function EditarGrupo (props) {
     const [visible, setVisible] = useState(false);
     const [visibleInspect, setVisibleInspect] = useState(false);
     const [editSelectedItems, setEditSelectedItems] = useState([]);
-    const [pessoas, setPessoas] = useState([]);
+    const [pessoas, setPessoas] = useState();
     const [editStatus, setEditStatus] = useState(props.dados.status);
     const [editNome, setEditNome] = useState(props.dados.nome)
     const { Option } = Select;
-    const [filteredOptions, setFilteredOptions] = useState(pessoas);
+    const [filteredOptions, setFilteredOptions] = useState();
 
-    useEffect(() => {
-        api.get("/usuarios")
-        .then(resp => {
-            setPessoas(resp.data) 
-            setFilteredOptions(resp.data)
+    const getDetalhes = () => {
+        api.get(`/grupos/${props.dados.id}`) 
+        .then(response => {
+            console.log(response.data)
+            setFilteredOptions(response.data.pessoas)
+            setEditSelectedItems(response.data.pessoas.map(i => i.id))
+            setEditNome(response.data.nome)
+            setEditStatus(response.data.status)
         })
-        .catch(err => {
-            console.log(err)
-        })
-    }, []);
+    }
+    if (!filteredOptions && visible) getDetalhes()
+
+    const getPessoas = () => { api.get("/usuarios").then(res => setPessoas(res.data)) }
+    if (!pessoas && visible) getPessoas()
     
     const showModal = () => {
         setVisible(true);
@@ -158,20 +162,20 @@ function EditarGrupo (props) {
             {
               label: 'Apagar',
               key: '2',
-              icon: <MdDeleteOutline size={18}/>
+              icon: <MdDeleteOutline size={18} />
 
             },
             {
                 label: 'Inspecionar',
                 key: '3',
-                icon: <AiOutlineEye size={18}/>
+                icon: <AiOutlineEye size={18} />
   
               },
           ]}
         />
     );
 
-    console.log(props.dados)
+    // console.log(props.dados)
     
     return (
         <>
@@ -246,21 +250,22 @@ function EditarGrupo (props) {
                                 },
                             ]}
                         >
-                            <Select
+                            {console.log(editSelectedItems)}
+                            {pessoas && filteredOptions && <Select
                                 mode="multiple"
                                 placeholder="Pessoas"
-                                initialValue={editSelectedItems}
+                                defaultValue={filteredOptions.map(p => { return { value: p.id, label: p.nome } })}
                                 onChange={setEditSelectedItems}
                                 style={{
                                     width: '100%',
                                 }}
                                 >
-                                {filteredOptions.map((item) => 
+                                {pessoas?.map((item) => 
                                     (<Select.Option key={item.id} value={item.id}>
                                     {item.nome}
                                     </Select.Option>)
                                 )}
-                            </Select>
+                            </Select>}
                         </Form.Item>
 
                         <Form.Item

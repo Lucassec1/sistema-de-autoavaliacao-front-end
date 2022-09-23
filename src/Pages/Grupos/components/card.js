@@ -16,7 +16,7 @@ function Card({ grupo }) {
         grupo &&
         <>     
             <Formatapag>
-                {
+                {   
                     grupo.map((g, key) => {
                         return (
                             <>
