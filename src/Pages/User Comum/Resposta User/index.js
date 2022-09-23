@@ -50,6 +50,7 @@ export default function ResUser(props) {
         fetchPesquisa();
     }, []);
 
+    console.log(Respostas)  
     return (
         <>
             <Container>

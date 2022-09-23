@@ -55,7 +55,7 @@ function Criarpesquisa() {
   perguntas.map(p => (
     idPerguntas.push(p.id)
   ))
-  console.log(idPerguntas)
+  console.log(perguntas)
 
   const getResposta = (perguntaId) => {
     api
@@ -75,7 +75,7 @@ function Criarpesquisa() {
     api
       .post(`/perguntas/pesquisa/${id}`, { perguntas: perguntas })
       .then((res) => console.log(res))
-      window.location.href = `/menupesquisa`
+      //window.location.href = `/menupesquisa`
   }
 
   function voltar() { window.history.back(); }
