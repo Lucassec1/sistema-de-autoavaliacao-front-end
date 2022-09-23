@@ -10,8 +10,9 @@ import {
 } from "./styles";
 
 import EditarGrupo from "./edit";
+import Inspecionar from "./inspect";
 
-function Card({grupo}) {
+function Card({ grupo }) {
     return (
         grupo &&
         <>     
@@ -20,7 +21,8 @@ function Card({grupo}) {
                     grupo.map((g, key) => {
                         return (
                             <>
-                                <CardG>
+                                <CardG>    
+                                    <Inspecionar />      
                                     <EditarGrupo dados={g}/>
                                     <OrgCard>
                                         <Avatar style={{ width: '5rem', height: '5rem' }} />
