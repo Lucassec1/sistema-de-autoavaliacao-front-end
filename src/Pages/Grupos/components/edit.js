@@ -196,7 +196,7 @@ function EditarGrupo (props) {
                         size="large"
                         bordered
                         // Precisa passar as pessoas especificas do grupo, porém no 'props.dados', só mostra 'id, nome e status' do grupo
-                        dataSource={pessoas}
+                        // dataSource={}
                         renderItem={(item) => <List.Item>{item}</List.Item>}
                     />
 
@@ -205,7 +205,7 @@ function EditarGrupo (props) {
 
                 <Modal
                     visible={visible}
-                    title="Editar Pessoa"
+                    title="Editar Grupo"
                     onOk={handleOk}
                     onCancel={handleCancel}
                     footer={[
