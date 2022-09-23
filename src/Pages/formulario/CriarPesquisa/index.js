@@ -5,11 +5,13 @@ import CardPergunta from '../components/CardPergunta';
 import { BsArrowLeftShort } from "react-icons/bs";
 import { Container, Pagina, BodyPesquisa, AdicionarPergunta, ListaPerguntas, BtnConcluir, FixedBar } from './styles';
 import api from '../../../api'
+import CardRespostas from '../components/CardRespostas';
 
 function Criarpesquisa() {
   const id = window.location.pathname.substring(15,)
   const [perguntas, setPerguntas] = useState([{enunciado: "Primeira Pergunta"}])
   const [dadosRecebidos, setDadosRecebidos] = useState(false)
+  const idPerguntas = []
   const [edit, setEdit] = useState(true)
   const [titulo, setTitulo] = useState({ 
     titulo: "",
@@ -35,6 +37,7 @@ function Criarpesquisa() {
     api
       .get(`/pesquisa/${id}`)
       .then((res) => {
+        console.log(res)
         setTitulo({titulo: res.data.titulo, descricao: res.data.descricao})
         if (res.data.perguntas.length > 0) {
           setPerguntas(res.data.perguntas)
@@ -44,16 +47,35 @@ function Criarpesquisa() {
       })
   }
 
+  
   if (!dadosRecebidos){
     getDados()
   } 
+
+  perguntas.map(p => (
+    idPerguntas.push(p.id)
+  ))
+  console.log(idPerguntas)
+
+  const getResposta = (perguntaId) => {
+    api
+      .get(`/pesquisa/${perguntaId}`)
+      .then((res) => {
+        console.log(res.data)
+        // if (res.data.perguntas.length > 0) {
+        //   setPerguntas(res.data.perguntas)
+        //   setEdit(false)
+        // }
+        setDadosRecebidos(true)
+      })
+  }
 
   const PostPerguntas = (e) => {
     e.preventDefault()
     api
       .post(`/perguntas/pesquisa/${id}`, { perguntas: perguntas })
       .then((res) => console.log(res))
-      window.location.href = `/menupesquisa`
+      //window.location.href = `/menupesquisa`
   }
 
   function voltar() { window.history.back(); }
@@ -64,7 +86,7 @@ function Criarpesquisa() {
       <FixedBar>
         <div style={{display: "flex", alignItems: "center"}}>
           <BsArrowLeftShort onClick={voltar}/>
-          <span>Criando Nova Pesquisa</span>
+          <span>{edit ? "Criando Nova Pesquisa" : "Visualização da pesquisa"}</span>
         </div>
         {edit
         ? <BtnConcluir onClick={(e) => { PostPerguntas(e) }}>Concluir Criação da Pesquisa</BtnConcluir>
@@ -78,21 +100,30 @@ function Criarpesquisa() {
         <BodyPesquisa>
           <ListaPerguntas>
             {perguntas.map((_, index) => 
-              <CardPergunta 
+              {return edit ? 
+                 <CardPergunta 
+                  key={index}
+                  perguntas={perguntas}
+                  setPerguntas={setPerguntas}
+                  index={index}
+                  removerPergunta={removerPergunta}
+                  edit={edit}
+                  /> 
+                 :
+                <CardRespostas 
+                perguntaId={_.id}
                 key={index}
                 perguntas={perguntas}
-                setPerguntas={setPerguntas}
-                index={index}
-                removerPergunta={removerPergunta}
-                edit={edit}
-                /> )}
+                index={index} />
+              }
+            )}
           </ListaPerguntas>
 
           {edit &&
           <AdicionarPergunta onClick={() => adicionarPergunta()}>
             <AiOutlinePlus/>
           </AdicionarPergunta>
-          }
+          }         
 
         </BodyPesquisa>
       </Pagina>

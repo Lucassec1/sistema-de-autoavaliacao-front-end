@@ -48,3 +48,11 @@
     overflow:auto;
     height: 500px;
 }
+
+.navItem {
+    color: var(--Background);
+}
+
+.navItem:hover{
+    color: var(--Divider);
+}
