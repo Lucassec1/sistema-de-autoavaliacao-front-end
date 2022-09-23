@@ -4,7 +4,7 @@ export const CardG = styled.div`
     width: 14rem;
     height: 16rem;
     background: #FAFAFA;
-    border: 1px solid #EBEBEB;
+    border: 1px solid var(--Divider);
     box-shadow: 0px 1px 5px rgba(32, 90, 177, 0.1);
     border-radius: 7px;
     border-left: 5px solid #205AB1;
@@ -17,7 +17,7 @@ export const CardG = styled.div`
     gap: 5%;
     transition: 0.3s;
     :hover {
-        transform: scale(1);
+        transition: 0.3s;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
     margin-bottom: 2%;

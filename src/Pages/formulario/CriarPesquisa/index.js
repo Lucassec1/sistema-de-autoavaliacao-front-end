@@ -85,7 +85,7 @@ function Criarpesquisa() {
     <Container>
       <FixedBar>
         <div style={{display: "flex", alignItems: "center"}}>
-          <BsArrowLeftShort onClick={voltar}/>
+          <BsArrowLeftShort size="1.5rem" onClick={voltar}/>
           <span>{edit ? "Criando Nova Pesquisa" : "Visualização da pesquisa"}</span>
         </div>
         {edit

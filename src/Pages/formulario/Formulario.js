@@ -38,7 +38,7 @@ function Formulario() {
                 <div className='seletor'>
                     <Body>
                         <ContSearch>
-                            <h2>TODAS AS PESQUISAS</h2>
+                            <h3>Todas as pesquisas</h3>
                             <Search 
                                 style={{width: '370px'}}
                                 placeholder="Buscar por uma pesquisa" onChange={onSearch} enterButton />

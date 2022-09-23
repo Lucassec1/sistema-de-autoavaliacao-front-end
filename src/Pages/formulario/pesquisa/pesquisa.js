@@ -85,7 +85,7 @@ function OffcanvasExample() {
                 <>
                     <div>
                         <div>
-                            <h4 style={{ align: 'center', display: 'flex', marginLeft:'3rem' }}>Pesquisas lançadas por Você.</h4>
+                            <h4 style={{ align: 'center', display: 'flex', marginLeft:'3rem' }}>Pesquisas lançadas por você</h4>
                         </div>
                         <div id="lh">
                             {
